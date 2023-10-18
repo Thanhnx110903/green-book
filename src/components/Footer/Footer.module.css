@@ -1,0 +1,29 @@
+footer {
+  background: linear-gradient(to right, #f6f6f6 0 33%, #efefef 33% 100%);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+
+.footer-right {
+  width: 33.33%;
+}
+
+.footer-left {
+  width: calc(100% - 33.33%);
+}
+
+.footer-title {
+  margin-bottom: 17px;
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+.footer-list li {
+  font-size: 1.5rem;
+  color: #000000;
+  margin-top: 10px;
+}
