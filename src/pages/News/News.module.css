@@ -1,0 +1,11 @@
+.news-left {
+  border-left: 1px solid #f0f0f0;
+}
+
+.news-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}

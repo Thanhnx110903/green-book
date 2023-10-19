@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind'
+import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
 const cx = classNames.bind(styles)
@@ -7,12 +8,12 @@ export default function Footer() {
   return (
     <>
       <footer>
-        <div className={cx('container')}>
+        <div className={cx('container-wrap')}>
           <div className={cx('wrapper')}>
             <div className={cx('footer-right')}>
-              <a href='!#'>
+              <Link to='/'>
                 <img src='/src/assets/imgs/logo.png' alt='' />
-              </a>
+              </Link>
               <p className={cx('my-[16px] text-[1.5rem] leading-normal')}>
                 Nhà Sách Tiền Phong nhận đặt hàng trực tuyến và giao hàng tận nơi hoặc nhận hàng tại tất cả Hệ Thống Nhà
                 Sách Tiền Phong trên toàn quốc.
@@ -41,7 +42,7 @@ export default function Footer() {
               {/* footer top */}
               <div className='d-flex justify-between'>
                 <div className=''>
-                  <h3 className={cx('footer-title')}>Dịch vụ</h3>
+                  <h3 className={cx('footer-title')}>DỊCH VỤ</h3>
                   <ul className={cx('footer-list')}>
                     <li>Điều khoản sử dụng</li>
                     <li>Chính sách bảo mật</li>
@@ -108,7 +109,7 @@ export default function Footer() {
           </div>
         </div>
         <div className={cx('bg-[#efefef] py-[10px]')}>
-          <div className={cx('container', 'text-[14px]')}>
+          <div className={cx('container-wrap', 'text-[14px]')}>
             © Bản quyền thuộc về Nhà sách Tiền Phong | Cung cấp bởi Sapo
           </div>
         </div>

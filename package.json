@@ -13,7 +13,10 @@
     "prettier:fix": "prettier --write \"src/**/(*.jsx|*.js|*.tsx|*ts|*.css|*.scss)\""
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.4",
     "classnames": "^2.3.2",
+    "flowbite": "^1.8.1",
+    "flowbite-react": "^0.6.4",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
