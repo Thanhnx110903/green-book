@@ -13,8 +13,11 @@ export default function BannerHome() {
         <div className={cx('w-[258px]')}>
           <nav>
             <ul>
-              <li className={cx('d-flex items-center justify-between py-[10px] px-[14px]')}>
-                <Link className={cx('w-[100%] d-flex items-center justify-between hover:text-primary')} to='!#'>
+              <li className={cx('d-flex items-center justify-between ')}>
+                <Link
+                  className={cx('w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary')}
+                  to='!#'
+                >
                   <div className={cx('d-flex items-center')}>
                     <img src='/src/assets/imgs/menu_icon_1.png' alt='' />
                     <p className={cx('ml-[6px] text-[1.5rem]')}>Sách tiếng Việt</p>
@@ -22,8 +25,11 @@ export default function BannerHome() {
                   <i className={cx('fa-solid fa-chevron-right', 'text-[1.4rem] ml-[7px]')}></i>
                 </Link>
               </li>
-              <li className={cx('py-[10px] px-[14px]')}>
-                <Link className={cx('w-[100%] d-flex items-center justify-between hover:text-primary')} to='!#'>
+              <li className={cx('')}>
+                <Link
+                  className={cx('w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary')}
+                  to='!#'
+                >
                   <div className={cx('d-flex items-center')}>
                     <img src='/src/assets/imgs/menu_icon_2.png' alt='' />
                     <p className={cx('text-[1.5rem] ml-[6px] w-[150px]')}>Sách giáo khoa - tham khảo</p>
@@ -31,8 +37,11 @@ export default function BannerHome() {
                   <i className={cx('fa-solid fa-chevron-right', 'text-[1.4rem]')}></i>
                 </Link>
               </li>
-              <li className={cx('d-flex items-center justify-between py-[10px] px-[14px]')}>
-                <Link className={cx('w-[100%] d-flex items-center justify-between hover:text-primary')} to='!#'>
+              <li className={cx('d-flex items-center justify-between ')}>
+                <Link
+                  className={cx('w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary')}
+                  to='!#'
+                >
                   <div className={cx('d-flex items-center')}>
                     <img src='/src/assets/imgs/menu_icon_3.png' alt='' />
                     <p className={cx('ml-[6px]  text-[1.5rem]')}>Sách ngoại ngữ</p>
@@ -40,8 +49,11 @@ export default function BannerHome() {
                   <i className={cx('fa-solid fa-chevron-right', 'text-[1.4rem]')}></i>
                 </Link>
               </li>
-              <li className={cx('d-flex items-center justify-between py-[10px] px-[14px]')}>
-                <Link className={cx('w-[100%] d-flex items-center justify-between hover:text-primary')} to='!#'>
+              <li className={cx('d-flex items-center justify-between ')}>
+                <Link
+                  className={cx('w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary')}
+                  to='!#'
+                >
                   <div className={cx('d-flex items-center')}>
                     <img src='/src/assets/imgs/menu_icon_4.png' alt='' />
                     <p className={cx('ml-[6px]  text-[1.5rem]')}>Dụng cụ học sinh</p>
@@ -49,8 +61,11 @@ export default function BannerHome() {
                   <i className={cx('fa-solid fa-chevron-right', 'text-[1.4rem]')}></i>
                 </Link>
               </li>
-              <li className={cx('d-flex items-center justify-between py-[10px] px-[14px]')}>
-                <Link className={cx('w-[100%] d-flex items-center justify-between hover:text-primary')} to='!#'>
+              <li className={cx('d-flex items-center justify-between ')}>
+                <Link
+                  className={cx('w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary')}
+                  to='!#'
+                >
                   <div className={cx('d-flex items-center')}>
                     <img src='/src/assets/imgs/menu_icon_5.png' alt='' />
                     <p className={cx('ml-[6px] text-[1.5rem]')}>Văn phòng phẩm</p>

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles)
 export default function News() {
   return (
     <div className={cx('mb-[70px]')}>
-      <div className={cx('bg-[#f6f6f6] py-[4px]')}>
+      <div className={cx('bg-[#f6f6f6] py-[6px]')}>
         <div className={cx('container-wrap text-[1.4rem]')}>
           <Link className={cx('text-[#999]')} to='/'>
             Trang chủ /

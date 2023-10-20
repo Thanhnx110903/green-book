@@ -57,7 +57,7 @@ export default function Header() {
                 <div className='d-flex items-center'>
                   <img className='w-[32px] h-[32px] mr-[16px]' src='/src/assets/imgs/user.png' alt='' />
                   <div>
-                    <Link to='!#' className='text-[14px] text-[#000000] hover:text-primary block'>
+                    <Link to='/Login' className='text-[14px] text-[#000000] hover:text-primary block'>
                       Tài khoản
                     </Link>
                     <Link to='/login' className='text-[11px] text-[#000000] hover:text-primary'>
