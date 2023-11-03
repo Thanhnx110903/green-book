@@ -1,10 +1,37 @@
 import classNames from 'classnames/bind'
 import styles from './Register.module.css'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import InputField from '../../components/InputField/InputField'
+import { useCallback, useState } from 'react'
+import Button from '../../components/Button/Button'
+import { apiRegister } from '../../apis'
+import Swal from 'sweetalert2'
 const cx = classNames.bind(styles)
 
 export default function Register() {
+  const navigate = useNavigate()
+  const [payload, setpayload] = useState({
+    email: '',
+    name: '',
+    password: '',
+    phone: '',
+    confirmPassword: ''
+  })
+  const resetPayload = () => {
+    setpayload({ email: '', name: '', password: '', phone: '', confirmPassword: '' })
+  }
+  const handleRegisterSubmit = useCallback(async () => {
+    const response = await apiRegister(payload)
+    console.log(response)
+    if (response.message == 'SUCCESS') {
+      Swal.fire('Congratulation', response.message, 'success').then(() => {
+        resetPayload()
+        navigate('/login')
+      })
+    } else {
+      Swal.fire('Oops!', response.message, 'error')
+    }
+  }, [payload])
   return (
     <div>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -35,21 +62,12 @@ export default function Register() {
           <form className='space-y-5' action='#' method='POST'>
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] font-semibold leading-6 text-gray-900'>
-                Họ
+                Tên
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <div className='mt-2'>
-                <input
-                  id='họ'
-                  name='họ'
-                  type='họ'
-                  placeholder='Họ'
-                  required
-                  className='placeholder:text-2xl pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
-                />
-              </div>
+              <InputField value={payload.name} nameKey='name' setValue={setpayload} />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Tên
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
@@ -64,39 +82,20 @@ export default function Register() {
                   className='placeholder:text-2xl pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
                 />
               </div>
-            </div>
+            </div> */}
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Số điện thoại
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <div className='mt-2'>
-                <input
-                  id='phone'
-                  name='phone'
-                  type='phone'
-                  placeholder='Số điện thoại'
-                  required
-                  className='placeholder:text-2xl pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
-                />
-              </div>
+              <InputField value={payload.phone} nameKey='phone' setValue={setpayload} />
             </div>
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Email
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <div className='mt-2'>
-                <input
-                  id='email'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
-                  placeholder='Email'
-                  required
-                  className='placeholder:text-2xl pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
-                />
-              </div>
+              <InputField value={payload.email} nameKey='email' setValue={setpayload} />
             </div>
             <div>
               <div className='flex items-center justify-between'>
@@ -105,25 +104,27 @@ export default function Register() {
                   <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
                 </label>
               </div>
-              <div className='mt-2'>
-                <input
-                  id='password'
-                  name='password'
-                  type='password'
-                  autoComplete='current-password'
-                  placeholder='Mật khẩu'
-                  required
-                  className='h-[40px] pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-2xl focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                />
+              <InputField value={payload.password} nameKey='password' setValue={setpayload} type='password' />
+            </div>
+            <div>
+              <div className='flex items-center justify-between'>
+                <label
+                  htmlFor='confirmPassword'
+                  className='text-[14px] my-3 block font-semibold leading-6 text-gray-900'
+                >
+                  confirmPassword
+                  <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
+                </label>
               </div>
+              <InputField
+                value={payload.confirmPassword}
+                nameKey='confirmPassword'
+                setValue={setpayload}
+                type='password'
+              />
             </div>
             <div className='pt-5'>
-              <button
-                type='submit'
-                className=' text-3xl h-[45px] flex w-full justify-center items-center rounded-[999px] bg-[#fbd947] px-3 py-1.5 font-normal leading-6 text-[#bb141a] shadow-sm hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-              >
-                Đăng ký
-              </button>
+              <Button name='Đăng ký' handleonClick={handleRegisterSubmit} />
             </div>
           </form>
 

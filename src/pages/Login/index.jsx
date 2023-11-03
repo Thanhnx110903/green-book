@@ -1,10 +1,31 @@
 import classNames from 'classnames/bind'
 import styles from './Login.module.css'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import InputField from '../../components/InputField/InputField'
+import { useCallback, useState } from 'react'
+import Button from '../../components/Button/Button'
+import { apiLogin } from '../../apis'
+import Swal from "sweetalert2"
 const cx = classNames.bind(styles)
 
 export default function Login() {
+  const navigate = useNavigate()
+  const [payload, setpayload] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleSubmit = useCallback(async() => {
+    const response = await apiLogin(payload)
+    console.log(response);
+    if (response.message == 'SUCCESS') {
+      Swal.fire('Congratulation', response.message, 'success').then(() => {
+        navigate('/')
+      })
+    } else {
+      Swal.fire('Oops!', response.message, 'error')
+    }
+  }, [payload])
   return (
     <div>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -30,23 +51,13 @@ export default function Login() {
           </div>
 
           <div className='mt-10 mx-auto sm:w-full max-w-[500px]'>
-            <form className='space-y-6' action='#' method='POST'>
+            <form className='space-y-6'>
               <div>
                 <label htmlFor='email' className='block text-[14px] my-3 font-semibold leading-6 text-gray-900'>
                   Email
                   <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
                 </label>
-                <div className='mt-2'>
-                  <input
-                    id='email'
-                    name='email'
-                    type='email'
-                    autoComplete='email'
-                    placeholder='Email'
-                    required
-                    className='placeholder:text-2xl pl-[16px] Hoặc đăng nhập bằnglock w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
-                  />
-                </div>
+                <InputField value={payload.email} nameKey='email' setValue={setpayload} />
               </div>
 
               <div>
@@ -56,17 +67,7 @@ export default function Login() {
                     <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
                   </label>
                 </div>
-                <div className='mt-2'>
-                  <input
-                    id='password'
-                    name='password'
-                    type='password'
-                    autoComplete='current-password'
-                    placeholder='Mật khẩu'
-                    required
-                    className='h-[40px] pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:text-2xl focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                  />
-                </div>
+                <InputField value={payload.password} nameKey='password' setValue={setpayload} />
               </div>
               <div className='flex justify-start'>
                 <h2 className='text-xl mr-1'>Quên mật khẩu</h2>
@@ -75,12 +76,7 @@ export default function Login() {
                 <p className='text-xl mr-1 text-[#007bff]'>đây</p>
               </div>
               <div>
-                <button
-                  type='submit'
-                  className=' text-3xl h-[45px] flex w-full justify-center items-center rounded-[999px] bg-[#fbd947] px-3 py-1.5 font-normal leading-6 text-[#bb141a] shadow-sm hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                >
-                  Đăng nhập
-                </button>
+                <Button name='Đăng nhập' handleonClick={handleSubmit} />
               </div>
             </form>
 
