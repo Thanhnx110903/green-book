@@ -8,6 +8,7 @@ import Register from '../pages/Register'
 import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
 import Polyci from '../pages/Polyci'
+import ListProducts from '../pages/ListProducts/ListProducts'
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
@@ -20,6 +21,14 @@ export default function useRoutElement() {
       )
     },
     {
+      path: '/:category',
+      element: (
+        <LayoutDefault>
+          <ListProducts />
+        </LayoutDefault>
+      )
+    },
+    {
       path: '/news',
       element: (
         <LayoutDefault>
@@ -28,7 +37,7 @@ export default function useRoutElement() {
       )
     },
     {
-      path: '/product',
+      path: '/:category/:pid/:name',
       element: (
         <LayoutDefault>
           <ProductDetail />
