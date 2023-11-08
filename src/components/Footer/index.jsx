@@ -12,7 +12,8 @@ export default function Footer() {
           <div className={cx('wrapper')}>
             <div className={cx('footer-right')}>
               <Link to='/'>
-                <img src='/src/assets/imgs/logo.png' alt='' />
+              <img src='/src/assets/imgs/logo1.png' alt='' className='w-[170px]'/>
+
               </Link>
               <p className={cx('my-[16px] text-[1.5rem] leading-normal')}>
                 Nhà Sách Tiền Phong nhận đặt hàng trực tuyến và giao hàng tận nơi hoặc nhận hàng tại tất cả Hệ Thống Nhà
