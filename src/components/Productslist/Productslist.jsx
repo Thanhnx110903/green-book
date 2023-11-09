@@ -10,7 +10,9 @@ const Productslist = () => {
   return (
     <ul className={cx('grid grid-cols-4 gap-[25px]')}>
       {/* Product item */}
-      <ProductCard books={books} />
+      {books.map((books) => (
+        <ProductCard key={books.id} books={books}/>
+      ))}
 
       <li className={cx('product-item')}>
         <Link to='/product'>
