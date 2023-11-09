@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
+
 const cx = classNames.bind(styles)
 
 export default function Header() {
@@ -14,14 +15,15 @@ export default function Header() {
           <div className={cx('container-wrap')}>
             <div className={cx('d-flex justify-between items-center pt-[14px] pb-[8px]')}>
               <Link to='/'>
-                <img src='/src/assets/imgs/logo1.png' alt='' className='w-[170px]'/>
+                <img src='/src/assets/imgs/logo1.png' alt='' className='w-[170px]' />
               </Link>
               <div>
                 <div className='relative'>
                   <input type='text' placeholder='Tìm kiếm sản phẩm...' className={cx('header-input')} />
                   <i className={cx('fa-solid fa-magnifying-glass w-[57px] rounded-r-[99px]', 'icon')}></i>
                 </div>
-           
+
+
                 <ul className='d-flex mt-[8px]'>
                   <li className='mr-[8px]'>
                     <a href='!#' className='text-[1.2rem] text-[#6c757d]'>
