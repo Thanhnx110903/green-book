@@ -16,6 +16,7 @@ const ListProducts = () => {
   const { books } = useSelector((state) => state.books)
   const { categories } = useSelector((state) => state.categories)
   const allProductType = books.filter((item) => item.category_id == state)
+  console.log(allProductType)
   useEffect(() => {
     setShowProductList(allProductType)
   }, [state, category])
@@ -28,13 +29,23 @@ const ListProducts = () => {
     setShowProductList([...sortedProducts])
   }
   const nameMax = () => {
-    const reverseSortedProducts = allProductType.sort((a, b) => b.name > a.name)
-    console.log(reverseSortedProducts);
-    setShowProductList([...reverseSortedProducts])
+    const sortedProducts = [...allProductType].sort((a, b) => a.name.localeCompare(b.name))
+
+    setShowProductList(sortedProducts)
   }
   const nameMin = () => {
-    const sortedProducts = allProductType.sort((a, b) => a.name - b.name)
-    setShowProductList([...sortedProducts])
+    const sortedProducts = [...allProductType].sort((a, b) => b.name.localeCompare(a.name))
+
+    setShowProductList(sortedProducts)
+  }
+  const newproduct = () => {
+    const sortedProducts = [...allProductType].sort((a, b) =>  {
+      // Sắp xếp dựa trên trường "updated_at"
+      return new Date(b.updated_at) - new Date(a.updated_at);
+      
+    })
+    console.log("hi ", sortedProducts);
+    setShowProductList(sortedProducts)
   }
   const reset = () => {
     const resetList = allProductType
@@ -128,6 +139,7 @@ const ListProducts = () => {
                   Giá giảm dần
                 </button>
                 <button
+                onClick={newproduct}
                   className={cx('p-[10px] text-[#898989] hover:border-[#bb141a] hover:text-[#df171e] hover:border-b-2')}
                 >
                   Hàng mới
@@ -144,7 +156,10 @@ const ListProducts = () => {
               {/* Product list */}
               <ul className={cx('grid grid-cols-4 gap-[25px]')}>
                 {/* Product item */}
-                <ProductCard books={showProductList} />
+                {showProductList?.map((showProductList)=>(
+                  <ProductCard key={showProductList.id} books={showProductList}/>
+                ))}
+                
 
                 <li className={cx('product-item')}>
                   <Link to='/product'>
