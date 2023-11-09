@@ -1,18 +1,19 @@
 import classNames from 'classnames/bind'
 import styles from './ProductDetail.module.css'
-import { useParams,useLocation } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { getBook } from '../../apis'
 import { useEffect, useState } from 'react'
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
 import { useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard/ProductCard'
-import { number } from 'prop-types'
+
+import Slider from 'react-slick'
 const cx = classNames.bind(styles)
 
 export default function ProductDetail() {
   const { state } = useLocation()
   // console.log(state);
-  const [product,setProduct] = useState(null)
+  const [product, setProduct] = useState(null)
   const [productbyCategory, setProductByCategory] = useState(null)
   const { pid } = useParams()
   const fetchProductData = async () => {
@@ -21,29 +22,36 @@ export default function ProductDetail() {
   }
   const { books } = useSelector((state) => state.books)
   const { categories } = useSelector((state) => state.categories)
-  const categoryId = categories.filter((item) => item.id=== state)
-  const apiGetIdCategories = categoryId.find(item =>item.id)
+  const categoryId = categories.filter((item) => item.id === state)
+  const apiGetIdCategories = categoryId.find((item) => item.id)
   // console.log(apiGetIdCategories?.id);
   const allProductType = books.filter((item) => item.category_id === Number(apiGetIdCategories?.id))
   // console.log(allProductType);
-  let [baseQty, setBaseQty] = useState(1);
+  let [baseQty, setBaseQty] = useState(1)
   useEffect(() => {
     if (pid) {
       fetchProductData()
     }
   }, [pid])
-  
-  
+
   useEffect(() => {
     setProductByCategory(allProductType)
-  },[state])
-  const handleQuantity = (e)=>{
-    if(!Number(e) || Number(e)< 1){
-       return
-    }else{
+  }, [state])
+  const handleQuantity = (e) => {
+    if (!Number(e) || Number(e) < 1) {
+      return
+    } else {
       setBaseQty(e)
-      console.log(e);
+      // console.log(e);
     }
+  }
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1
   }
   return (
     <>
@@ -52,10 +60,7 @@ export default function ProductDetail() {
         <div className='box-border'>
           <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 mt-9'>
             <div className='mx-auto'>
-              <img className='w-[280px] h-[328px] '
-                src={product?.image}
-                alt='giang'
-              />
+              <img className='w-[280px] h-[328px] ' src={product?.image} alt='giang' />
             </div>
             <div className='lg:col-span-2 ml-6 w-2/3'>
               <div>
@@ -76,10 +81,9 @@ export default function ProductDetail() {
                   <p className='text-[#727272] font-normal text-2xl'>Số lượng :</p>
                   <div className='flex items-center pl-20'>
                     <button
-                      onClick={() =>
-                        setBaseQty(Number(baseQty) === 1  ? Number(baseQty = 1) : Number(baseQty) - 1)
-                      }
-                     className='border w-12 h-12 rounded-full flex items-center justify-center  font-medium text-3xl  text-[#ced4da] pb-1'>
+                      onClick={() => setBaseQty(Number(baseQty) === 1 ? Number((baseQty = 1)) : Number(baseQty) - 1)}
+                      className='border w-12 h-12 rounded-full flex items-center justify-center  font-medium text-3xl  text-[#ced4da] pb-1'
+                    >
                       -
                     </button>
                     <input
@@ -87,12 +91,13 @@ export default function ProductDetail() {
                       name=''
                       id=''
                       value={baseQty}
-                      onChange={(e)=>handleQuantity(e.target.value)}
-                      className=' p-2 text-center outline-none w-[28px] border-none focus:outline-none focus:border-none'
+                      onChange={(e) => handleQuantity(e.target.value)}
+                      className=' p-2 text-center outline-none w-[28px] border-none focus:outline-none focus:shadow-none focus:border-none'
                     />
                     <button
                       onClick={() => setBaseQty(Number(baseQty) + 1)}
-                     className='border w-12 h-12 rounded-full font-medium text-3xl flex items-center justify-center text-[#ced4da] pb-1'>
+                      className='border w-12 h-12 rounded-full font-medium text-3xl flex items-center justify-center text-[#ced4da] pb-1'
+                    >
                       +
                     </button>
                   </div>
@@ -169,9 +174,7 @@ export default function ProductDetail() {
               <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 mt-9'>
                 <div className='lg:col-span-2 ml-6'>
                   <h1 className='font-medium text-4xl py-5 border-b border-black'>Mô tả sản phẩm</h1>
-                  <div className='my-7 font-normal text-2xl'>
-                   {product?.description}
-                  </div>
+                  <div className='my-7 font-normal text-2xl'>{product?.description}</div>
                 </div>
               </div>
             </div>
@@ -179,11 +182,7 @@ export default function ProductDetail() {
               <div className='flex lg:flex-row border justify-between p-4 md:flex-col'>
                 <div className='flex items-center'>
                   <div>
-                    <img
-                      className='w-36'
-                      src={product?.image}
-                      alt=''
-                    />
+                    <img className='w-36' src={product?.image} alt='' />
                   </div>
                   <div className=''>
                     <h1 className='font-medium text-2xl p-2'>{product?.name}</h1>
@@ -220,13 +219,17 @@ export default function ProductDetail() {
             <div className='m-6'>
               <div>
                 <h1 className='font-medium text-4xl py-5'>Sản phẩm cùng loại</h1>
-                <div className='grid lg:grid-cols-5 gap-10 py-5 sm:grid-cols-2 md:grid-cols-4'>
-                  {productbyCategory?.map((productbyCategory)=>(
-                    <ProductCard key={productbyCategory?.id} books={productbyCategory}/>
-                  ))}
-                  
-
-                </div>
+               
+                
+                  <Slider {...settings} className='grid lg:grid-cols-5  py-5 sm:grid-cols-2 md:grid-cols-4'>
+                    {productbyCategory?.map((productbyCategory) => (
+                      <div key={productbyCategory?.id} className='px-8'>
+                        <ProductCard key={productbyCategory?.id} books={productbyCategory} />
+                      </div>
+                    ))}
+                       </Slider>
+              
+             
               </div>
             </div>
             <div className='m-6'>
