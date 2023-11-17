@@ -2,14 +2,20 @@ import axios from '../axios'
 
 export const apiRegister = (data) =>
   axios({
-    url: '/user/sign-up',
+    url: '/register',
     method: 'post',
     data
   })
 
 export const apiLogin = (data) =>
   axios({
-    url: '/user/sign-in',
+    url: '/login',
     method: 'post',
     data
+  })
+
+export const showProfile = () =>
+  axios({
+    url: '/show-profile',
+    method: 'get'
   })

@@ -13,23 +13,23 @@ export default function Register() {
   const [payload, setpayload] = useState({
     email: '',
     name: '',
-    password: '',
-    phone: '',
-    confirmPassword: ''
+    password: ''
+    // phone: '',
+    // confirmPassword: ''
   })
   const resetPayload = () => {
-    setpayload({ email: '', name: '', password: '', phone: '', confirmPassword: '' })
+    setpayload({ email: '', name: '', password: '' })
   }
   const handleRegisterSubmit = useCallback(async () => {
     const response = await apiRegister(payload)
     console.log(response)
-    if (response.message == 'SUCCESS') {
+    if (response.message) {
       Swal.fire('Congratulation', response.message, 'success').then(() => {
         resetPayload()
         navigate('/login')
       })
     } else {
-      Swal.fire('Oops!', response.message, 'error')
+      Swal.fire('Oops!', response.error, 'error')
     }
   }, [payload])
   return (
@@ -83,13 +83,7 @@ export default function Register() {
                 />
               </div>
             </div> */}
-            <div>
-              <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
-                Số điện thoại
-                <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
-              </label>
-              <InputField value={payload.phone} nameKey='phone' setValue={setpayload} />
-            </div>
+
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Email
@@ -106,7 +100,7 @@ export default function Register() {
               </div>
               <InputField value={payload.password} nameKey='password' setValue={setpayload} type='password' />
             </div>
-            <div>
+            {/* <div>
               <div className='flex items-center justify-between'>
                 <label
                   htmlFor='confirmPassword'
@@ -122,7 +116,7 @@ export default function Register() {
                 setValue={setpayload}
                 type='password'
               />
-            </div>
+            </div> */}
             <div className='pt-5'>
               <Button name='Đăng ký' handleonClick={handleRegisterSubmit} />
             </div>

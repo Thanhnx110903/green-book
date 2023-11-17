@@ -18,6 +18,7 @@ export default function ProductDetail() {
   const { pid } = useParams()
   const fetchProductData = async () => {
     const response = await getBook(pid)
+    console.log(response);
     setProduct(response.data)
   }
   const { books } = useSelector((state) => state.books)

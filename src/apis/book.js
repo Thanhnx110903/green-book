@@ -9,6 +9,6 @@ export const apiBooks = (param) =>
 
 export const getBook = (pid) =>
   axios({
-    url: '/book/' + pid,
+    url: '/book/show/' + pid,
     method: 'get'
   })
