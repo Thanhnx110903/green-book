@@ -2,23 +2,23 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import categoriesReducer from './categories/categoriesSlice'
+import userReducer from './user/userSlice'
 import booksReducer from './books/productSlice'
 
-const persistConfig = {
-  key: 'root',
-  version: 1,
+const userConfig = {
+  key: 'shop/user',
   storage,
-  blacklist: ['product', 'user']
+  whitelist: ['isLoggedIn', 'token']
 }
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   books: booksReducer,
-  //   order: orderReducer
+  user: persistReducer(userConfig, userReducer)
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// const persistedReducer = persistReducer(userConfig, rootReducer)
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

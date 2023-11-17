@@ -3,11 +3,24 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
+<<<<<<< HEAD
 
 
+=======
+import { getCurrent } from '../../redux/user/asyncAction'
+import { logout } from '../../redux/user/userSlice'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+>>>>>>> 963b33f0bc1232a13b03bc086c8e60b5b1d8ce47
 const cx = classNames.bind(styles)
 
 export default function Header() {
+  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector((state) => state.user)
+  console.log(isLoggedIn)
+  useEffect(() => {
+    if (isLoggedIn) dispatch(getCurrent())
+  }, [dispatch, isLoggedIn])
   return (
     <>
       <header className={cx('header-search-sticky', 'shadow-lg')}>
@@ -23,7 +36,10 @@ export default function Header() {
                   <i className={cx('fa-solid fa-magnifying-glass w-[57px] rounded-r-[99px]', 'icon')}></i>
                 </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 963b33f0bc1232a13b03bc086c8e60b5b1d8ce47
                 <ul className='d-flex mt-[8px]'>
                   <li className='mr-[8px]'>
                     <a href='!#' className='text-[1.2rem] text-[#6c757d]'>
@@ -59,14 +75,25 @@ export default function Header() {
                 </div>
                 <div className='d-flex items-center'>
                   <img className='w-[32px] h-[32px] mr-[16px]' src='/src/assets/imgs/user.png' alt='' />
-                  <div>
-                    <Link to='/Login' className='text-[14px] text-[#000000] hover:text-primary block'>
-                      Tài khoản
-                    </Link>
-                    <Link to='/login' className='text-[11px] text-[#000000] hover:text-primary'>
-                      Đăng nhập
-                    </Link>
-                  </div>
+                  {isLoggedIn ? (
+                    <div>
+                      <Link to='/Login' className='text-[14px] text-[#000000] hover:text-primary block'>
+                        Tài khoản
+                      </Link>
+                      <div onClick={() => dispatch(logout())} className='text-[11px] text-[#000000] hover:text-primary'>
+                        Đăng xuất
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to='/Login' className='text-[14px] text-[#000000] hover:text-primary block'>
+                        Tài khoản
+                      </Link>
+                      <Link to='/login' className='text-[11px] text-[#000000] hover:text-primary'>
+                        Đăng nhập
+                      </Link>
+                    </div>
+                  )}
                 </div>
                 <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
                   <img src='/src/assets/imgs/cart.png' alt='' className='w-[24px] h-[24px]' />

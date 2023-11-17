@@ -4,26 +4,30 @@ import { Link, useNavigate } from 'react-router-dom'
 import InputField from '../../components/InputField/InputField'
 import { useCallback, useState } from 'react'
 import Button from '../../components/Button/Button'
-import { apiLogin } from '../../apis'
-import Swal from "sweetalert2"
+import { apiLogin, showProfile } from '../../apis'
+import Swal from 'sweetalert2'
 const cx = classNames.bind(styles)
+import { login } from '../../redux/user/userSlice'
+import { useDispatch } from 'react-redux'
 
 export default function Login() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [payload, setpayload] = useState({
     email: '',
     password: ''
   })
 
-  const handleSubmit = useCallback(async() => {
+  const handleSubmit = useCallback(async () => {
     const response = await apiLogin(payload)
-    console.log(response);
-    if (response.message == 'SUCCESS') {
+    console.log(response)
+    if (response.message) {
       Swal.fire('Congratulation', response.message, 'success').then(() => {
+        dispatch(login({ isLoggedIn: true, token: response.access_token }))
         navigate('/')
       })
     } else {
-      Swal.fire('Oops!', response.message, 'error')
+      Swal.fire('Oops!', response.error, 'error')
     }
   }, [payload])
   return (

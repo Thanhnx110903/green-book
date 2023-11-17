@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import useBreadcrumbs from 'use-react-router-breadcrumbs'
 const Breadcrumb = () => {
   // const breadcrumbs = useBreadcrumbs()
-  console.log('hihi')
   return (
     <div className='w-full p-4 bg-[#f6f6f6]'>
       <ul className='flex m-0'>
