@@ -37,7 +37,7 @@ export default function useRoutElement() {
       )
     },
     {
-      path: '/:pid/:name',
+      path: '/:product/:name',
       element: (
         <LayoutDefault>
           <ProductDetail />
