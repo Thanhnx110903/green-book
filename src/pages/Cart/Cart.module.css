@@ -1,0 +1,51 @@
+.quantity {
+  border: none;
+  outline: none;
+  text-align: center;
+  height: 30px;
+}
+
+.quantity:focus {
+  box-shadow: none !important;
+}
+
+.times {
+  font-size: 20px;
+  color: #c3c3c3;
+}
+
+.btn-quantity {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ced4da;
+  color: #8c9196;
+}
+
+.select-time {
+  width: 149px;
+  font-size: 13px;
+  height: 31px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  outline: none;
+}
+
+.vat {
+  font-style: italic;
+  color: #828282;
+  font-size: 1.4rem;
+}
+
+.btn-order {
+  color: #fff;
+  text-align: center;
+  padding: 7px;
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+}
+
+.btn-order:hover {
+  opacity: 0.8;
+}
