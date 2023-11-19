@@ -7,7 +7,6 @@ export default function LayoutDefault({ children }) {
   return (
     <>
       <Header />
-
       {children}
       <Footer />
     </>

@@ -28,7 +28,7 @@ export default function Home() {
         {/* Home Products */}
         <div className={cx('container-wrap')}>
           <div className={cx('d-flex justify-between mt-[60px]')}>
-            <div className={cx('w-[258px] bg-[#512323] p-[15px] mb-[30px]')}>
+            <div className={cx('w-[258px] ')}>
               <h3 className={cx('font-bold text-[1.6rem] mb-[24px]')}>DANH MỤC SẢN PHẨM</h3>
               <div className={cx('')}>
                 <ul>
