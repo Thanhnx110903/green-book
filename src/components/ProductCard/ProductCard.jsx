@@ -26,8 +26,8 @@ const ProductCard = ({ books }) => {
         {/* </Link> */}
        
         <div className={cx('p-[10px]')}>
-          <Link >
-            <p className={cx('text-[1.4rem] line-clamp-2 leading-relaxed my-[17px]')}>{books?.name}</p>
+          <Link to='/product' >
+            <p  className={cx('text-[1.4rem] line-clamp-2 leading-relaxed my-[17px]')}>{books?.name}</p>
           </Link>
           <div className={cx('d-flex items-center justify-between')}>
             <div className={cx('text-primary font-medium')}>
