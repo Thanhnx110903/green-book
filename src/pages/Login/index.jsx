@@ -20,10 +20,11 @@ export default function Login() {
 
   const handleSubmit = useCallback(async () => {
     const response = await apiLogin(payload)
-    console.log(response)
+    console.log("dang nhap",response)
     if (response.message) {
+      dispatch(login({ isLoggedIn: true, token: response.access_token }))
       Swal.fire('Congratulation', response.message, 'success').then(() => {
-        dispatch(login({ isLoggedIn: true, token: response.access_token }))
+        
         navigate('/')
       })
     } else {

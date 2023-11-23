@@ -1,88 +1,90 @@
-import React from 'react'
-import styles from './Cart.module.css'
 import classNames from 'classnames/bind'
-import { NavLink } from 'react-router-dom'
-import { Button } from 'antd'
+import styles from './Cart.module.css'
 const cx = classNames.bind(styles)
+import { Link } from 'react-router-dom'
+import { Space, DatePicker } from 'antd'
 
+const onChange = (date, dateString) => {
+  console.log(dateString)
+}
 export default function Cart() {
   return (
-    <div className={cx(' mt-[50px] bg-white ml-[245px] w-[1420px] container')}>
-      <div className={cx('cart-header')}>
-        <div className={cx('cart-header__left')} >Sản phẩm</div>
-        <div className={cx('cart-header__right')}>
-          <div className={cx('cart-header-item')}>Đơn giá</div>
-          <div className={cx('cart-header-item')}>Số lượng</div>
-          <div className={cx('cart-header-item')}>Số tiền</div>
-          <div className={cx('cart-header-item')}>Thao tác</div>
+    <>
+      <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
+        <div className={cx('container-wrap text-[1.4rem] ')}>
+          <Link className={cx('text-[#999]')} to='/'>
+            Trang chủ /
+          </Link>
+          <span> Giỏ hàng</span>
         </div>
       </div>
-      <div className={cx("cart-wrapper")}>
-
-        <div className={cx("cart-content")} >
-          <div className={cx("cart-content__left")}>
-            <div className={cx("cart-content__info")}>
-              <img src="https://picsum.photos/80/125" />
-              <span>sss</span>
-            </div>
-          </div>
-          <div className={cx("cart-content__right")}>
-            <div className={cx("cart-price")}>aađ</div>
-            <div className={cx("cart-content-item")}>
-              <div className={cx("quantity-wrapper")}>
-                <button
-                  className={cx("quantity-button")}>
-                  -
-                </button>
-
-                <span className={cx("quantity-value")}>111</span>
-                <button
-                  className={cx("quantity-button")}
-
-                >
-                  +
-                </button>
+      <div className={cx('container-wrap')}>
+        <h3 className={cx('font-bold text-[2.3rem]')}>Giỏ hàng</h3>
+        <div className={cx('flex')}>
+          <div className={cx('w-[70%]')}>
+            <div className={cx('flex items-center mt-[20px]')}>
+              <div className={cx('mr-[8px]')}>
+                <i className={cx('fa-solid fa-xmark p-[8px]', 'times')}></i>
+              </div>
+              <img
+                className={cx('w-[100px] h-[100px]')}
+                src='https://bizweb.dktcdn.net/thumb/compact/100/441/742/products/f96d4cc1-1f2c-4e7a-99a5-d35956152e8c.jpg'
+                alt=''
+              />
+              <div className={cx('text-[1.4rem]')}>Cậu Ma Nhà Xí Hanako - Tập 10</div>
+              <div className={cx('text-[#bb141a] ml-auto font-bold')}>
+                1200 <span className={cx('underline decoration-solid')}>đ</span>
+              </div>
+              <div className={cx('px-[27px]')}>
+                <button className={cx('btn-quantity')}>-</button>
+                <input type='text' value={1} className={cx('w-[48px] text-[13px]', 'quantity')} />
+                <button className={cx('btn-quantity')}>+</button>
               </div>
             </div>
-            <div className={cx("cart-content-item")}>
-              <span className={cx("price")}>
-                121121đ
-              </span>
+          </div>
+          <div className={cx('w-[30%] bg-[#f7f7f7] p-[20px]')}>
+            <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>HẸN GIỜ NHẬN HÀNG</h3>
+            <div className={cx('flex')}>
+              <div>
+                <p className={cx('text-[14px]')}>Ngày nhận hàng</p>
+                <Space direction='vertical'>
+                  <DatePicker onChange={onChange} />
+                </Space>
+              </div>
+              <div className={cx('ml-auto')}>
+                <p className={cx('text-[14px]')}>Thời gian nhận hàng</p>
+                <select className={cx('select-time')} name='' id=''>
+                  <option value=''>Chọn thời gian</option>
+                  <option value=''>08h00 - 12h00</option>
+                  <option value=''>14h00 - 18h00</option>
+                  <option value=''>19h00 - 21h00</option>
+                </select>
+              </div>
             </div>
-            <div
-              className={cx("cart-delete")}
-
-            >
-              Xoá
-            </div >
-          </div >
-        </div >
-
-        {/* <div className={cx("no-cart")}>
-        <img
-          className={cx("w-[300px]")}
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn8T6ADaMld2sfLFu6mR1dK7_G53ibKSnoCJTMkwP4YWvi64XuLZMPYDRoRWyXvGTqpIM&usqp=CAU"
-          alt=""
-        />
-        <p>Không có sản phẩm nào trong giỏ hàng</p>
-        <NavLink to={"/product"}>
-          <Button width={"250px"}>Mua ngay</Button>
-        </NavLink>
-      </div > */}
-
-      </div >
-      <div className={cx("cart-bottom")}>
-        <div className={cx("totalPrice")}>
-          Tổng tiền:12121đ
-        </div>
-        <div className={cx("cart-header-item")}>
-          <NavLink to={"/checkout"}>
-            <Button className={cx('bg-orange-400')} height={"50px"} width={"250px"}>
-              Thanh toán
-            </Button>
-          </NavLink>
+            <div>
+              <div className={cx('flex mt-[30px]')}>
+                <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>Tổng cộng</h3>
+                <div className={cx('text-[#bb141a] ml-auto font-bold')}>
+                  1200 <span className={cx('underline decoration-solid')}>đ</span>
+                </div>
+              </div>
+              <div className={cx('text-right', 'vat')}>(Đã bao gồm VAT nếu có)</div>
+            </div>
+            <div>
+              <Link className={cx('bg-primary', 'btn-order')} to='/orderDetail'>
+                Thanh toán
+              </Link>
+            </div>
+            <div className={cx('mt-[10px]')}>
+              <h3 className={cx('font-bold text-[1.8rem] mb-[20px]')}>Liên hệ</h3>
+              <img
+                src='https://bizweb.dktcdn.net/100/441/742/themes/842637/assets/footer_trustbadge.jpg?1680964744883'
+                alt=''
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

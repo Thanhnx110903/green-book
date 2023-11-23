@@ -33,6 +33,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.0",
     "sweetalert2": "^11.7.32",
+    "tailwind-datepicker-react": "^1.4.3",
     "use-react-router-breadcrumbs": "^4.0.1"
   },
   "devDependencies": {

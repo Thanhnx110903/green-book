@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { createSlug } from '../../untils/fs'
 import { useSelector } from 'react-redux'
 const ProductCard = ({ books }) => {
-  console.log(books);
+
   const { categories } = useSelector((state) => state.categories)
   // console.log(books)
   // const getPro = (books)=>{
@@ -17,12 +17,13 @@ const ProductCard = ({ books }) => {
   const handleNavigatetype = (name, idProduct, idCategory) => {
     navigate(`/${idProduct}/${createSlug(name)}`, { state: idCategory })
   }
-  console.log(`http://127.0.0.1:8000/storage/${books?.image}`);
+
   return (
     <>
       <li className={cx('product-item')} key={books?.id}>
         {/* <Link to={`/${books.id}/${createSlug(books.name)}`}> */}
-        <img onClick={() => handleNavigatetype(books?.name, books?.id, books?.category_id)} src={`http://127.0.0.1:8000/storage/${books?.image}`} alt='' />
+        {/* src={`http://127.0.0.1:8000/storage/${books?.image}`} */}
+        <img onClick={() => handleNavigatetype(books?.name, books?.id, books?.category_id)} src={`${books?.image}`} alt='' />
         {/* </Link> */}
        
         <div className={cx('p-[10px]')}>
