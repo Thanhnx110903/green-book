@@ -7,7 +7,7 @@ const cx = classNames.bind(styles)
 
 export default function Cart() {
   return (
-    <div className={cx(' mt-[50px] bg-white ml-[260px] items-center justify-center ')}>
+    <div className={cx(' mt-[50px] bg-white ml-[245px] w-[1420px] container')}>
       <div className={cx('cart-header')}>
         <div className={cx('cart-header__left')} >Sản phẩm</div>
         <div className={cx('cart-header__right')}>
