@@ -22,7 +22,7 @@ const ProductCard = ({ books }) => {
     <>
       <li className={cx('product-item')} key={books?.id}>
         {/* <Link to={`/${books.id}/${createSlug(books.name)}`}> */}
-        <img onClick={() => handleNavigatetype(books?.name, books?.id, books?.category_id)} src={`http://127.0.0.1:8000/storage/${books?.image}`} alt='' />
+        <img onClick={() => handleNavigatetype(books?.name, books?.id, books?.category_id)} src={`${books?.image}`} alt='' />
         {/* </Link> */}
        
         <div className={cx('p-[10px]')}>

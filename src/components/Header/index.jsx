@@ -11,6 +11,7 @@ const cx = classNames.bind(styles)
 
 export default function Header() {
   const dispatch = useDispatch()
+  const order = useSelector((state) => state.order)
   const { isLoggedIn } = useSelector((state) => state.user)
   console.log(isLoggedIn)
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function Header() {
                 <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
                   <img src='/src/assets/imgs/cart.png' alt='' className='w-[24px] h-[24px]' />
                   <p className='text-[1.4rem] text-[#000000] mx-[8px]'>Giỏ hàng</p>
-                  <span className={cx('count-item')}>0</span>
+                  <span className={cx('count-item')}>{order?.orderItems?.length}</span>
                 </Link>
               </div>
             </div>

@@ -1,13 +1,14 @@
 import classNames from 'classnames/bind'
 import styles from './ProductDetail.module.css'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { getBook } from '../../apis'
 import { useEffect, useState } from 'react'
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProductCard from '../../components/ProductCard/ProductCard'
 
 import Slider from 'react-slick'
+import { addOrderProduct } from '../../redux/user/orderSlice'
 const cx = classNames.bind(styles)
 
 export default function ProductDetail() {
@@ -15,6 +16,9 @@ export default function ProductDetail() {
   // console.log(state);
   const [product, setProduct] = useState(null)
   const [productbyCategory, setProductByCategory] = useState(null)
+  const navigate= useNavigate()
+  const location = useLocation()
+  const dispatch = useDispatch()
   const { pid } = useParams()
   const fetchProductData = async () => {
     const response = await getBook(pid)
@@ -46,6 +50,25 @@ export default function ProductDetail() {
       // console.log(e);
     }
   }
+  console.log('location',location)
+
+  
+const handleAddOrderProduct =()=>{
+  if(!user?.id){
+    navigate('/login',{state:location?.pathname})
+  }else{
+    dispatch(addOrderProduct({
+      orderItem: {
+    book_name: ProductDetail?.name,
+    quantity: product,
+    book_image: ProductDetail?.image,
+    book_price: ProductDetail?.price,
+    book_id: ProductDetail?.id,
+      }
+  }))
+    }
+}
+console
 
   var settings = {
     dots: false,
@@ -107,7 +130,9 @@ export default function ProductDetail() {
                   <button className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#bb141a] pb-1 border-[#bb141a]'>
                     Mua ngay
                   </button>
-                  <button className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'>
+                  <button
+                  onClick={handleAddOrderProduct}
+                   className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'>
                     Thêm vào giỏ
                   </button>
                 </div>
@@ -210,7 +235,9 @@ export default function ProductDetail() {
                     </div>
                   </div>
                   <div>
+                    
                     <button className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'>
+                    
                       Thêm vào giỏ
                     </button>
                   </div>

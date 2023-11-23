@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './Register.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import InputField from '../../components/InputField/InputField'
 import { useCallback, useState } from 'react'
 import Button from '../../components/Button/Button'
@@ -10,6 +10,7 @@ const cx = classNames.bind(styles)
 
 export default function Register() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [payload, setpayload] = useState({
     email: '',
     name: '',
@@ -23,7 +24,13 @@ export default function Register() {
   const handleRegisterSubmit = useCallback(async () => {
     const response = await apiRegister(payload)
     console.log(response)
+    console.log('location', location)
     if (response.message) {
+      if(location?.state){
+        navigate('location',location)
+      }else{
+        navigate('/')
+      }
       Swal.fire('Congratulation', response.message, 'success').then(() => {
         resetPayload()
         navigate('/login')
