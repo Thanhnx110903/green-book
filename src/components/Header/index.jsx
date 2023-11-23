@@ -11,8 +11,8 @@ const cx = classNames.bind(styles)
 
 export default function Header() {
   const dispatch = useDispatch()
-  const { isLoggedIn } = useSelector((state) => state.user)
-  console.log(isLoggedIn)
+  const { isLoggedIn,current } = useSelector((state) => state.user)
+  console.log(current)
   useEffect(() => {
     if (isLoggedIn) dispatch(getCurrent())
   }, [dispatch, isLoggedIn])
