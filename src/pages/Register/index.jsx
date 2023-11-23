@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react'
 import Button from '../../components/Button/Button'
 import { apiRegister } from '../../apis'
 import Swal from 'sweetalert2'
+// import axios from 'axios'
 const cx = classNames.bind(styles)
 
 export default function Register() {
@@ -13,7 +14,8 @@ export default function Register() {
   const [payload, setpayload] = useState({
     email: '',
     name: '',
-    password: ''
+    password: '',
+    phone_number: ''
     // phone: '',
     // confirmPassword: ''
   })
@@ -21,9 +23,16 @@ export default function Register() {
     setpayload({ email: '', name: '', password: '' })
   }
   const handleRegisterSubmit = useCallback(async () => {
+    // const response = await axios.post('http://localhost:8000/api/register', payload, {
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     // Các header khác nếu cần
+    //   }})
+    
     const response = await apiRegister(payload)
     console.log(response)
-    if (response.message) {
+    if (response.data.message) {
       Swal.fire('Congratulation', response.message, 'success').then(() => {
         resetPayload()
         navigate('/login')
@@ -90,6 +99,13 @@ export default function Register() {
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
               <InputField value={payload.email} nameKey='email' setValue={setpayload} />
+            </div>
+            <div>
+              <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
+                Phone
+                <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
+              </label>
+              <InputField value={payload.phone_number} nameKey='phone_number' setValue={setpayload} />
             </div>
             <div>
               <div className='flex items-center justify-between'>

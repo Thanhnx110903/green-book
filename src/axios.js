@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8000/api'
+  baseURL: 'http://localhost:8000/api',
 })
 
 // Add a request interceptor
@@ -9,9 +9,11 @@ instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     let localStorageData = window.localStorage.getItem('persist:shop/user')
+   
     if (localStorageData && typeof localStorageData === 'string') {
       localStorageData = JSON.parse(localStorageData)
       const accessToken = JSON.parse(localStorageData?.token)
+      console.log(accessToken);
       config.headers = {authorization:`Bearer ${accessToken}`}
       return config
     }else{

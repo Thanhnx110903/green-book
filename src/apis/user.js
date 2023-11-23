@@ -1,21 +1,26 @@
-import axios from '../axios'
-
+import axiosClent from '../axios'
+import axios from 'axios'
 export const apiRegister = (data) =>
   axios({
-    url: '/register',
+    url: 'http://localhost:8000/api/register',
     method: 'post',
-    data
+    data,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+      // Thêm các header khác nếu cần
+    }
   })
 
 export const apiLogin = (data) =>
-  axios({
+  axiosClent({
     url: '/login',
     method: 'post',
     data
   })
 
 export const showProfile = () =>
-  axios({
+  axiosClent({
     url: '/show-profile',
     method: 'get'
   })
