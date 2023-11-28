@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import styles from './ProductCard.module.css'
 import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { createSlug } from '../../untils/fs'
 import { useSelector } from 'react-redux'
+import { addCart } from '../../apis'
+import {toast } from 'react-toastify';
 const ProductCard = ({ books }) => {
 
   const { categories } = useSelector((state) => state.categories)
+  const { isLoggedIn,current } = useSelector((state) => state.user)
+  console.log(current);
   // console.log(books)
   // const getPro = (books)=>{
   //   const categoriesf = categories?.find((item)=> item.id == books)
@@ -17,6 +21,16 @@ const ProductCard = ({ books }) => {
   const handleNavigatetype = (name, idProduct, idCategory) => {
     navigate(`/${idProduct}/${createSlug(name)}`, { state: idCategory })
   }
+
+  const handleAddToCart = async () => {
+    if (current) {
+      await addCart(books?.id);
+      toast.success("Thêm sản phẩm thành công");
+    } else {
+      navigate('/login')
+    }
+  };
+
 
   return (
     <>
@@ -35,9 +49,11 @@ const ProductCard = ({ books }) => {
               {books.price} <span>đ</span><p>Mã giảm giá</p>
             </div>
             <div
+            
               className={cx(
                 'w-[30px] h-[30px] bg-primary rounded-[50%] d-flex items-center justify-center text-[#ffffff]'
               )}
+              onClick={handleAddToCart}
             >
               
               <i className='fa-solid fa-plus'></i>

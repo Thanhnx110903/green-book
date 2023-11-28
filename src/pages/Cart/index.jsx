@@ -4,10 +4,46 @@ const cx = classNames.bind(styles)
 import { Link } from 'react-router-dom'
 import { Space, DatePicker } from 'antd'
 
+import { getCarts, updateCart } from '../../apis'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import CartItem from './CartItem/CartItem'
+
 const onChange = (date, dateString) => {
   console.log(dateString)
 }
+
 export default function Cart() {
+  const [data, setData] = useState(null)
+  const { isLoggedIn, current } = useSelector((state) => state.user)
+  const getCart = async () => {
+    const res = await getCarts()
+    setData(res.data)
+    console.log(res.data)
+  }
+  useEffect(() => {
+    if (current) {
+      getCart()
+    }
+  }, [current])
+  const handleUpdateCartQty = async (newQuantity,lineItemId ) => {
+    try {
+      const response = await updateCart({ quantity: newQuantity }, lineItemId);
+      setData((prevData) => {
+        return prevData?.map((item) => {
+          if (item?.book_id === lineItemId) {
+            return { ...item, quantity: newQuantity };
+          }
+          return item;
+        });
+      });
+    } catch (error) {
+      console.error("Lỗi khi cập nhật số lượng sản phẩm:", error);
+    }
+  };
+  // useEffect(()=>{
+  //   handleUpdateCartQty(11,6)
+  // },[])
   return (
     <>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -22,25 +58,9 @@ export default function Cart() {
         <h3 className={cx('font-bold text-[2.3rem]')}>Giỏ hàng</h3>
         <div className={cx('flex')}>
           <div className={cx('w-[70%]')}>
-            <div className={cx('flex items-center mt-[20px]')}>
-              <div className={cx('mr-[8px]')}>
-                <i className={cx('fa-solid fa-xmark p-[8px]', 'times')}></i>
-              </div>
-              <img
-                className={cx('w-[100px] h-[100px]')}
-                src='https://bizweb.dktcdn.net/thumb/compact/100/441/742/products/f96d4cc1-1f2c-4e7a-99a5-d35956152e8c.jpg'
-                alt=''
-              />
-              <div className={cx('text-[1.4rem]')}>Cậu Ma Nhà Xí Hanako - Tập 10</div>
-              <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-                1200 <span className={cx('underline decoration-solid')}>đ</span>
-              </div>
-              <div className={cx('px-[27px]')}>
-                <button className={cx('btn-quantity')}>-</button>
-                <input type='text' value={1} className={cx('w-[48px] text-[13px]', 'quantity')} />
-                <button className={cx('btn-quantity')}>+</button>
-              </div>
-            </div>
+            {data?.map((cart) => (
+              <CartItem key={cart.id} cart={cart} onUpdateCartQty={handleUpdateCartQty} />
+            ))}
           </div>
           <div className={cx('w-[30%] bg-[#f7f7f7] p-[20px]')}>
             <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>HẸN GIỜ NHẬN HÀNG</h3>
