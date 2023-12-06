@@ -6,41 +6,58 @@ import { useCallback, useState } from 'react'
 import Button from '../../components/Button/Button'
 import { apiRegister } from '../../apis'
 import Swal from 'sweetalert2'
+import { useForm } from 'react-hook-form'
+import { schema } from '../../untils/rules'
+import { yupResolver } from '@hookform/resolvers/yup'
 // import axios from 'axios'
 const cx = classNames.bind(styles)
-
+const registerSchema = schema.pick(['email', 'password', 'confirm_password', 'name', 'phone_number'])
 export default function Register() {
   const navigate = useNavigate()
-  const [payload, setpayload] = useState({
-    email: '',
-    name: '',
-    password: '',
-    phone_number: ''
-    // phone: '',
-    // confirmPassword: ''
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(registerSchema)
   })
-  const resetPayload = () => {
-    setpayload({ email: '', name: '', password: '' })
-  }
-  const handleRegisterSubmit = useCallback(async () => {
-    // const response = await axios.post('http://localhost:8000/api/register', payload, {
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     // Các header khác nếu cần
-    //   }})
-    
-    const response = await apiRegister(payload)
+
+  const onSubmit = async (data) => {
+    const response = await apiRegister(data)
     console.log(response)
     if (response.data.message) {
-      Swal.fire('Congratulation', response.message, 'success').then(() => {
-        resetPayload()
+      Swal.fire('Congratulation', response.data.message, 'success').then(() => {
         navigate('/login')
       })
     } else {
       Swal.fire('Oops!', response.error, 'error')
     }
-  }, [payload])
+  }
+
+  // const [payload, setpayload] = useState({
+  //   email: '',
+  //   name: '',
+  //   password: '',
+  //   phone_number: ''
+  //   // phone: '',
+  //   // confirmPassword: ''
+  // })
+  // const resetPayload = () => {
+  //   setpayload({ email: '', name: '', password: '' })
+  // }
+  // const handleRegisterSubmit = useCallback(async () => {
+  //   const response = await apiRegister(payload)
+  //   console.log(response)
+  //   if (response.data.message) {
+  //     Swal.fire('Congratulation', response.data.message, 'success').then(() => {
+  //       resetPayload()
+  //       navigate('/login')
+  //     })
+  //   } else {
+  //     Swal.fire('Oops!', response.error, 'error')
+  //   }
+  // }, [payload])
   return (
     <div>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -68,44 +85,53 @@ export default function Register() {
         </div>
 
         <div className='mx-auto sm:w-full max-w-[500px]'>
-          <form className='space-y-5' action='#' method='POST'>
+          <form className='space-y-5' onSubmit={handleSubmit(onSubmit)} noValidate>
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] font-semibold leading-6 text-gray-900'>
                 Tên
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <InputField value={payload.name} nameKey='name' setValue={setpayload} />
+              <InputField
+                name='name'
+                register={register}
+                type='name'
+                className='mt-8'
+                errorMessage={errors.name?.message}
+                placeholder='Name'
+              />
             </div>
-            {/* <div>
-              <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
-                Tên
-                <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
-              </label>
-              <div className='mt-2'>
-                <input
-                  id='tên'
-                  name='tên'
-                  type='tên'
-                  placeholder='Tên'
-                  required
-                  className='placeholder:text-2xl pl-[16px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 h-[40px]'
-                />
-              </div>
-            </div> */}
 
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Email
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <InputField value={payload.email} nameKey='email' setValue={setpayload} />
+              <InputField
+                name='email'
+                register={register}
+                type='email'
+                className='mt-2'
+                classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
+                errorMessage={errors.email?.message}
+                placeholder='Email'
+                autoComplete='on'
+              />
             </div>
             <div>
               <label htmlFor='email' className='block text-[14px] mb-[8px] my-3 font-semibold leading-6 text-gray-900'>
                 Phone
                 <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
               </label>
-              <InputField value={payload.phone_number} nameKey='phone_number' setValue={setpayload} />
+              <InputField
+                name='phone_number'
+                register={register}
+                type='phone_number'
+                className='mt-2'
+                classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
+                errorMessage={errors.phone_number?.message}
+                placeholder='phone_number'
+                autoComplete='on'
+              />
             </div>
             <div>
               <div className='flex items-center justify-between'>
@@ -114,7 +140,35 @@ export default function Register() {
                   <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
                 </label>
               </div>
-              <InputField value={payload.password} nameKey='password' setValue={setpayload} type='password' />
+              <InputField
+                name='password'
+                register={register}
+                type='password'
+                className='mt-2'
+                classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
+                errorMessage={errors.password?.message}
+                placeholder='Password'
+                autoComplete='on'
+              />
+            </div>
+
+            <div>
+              <div className='flex items-center justify-between'>
+                <label htmlFor='password' className='text-[14px] my-3 block font-semibold leading-6 text-gray-900'>
+                  Confirm_Password
+                  <span className={cx('text-[#ff0000] ml-[3px]')}>*</span>
+                </label>
+              </div>
+              <InputField
+                name='confirm_password'
+                register={register}
+                type='password'
+                className='mt-2'
+                classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
+                errorMessage={errors.confirm_password?.message}
+                placeholder='Confirm Password'
+                autoComplete='on'
+              />
             </div>
             {/* <div>
               <div className='flex items-center justify-between'>
@@ -134,7 +188,12 @@ export default function Register() {
               />
             </div> */}
             <div className='pt-5'>
-              <Button name='Đăng ký' handleonClick={handleRegisterSubmit} />
+              <Button
+                type='submit'
+                className=' text-3xl h-[45px] flex w-full justify-center items-center rounded-[999px] bg-[#fbd947] px-3 py-1.5 font-normal leading-6 text-[#bb141a] shadow-sm hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                Đăng ký
+              </Button>
             </div>
           </form>
 
