@@ -120,11 +120,13 @@ const ProductCard = ({ books }) => {
 
               <div
                 className={cx(
-                  'w-[30px] h-[30px] bg-primary rounded-[50%] d-flex items-center justify-center text-[#ffffff] cursor-pointer'
+                  'w-[40px] h-[40px] bg-orange-500  d-flex items-center justify-center text-[#ffffff] cursor-pointer'
                 )}
                 onClick={() => handleAddToCart(books?.id)}
               >
-                <i className='fa-solid fa-plus'></i>
+                {/* <i className='fa-solid fa-plus'></i> */}
+                {/* <i class="fa-solid fa-cart-shopping"></i> */}
+                <i class="fa-solid fa-cart-arrow-down"></i>
               </div>
             </div>
           </div>

@@ -195,7 +195,7 @@ export default function Checkout() {
       <div className='flex lg:flex-row flex-col-reverse gap-5 min-h-screen'>
         <div className='mt-[30px] lg:!w-[60%] px-[160px] lg:pl-[130px]'>
           <Link to='/'>
-            <img src='/src/assets/imgs/logo1.png' alt='' className='w-[170px]' />
+            <img src='/src/assets/imgs/logo3.png' alt='' className='w-[170px]' />
           </Link>
           <div>
             <Form
@@ -385,7 +385,7 @@ export default function Checkout() {
                   <div className='flex items-center gap-3'>
                     <img
                       className='w-[70px] h-[70px] object-cover rounded-3xl'
-                      src='https://cdn.hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/ve-bia-sach.jpg'
+                      src={item?.book?.image}
                       alt=''
                     />
                     <span className='py-3 max-w-[300px]'>

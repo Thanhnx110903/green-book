@@ -201,8 +201,8 @@ const BillDetail = () => {
         </div>
       ) : (
         <div className='pt-[30px] pb-[100px] bg-bgr  px-6'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4'>
-            <div className='bg-bgr border border-gray-200 rounded-lg shadow'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4 max-w-[1600px] mx-auto bg-bgr border border-gray-200'>
+            <div className='bg-bgr border border-gray-200 rounded-lg shadow mx-auto '>
               <Link to='#'>
                 <img
                   className='rounded-t-lg  max-h-[400px] object-cover'
@@ -454,7 +454,7 @@ const BillDetail = () => {
               </div>
             </div>
           </div>
-          <div className='block h-full bg-bgr border border-gray-200 rounded-lg shadow'>
+          <div className='block h-full bg-bgr border border-gray-200 rounded-lg shadow max-w-[1600px] mx-auto'>
             <h5 className='mb-2 p-6 text-2xl font-bold tracking-tight text-gray-900'>Thông tin hoá đơn</h5>
             <div className='relative overflow-x-auto rounded-xl '>
               <table className='w-full text-sm text-left text-gray-500'>

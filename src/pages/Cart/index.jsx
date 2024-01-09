@@ -88,6 +88,7 @@ export default function Cart() {
       setData(dataCart?.data)
       const total = data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
       setTotal(total)
+      console.log(total)
     }
   }, [isLoading, dataCart?.data, refetch])
   return (
@@ -156,7 +157,7 @@ export default function Cart() {
                 <div className={cx('flex mt-[30px]')}>
                   <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>Tổng cộng</h3>
                   <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-                  <FormatPrice price={total} />
+                  <FormatPrice price={total } />
                   </div>
                 </div>
                 <div className={cx('text-right', 'vat')}>(Đã bao gồm VAT nếu có)</div>
