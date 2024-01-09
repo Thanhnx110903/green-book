@@ -83,14 +83,22 @@ export default function Cart() {
         console.log(err)
       })
   }
+  // useEffect(() => {
+  //   if (dataCart?.data?.length) {
+  //     setData(dataCart?.data)
+  //     const total = data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
+  //     setTotal(total)
+  //     console.log(total)
+  //   }
+  // }, [isLoading, dataCart?.data, refetch])
   useEffect(() => {
-    if (dataCart?.data?.length) {
-      setData(dataCart?.data)
-      const total = data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
-      setTotal(total)
-      console.log(total)
+    if (dataCart?.data?.length && dataCart.data !== data) {
+      setData(dataCart.data);
+      const total = dataCart.data.reduce((acc, item) => acc + item.quantity * item.book.price, 0);
+      setTotal(total);
+      console.log(total);
     }
-  }, [isLoading, dataCart?.data, refetch])
+  }, [isLoading, dataCart?.data, refetch, data]);
   return (
     <ProtectRouter>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
