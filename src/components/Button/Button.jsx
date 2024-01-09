@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-
-const Button = ({ type, name, handleonClick, style, iconsBefore, iconsAfter }) => {
+import { LoadingOutlined } from '@ant-design/icons'
+const Button = ({ type, name, handleonClick, style, iconsBefore, iconsAfter, isLoading }) => {
   return (
     <button
       type={type || 'button'}
@@ -13,7 +13,7 @@ const Button = ({ type, name, handleonClick, style, iconsBefore, iconsAfter }) =
         handleonClick && handleonClick()
       }}
     >
-      {name}
+      {isLoading ? <LoadingOutlined /> : name}
     </button>
   )
 }

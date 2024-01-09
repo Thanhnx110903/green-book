@@ -9,6 +9,14 @@ import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
 import Polyci from '../pages/Polyci'
 import ListProducts from '../pages/ListProducts/ListProducts'
+import NotFound from '../pages/NotFound'
+import Profile from '../pages/Profile'
+import Checkout from '../pages/Checkout'
+import BillDetail from '../pages/BillDetail'
+import Voucher from '../pages/Voucher'
+import Otp from '../pages/Otp'
+import ForgotPassword from '../pages/ForgotPassword'
+import ChangePassword from '../pages/ChangePassword'
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
@@ -37,7 +45,15 @@ export default function useRoutElement() {
       )
     },
     {
-      path: '/:pid/:name',
+      path: '/checkout',
+      element: (
+        <>
+          <Checkout />
+        </>
+      )
+    },
+    {
+      path: 'product/:id',
       element: (
         <LayoutDefault>
           <ProductDetail />
@@ -75,6 +91,58 @@ export default function useRoutElement() {
           <Register />
         </LayoutDefault>
       )
+    },
+    {
+      path: '/profile',
+      element: (
+        <LayoutDefault>
+          <Profile />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '/order/:id',
+      element: (
+        <LayoutDefault>
+          <BillDetail />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '/otp',
+      element: (
+        <LayoutDefault>
+          <Otp />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '/forgot_password',
+      element: (
+        <LayoutDefault>
+          <ForgotPassword />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '/change_password',
+      element: (
+        <LayoutDefault>
+          <ChangePassword />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '/voucher',
+      element: (
+        <LayoutDefault>
+          <Voucher />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: '*',
+      element: <NotFound />
     }
   ])
   return routeElement
