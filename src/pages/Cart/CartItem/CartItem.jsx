@@ -12,7 +12,7 @@ const CartItem = ({ cart, onUpdateCartQty }) => {
       <img className={cx('w-[100px] h-[100px]')} src={cart?.book?.image} alt='' />
       <div className={cx('text-[1.4rem]')}>{cart?.book?.name}</div>
       <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-        {cart?.book?.price} <span className={cx('underline decoration-solid')}>đ</span>
+        {Number(cart?.book?.price)* cart?.quantity} <span className={cx('underline decoration-solid')}>đ</span>
       </div>
       <div className={cx('px-[27px]')}>
         <button

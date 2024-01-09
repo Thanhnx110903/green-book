@@ -15,6 +15,7 @@ const onChange = (date, dateString) => {
 
 export default function Cart() {
   const [data, setData] = useState(null)
+  const [totalPrice, setTotalPrice] = useState(0);
   const { isLoggedIn, current } = useSelector((state) => state.user)
   const getCart = async () => {
     const res = await getCarts()
@@ -26,6 +27,21 @@ export default function Cart() {
       getCart()
     }
   }, [current])
+
+  useEffect(() => {
+    let total = 0;
+
+    // for (const item of data) {
+    //   const price =item.book.price;
+    //   total += item.quantity * price;
+    // }
+
+    {data?.map((item)=>(
+      total += item.quantity * item.book.price
+    ))}
+
+    setTotalPrice(total);
+  }, [data]);
   const handleUpdateCartQty = async (newQuantity,lineItemId ) => {
     try {
       const response = await updateCart({ quantity: newQuantity }, lineItemId);
@@ -85,7 +101,7 @@ export default function Cart() {
               <div className={cx('flex mt-[30px]')}>
                 <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>Tổng cộng</h3>
                 <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-                  1200 <span className={cx('underline decoration-solid')}>đ</span>
+                  {totalPrice} <span className={cx('underline decoration-solid')}>đ</span>
                 </div>
               </div>
               <div className={cx('text-right', 'vat')}>(Đã bao gồm VAT nếu có)</div>
