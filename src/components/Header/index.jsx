@@ -44,11 +44,11 @@ export default function Header() {
   return (
     <>
       <header className={cx('header-search-sticky', 'shadow-lg')}>
-        <div>
+        <div className={cx('')}>
           <div className={cx('container-wrap')}>
             <div className={cx('d-flex justify-between items-center pt-[14px] pb-[8px]')}>
               <Link to='/'>
-                <img src='/src/assets/imgs/logo3.png' alt='' className='w-[170px]' />
+                <img src='/src/assets/imgs/logo.png' alt='' className='w-[170px]' />
               </Link>
               <div>
                 <div className='relative'>

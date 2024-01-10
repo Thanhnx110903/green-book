@@ -13,9 +13,11 @@
 .header-input:focus {
   --tw-ring-color: none !important;
 }
-.bg{
-  background-color: #265149;
+
+.bg {
+  background-color: #bc141b;
 }
+
 .icon {
   color: var(--primary-color);
   height: 40px;
