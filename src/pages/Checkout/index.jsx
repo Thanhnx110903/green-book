@@ -196,255 +196,261 @@ export default function Checkout() {
     <>
       <Header />
       <ProtectRouter>
-        <div className='flex lg:flex-row flex-col-reverse gap-5 min-h-screen'>
-          <div className='mt-[30px] lg:!w-[60%] px-[160px] lg:pl-[130px]'>
-            <Link to='/'>
-              <img src='/src/assets/imgs/logo3.png' alt='' className='w-[170px]' />
-            </Link>
-            <div>
-              <Form
-                name='basic'
-                className='w-full text-[20px]'
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete='off'
-                layout='vertical'
-                form={form}
-              >
-                <div className='flex gap-10 lg:flex-row flex-col w-full'>
-                  <div className='mt-8 w-full'>
-                    <h1 className='text-[18px] font-bold  mb-3'>Thông tin mua hàng</h1>
-                    <Form.Item
-                      name='name'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng nhập tên'
-                        },
-                        {
-                          min: 5,
-                          message: 'Tên cần tối thiểu 5 kí tự'
-                        }
-                      ]}
-                    >
-                      <Input placeholder='Họ tên' className='min-h-[40px] rounded-lg text-[16px]' />
-                    </Form.Item>
-                    <Form.Item
-                      name='phone_number'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng nhập số điện thoại!'
-                        },
-                        {
-                          validator: validatePhoneNumber
-                        }
-                      ]}
-                    >
-                      <Input placeholder='Số điện thoại' className='min-h-[40px] rounded-lg text-[16px]' />
-                    </Form.Item>
-                    <Form.Item
-                      name='address'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng nhập địa chỉ'
-                        }
-                      ]}
-                    >
-                      <Input placeholder='Địa chỉ' className='min-h-[40px] rounded-lg text-[16px]' />
-                    </Form.Item>
-                    <Form.Item
-                      name='city'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng chọn thông tin'
-                        }
-                      ]}
-                    >
-                      <Select
-                        // showSearch
-                        // filterOption={filterOption}
-                        onChange={onChangeCity}
-                        placeholder='Tỉnh thành'
-                        className='min-h-[40px] rounded-lg text-[26px] '
-                        options={dataCity?.data?.map((item) => {
-                          return {
-                            value: item?.ProvinceID,
-                            label: item?.ProvinceName
+        <div className='container-wrap mb-[40px]'>
+          <div className='flex lg:flex-row flex-col-reverse gap-5 min-h-screen'>
+            <div className='mt-[30px] lg:!w-[60%] px-[160px] lg:pl-[130px]'>
+              <Link to='/'>
+                <img src='/src/assets/imgs/logo3.png' alt='' className='w-[170px]' />
+              </Link>
+              <div>
+                <Form
+                  name='basic'
+                  className='w-full text-[20px]'
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
+                  autoComplete='off'
+                  layout='vertical'
+                  form={form}
+                >
+                  <div className='flex gap-10 lg:flex-row flex-col w-full'>
+                    <div className='mt-8 w-full'>
+                      <h1 className='text-[18px] font-bold  mb-3'>Thông tin mua hàng</h1>
+                      <Form.Item
+                        name='name'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng nhập tên'
+                          },
+                          {
+                            min: 5,
+                            message: 'Tên cần tối thiểu 5 kí tự'
                           }
-                        })}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='district'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng chọn thông tin'
-                        }
-                      ]}
-                    >
-                      <Select
-                        placeholder='Quận huyện'
-                        disabled={provinceId && !loadingDistrict ? false : true}
-                        className='min-h-[40px] rounded-lg text-[16px]'
-                        onChange={changeDistrict}
-                        options={dataDistrict?.data?.map((item) => {
-                          return {
-                            value: item?.DistrictID,
-                            label: item?.DistrictName
+                        ]}
+                      >
+                        <Input placeholder='Họ tên' className='min-h-[40px] rounded-lg text-[16px]' />
+                      </Form.Item>
+                      <Form.Item
+                        name='phone_number'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng nhập số điện thoại!'
+                          },
+                          {
+                            validator: validatePhoneNumber
                           }
-                        })}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='ward'
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Vui lòng chọn thông tin'
-                        }
-                      ]}
-                    >
-                      <Select
-                        placeholder='Phường xã'
-                        className='min-h-[40px] rounded-lg text-[16px]'
-                        // defaultValue={'jack'}
-                        onChange={changeWard}
-                        disabled={districtId && provinceId && !loadingWard ? false : true}
-                        options={dataWard?.data?.map((item) => {
-                          return {
-                            value: item?.WardCode,
-                            label: item?.WardName
+                        ]}
+                      >
+                        <Input placeholder='Số điện thoại' className='min-h-[40px] rounded-lg text-[16px]' />
+                      </Form.Item>
+                      <Form.Item
+                        name='address'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng nhập địa chỉ'
                           }
-                        })}
-                      />
-                    </Form.Item>
-                  </div>
-                  <div className='flex flex-col w-full gap-3 mt-8'>
-                    <div>
-                      <h1 className='text-[18px] font-bold  mb-3 '>Vận chuyển</h1>
-                      <Form.Item name='shipping'>
-                        <Radio.Group onChange={onChangeChooseShipping} className='flex flex-col gap-3' defaultValue={1}>
-                          <Radio
-                            className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                            value={1}
-                          >
-                            Giao hàng tận nơi
-                          </Radio>
-                          {shippingOrder?.data?.map((item) => {
-                            return (
-                              <Radio
-                                className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                                value={item?.service_id}
-                              >
-                                {item?.short_name}
-                              </Radio>
-                            )
+                        ]}
+                      >
+                        <Input placeholder='Địa chỉ' className='min-h-[40px] rounded-lg text-[16px]' />
+                      </Form.Item>
+                      <Form.Item
+                        name='city'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng chọn thông tin'
+                          }
+                        ]}
+                      >
+                        <Select
+                          // showSearch
+                          // filterOption={filterOption}
+                          onChange={onChangeCity}
+                          placeholder='Tỉnh thành'
+                          className='min-h-[40px] rounded-lg text-[26px] '
+                          options={dataCity?.data?.map((item) => {
+                            return {
+                              value: item?.ProvinceID,
+                              label: item?.ProvinceName
+                            }
                           })}
-                        </Radio.Group>
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        name='district'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng chọn thông tin'
+                          }
+                        ]}
+                      >
+                        <Select
+                          placeholder='Quận huyện'
+                          disabled={provinceId && !loadingDistrict ? false : true}
+                          className='min-h-[40px] rounded-lg text-[16px]'
+                          onChange={changeDistrict}
+                          options={dataDistrict?.data?.map((item) => {
+                            return {
+                              value: item?.DistrictID,
+                              label: item?.DistrictName
+                            }
+                          })}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        name='ward'
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Vui lòng chọn thông tin'
+                          }
+                        ]}
+                      >
+                        <Select
+                          placeholder='Phường xã'
+                          className='min-h-[40px] rounded-lg text-[16px]'
+                          // defaultValue={'jack'}
+                          onChange={changeWard}
+                          disabled={districtId && provinceId && !loadingWard ? false : true}
+                          options={dataWard?.data?.map((item) => {
+                            return {
+                              value: item?.WardCode,
+                              label: item?.WardName
+                            }
+                          })}
+                        />
                       </Form.Item>
                     </div>
-                    <div>
-                      <h1 className='text-[18px] font-bold  mb-3 '>Thanh toán</h1>
-                      <Form.Item name='payment'>
-                        <Radio.Group className='flex flex-col gap-3' defaultValue={'COD'}>
-                          <Radio
-                            className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                            value={'MOMO'}
+                    <div className='flex flex-col w-full gap-3 mt-8'>
+                      <div>
+                        <h1 className='text-[18px] font-bold  mb-3 '>Vận chuyển</h1>
+                        <Form.Item name='shipping'>
+                          <Radio.Group
+                            onChange={onChangeChooseShipping}
+                            className='flex flex-col gap-3'
+                            defaultValue={1}
                           >
-                            Chuyển khoản
-                          </Radio>
-                          <Radio
-                            className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                            value={'COD'}
-                          >
-                            COD
-                          </Radio>
-                        </Radio.Group>
-                      </Form.Item>
+                            <Radio
+                              className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                              value={1}
+                            >
+                              Giao hàng tận nơi
+                            </Radio>
+                            {shippingOrder?.data?.map((item) => {
+                              return (
+                                <Radio
+                                  className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                                  value={item?.service_id}
+                                >
+                                  {item?.short_name}
+                                </Radio>
+                              )
+                            })}
+                          </Radio.Group>
+                        </Form.Item>
+                      </div>
+                      <div>
+                        <h1 className='text-[18px] font-bold  mb-3 '>Thanh toán</h1>
+                        <Form.Item name='payment'>
+                          <Radio.Group className='flex flex-col gap-3' defaultValue={'COD'}>
+                            <Radio
+                              className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                              value={'MOMO'}
+                            >
+                              Chuyển khoản
+                            </Radio>
+                            <Radio
+                              className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                              value={'COD'}
+                            >
+                              COD
+                            </Radio>
+                          </Radio.Group>
+                        </Form.Item>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className='flex justify-end items-center gap-5'>
-                  <Link to='/cart' className='text-blue-600 text-[18px]'>
-                    Quay về giỏ hàng
-                  </Link>
-                  <Button htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
-                    Đặt hàng
-                  </Button>
-                </div>
-              </Form>
+                  <div className='flex justify-between items-center gap-5'>
+                    <Link to='/cart' className=' text-[18px]'>
+                      Quay về giỏ hàng
+                    </Link>
+                    <Button htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
+                      Đặt hàng
+                    </Button>
+                  </div>
+                </Form>
+              </div>
             </div>
-          </div>
-          <div className='flex-1 d:pr-[160px] pt-[30px] bg-[#fafafa] border border-r-[1px] pb-8'>
-            <h2 className='text-[20px] font-bold mb-3  px-8'>Đơn hàng (1 sản phẩm)</h2>
-            <Divider />
-            <div className='flex flex-col gap-4 max-h-[400px] overflow-y-auto'>
-              {data?.map((item) => {
-                return (
-                  <div className='px-8 flex justify-between items-center  '>
-                    <div className='flex items-center gap-3'>
-                      <img className='w-[70px] h-[70px] object-cover rounded-3xl' src={item?.book?.image} alt='' />
-                      <span className='py-3 max-w-[300px]'>
-                        {item?.book?.name} (x{item?.quantity})
+            <div className='flex-1 d:pr-[160px] pt-[30px] bg-[#fafafa] border border-r-[1px] pb-8'>
+              <h2 className='text-[20px] font-bold mb-3  px-8'>Đơn hàng (1 sản phẩm)</h2>
+              <Divider />
+              <div className='flex flex-col gap-4 max-h-[400px] overflow-y-auto'>
+                {data?.map((item) => {
+                  return (
+                    <div className='px-8 flex justify-between items-center  '>
+                      <div className='flex items-center gap-3'>
+                        <img className='w-[70px] h-[70px] object-cover rounded-3xl' src={item?.book?.image} alt='' />
+                        <span className='py-3 max-w-[300px]'>
+                          {item?.book?.name} (x{item?.quantity})
+                        </span>
+                      </div>
+                      <span>
+                        <FormatPrice price={+item?.book?.price * +item?.quantity} />
                       </span>
                     </div>
-                    <span>
-                      <FormatPrice price={+item?.book?.price * +item?.quantity} />
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-            <Divider />
-            <div className='flex items-center px-8 gap-5'>
-              <Select
-                showSearch
-                placeholder='Chọn mã giảm giá'
-                optionFilterProp='children'
-                className='min-h-[40px] rounded-lg !text-[20px]'
-                onChange={onChange}
-                filterOption={filterOption}
-                options={dataVoucher}
-              />
-            </div>
-            <Divider />
-            <div>
-              <div className='px-8 text-[18px] flex gap-5 flex-col text-gray-500'>
-                <div className='flex justify-between'>
-                  <p>Tạm tính</p>
-                  <FormatPrice price={totalAmount} />
-                </div>
-                <div className='flex justify-between'>
-                  <p>Phí vận chuyển</p>
-                  {serviceId ? (
-                    dataPriceShipping?.data?.total ? (
-                      <FormatPrice price={dataPriceShipping?.data?.total} />
-                    ) : (
-                      ''
-                    )
-                  ) : (
-                    <FormatPrice price={50000} />
-                  )}
-                </div>
-                <div className='flex justify-between'>
-                  <p>Mã giảm giá</p>
-                  {addVoucher
-                    ? addVoucher?.coupon?.type == 'free_ship'
-                      ? 'Miễn phí vận chuyển'
-                      : addVoucher?.coupon?.type == 'percent'
-                      ? 'giảm ' + addVoucher?.coupon?.value + '%'
-                      : 'Giảm ' + addVoucher?.coupon?.value + ' đ'
-                    : ''}
-                </div>
+                  )
+                })}
               </div>
               <Divider />
-              <div className='flex justify-between px-8 text-[18px] text-gray-500'>
-                <p>Tổng tiền</p>
-                <FormatPrice price={totalAmount - discountAmount} />
+              <div className='flex items-center px-8 gap-5'>
+                <Select
+                  showSearch
+                  placeholder='Chọn mã giảm giá'
+                  optionFilterProp='children'
+                  className='min-h-[40px] rounded-lg !text-[20px]'
+                  onChange={onChange}
+                  filterOption={filterOption}
+                  options={dataVoucher}
+                />
+              </div>
+              <Divider />
+              <div>
+                <div className='px-8 text-[18px] flex gap-5 flex-col text-gray-500'>
+                  <div className='flex justify-between'>
+                    <p>Tạm tính</p>
+                    <FormatPrice price={totalAmount} />
+                  </div>
+                  <div className='flex justify-between'>
+                    <p>Phí vận chuyển</p>
+                    {serviceId ? (
+                      dataPriceShipping?.data?.total ? (
+                        <FormatPrice price={dataPriceShipping?.data?.total} />
+                      ) : (
+                        ''
+                      )
+                    ) : (
+                      <FormatPrice price={50000} />
+                    )}
+                  </div>
+                  <div className='flex justify-between'>
+                    <p>Mã giảm giá</p>
+                    {addVoucher
+                      ? addVoucher?.coupon?.type == 'free_ship'
+                        ? 'Miễn phí vận chuyển'
+                        : addVoucher?.coupon?.type == 'percent'
+                        ? 'giảm ' + addVoucher?.coupon?.value + '%'
+                        : 'Giảm ' + addVoucher?.coupon?.value + ' đ'
+                      : ''}
+                  </div>
+                </div>
+                <Divider />
+                <div className='flex justify-between px-8 text-[18px] text-gray-500'>
+                  <p>Tổng tiền</p>
+                  <FormatPrice price={totalAmount - discountAmount} />
+                </div>
               </div>
             </div>
           </div>

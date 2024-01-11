@@ -93,12 +93,12 @@ export default function Cart() {
   // }, [isLoading, dataCart?.data, refetch])
   useEffect(() => {
     if (dataCart?.data?.length && dataCart.data !== data) {
-      setData(dataCart.data);
-      const total = dataCart.data.reduce((acc, item) => acc + item.quantity * item.book.price, 0);
-      setTotal(total);
-      console.log(total);
+      setData(dataCart.data)
+      const total = dataCart.data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
+      setTotal(total)
+      console.log(total)
     }
-  }, [isLoading, dataCart?.data, refetch, data]);
+  }, [isLoading, dataCart?.data, refetch, data])
   return (
     <ProtectRouter>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -121,12 +121,8 @@ export default function Cart() {
                       <div className={cx('mr-[8px] cursor-pointer')} onClick={() => handleRemoveItem(item?.id)}>
                         <i className={cx('fa-solid fa-xmark p-[8px]', 'times')}></i>
                       </div>
-                      <img
-                        className={cx('w-[100px] h-[100px]' , 'object-cover')  }
-                        src={item?.book.image}
-                        alt=''
-                      />
-                      <div className={cx('text-[1.4rem]')}>{item?.book?.name}</div>
+                      <img className={cx('w-[100px] h-[100px]', 'object-cover')} src={item?.book.image} alt='' />
+                      <div className={cx('text-[1.4rem] ml-[20px]')}>{item?.book?.name}</div>
                       <div className={cx('text-[#bb141a] ml-auto font-bold')}>
                         <FormatPrice price={item?.book?.price} />
                       </div>
@@ -165,7 +161,7 @@ export default function Cart() {
                 <div className={cx('flex mt-[30px]')}>
                   <h3 className={cx('font-bold text-[1.8rem] mb-[16px]')}>Tổng cộng</h3>
                   <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-                  <FormatPrice price={total } />
+                    <FormatPrice price={total} />
                   </div>
                 </div>
                 <div className={cx('text-right', 'vat')}>(Đã bao gồm VAT nếu có)</div>

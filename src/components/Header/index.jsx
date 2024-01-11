@@ -63,12 +63,12 @@ export default function Header() {
                     className={cx('header-input')}
                   />
                   <i className={cx('fa-solid fa-magnifying-glass w-[57px] rounded-r-[99px]', 'icon')}></i>
-                  <div className='absolute w-full top-[120%] bg-white shadow-lg flex flex-col gap-3 max-h-[500px] overflow-y-auto'>
+                  <div className=' absolute w-full top-[120%] bg-white shadow-lg flex flex-col max-h-[500px] overflow-y-auto'>
                     {dataSearch?.length
                       ? dataSearch?.map((item) => {
                           console.log(item)
                           return (
-                            <div key={item?.id} className='flex gap-3'>
+                            <div key={item?.id} className='flex gap-3 p-[7px] border-b-[1px]'>
                               <Link to={`/product/${item?.id}`} onClick={() => setDataSearch([])}>
                                 <img src={item?.image} alt='' className='w-[70px] h-[70px] object-cover' />
                               </Link>

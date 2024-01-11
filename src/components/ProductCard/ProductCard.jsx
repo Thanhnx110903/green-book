@@ -105,7 +105,7 @@ const ProductCard = ({ books }) => {
                   </div>
                 ) : (
                   <div
-                    className='w-[35px] h-[35px] flex items-center cursor-pointer'
+                    className='w-[30px] h-[30px] flex items-center cursor-pointer'
                     onClick={() => handleAddFavorite(books?.id)}
                   >
                     <HeartOutlined />
@@ -113,7 +113,7 @@ const ProductCard = ({ books }) => {
                 )
               ) : (
                 <div
-                  className='w-[35px] h-[35px] flex items-center cursor-pointer'
+                  className='w-[30px] h-[30px] flex items-center cursor-pointer'
                   onClick={() => handleAddFavorite(books?.id)}
                 >
                   <HeartOutlined />
@@ -121,7 +121,7 @@ const ProductCard = ({ books }) => {
               )}
 
               <div
-                className={cx('w-[35px] h-[35px] cursor-pointer', 'icon-cart')}
+                className={cx('w-[30px] h-[30px] cursor-pointer', 'icon-cart')}
                 onClick={() => handleAddToCart(books?.id)}
               >
                 {/* <i className='fa-solid fa-cart-shopping'></i> */}
