@@ -123,10 +123,7 @@ export default function ProductDetail() {
   }, [])
   return (
     <>
-      {/* <Breadcrumb /> */}
-      <div className='h-[50px] bg-neutral-100'>
-
-      </div>
+      <Breadcrumb />
       {isLoading || isLoadingTopBook || isLoadingRelatedBook ? (
         <div className='mt-5 w-full'>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -134,9 +131,9 @@ export default function ProductDetail() {
           ))}
         </div>
       ) : (
-        <div className={cx('container mx-auto')}>
-          <div className='box-border'>
-            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 mt-9'>
+        <div className={cx('container-wrap')}>
+          <div className=''>
+            <div className='d-flex gap-[48px] mt-[35px]'>
               <div className='mx-auto'>
                 <img className='w-[494px] h-[494px]' src={data?.data?.image} alt='giang' />
               </div>
@@ -187,7 +184,7 @@ export default function ProductDetail() {
                   <div className='flex'>
                     <button
                       onClick={handleAddToCart}
-                      className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'
+                      className='d-flex items-center justify-center w-[196px] p-[10px] rounded-full font-normal text-3xl  text-[#ffffff]  bg-[#bb141a;] hover:opacity-[0.8]'
                     >
                       {!cartLoading ? <span>Thêm vào giỏ</span> : <LoadingOutlined />}
                     </button>
@@ -305,7 +302,7 @@ export default function ProductDetail() {
                     <div>
                       <button
                         onClick={handleAddToCart}
-                        className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'
+                        className='d-flex items-center  justify-center p-[6px] w-64 rounded-full font-normal text-[16px] text-[#ffffff]  mx-4 bg-[#bb141a;]'
                       >
                         {!cartLoading ? <span>Thêm vào giỏ</span> : <LoadingOutlined />}
                       </button>

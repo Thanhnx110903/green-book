@@ -112,8 +112,7 @@ const ListProducts = () => {
   }, [isLoading, dataQuery, error])
   return (
     <div className=''>
-      {/* <Breadcrumb /> */}
-      {/* <img src='http://localhost:8000/storage/books/cover.png' alt='' /> */}
+      <Breadcrumb />
       <div className={cx('container-wrap')}>
         {/* <div className='flex justify-center mt-8  '>
           <img src='https://bizweb.dktcdn.net/100/441/742/collections/m-qr.png?v=1656663743390' alt='' />
@@ -329,9 +328,9 @@ const ListProducts = () => {
         </div>
       </div>
       {/* News */}
-      <div className={cx('container-wrap')}>
+      <div className={cx('container-wrap mb-[70px]')}>
         <div>
-          <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
+          <h1 className='font-medium text-4xl pt-5 pb-[20px] '>Sản phẩm mua nhiều</h1>
           <div className='grid lg:grid-cols-5 gap-5 py-5 sm:grid-cols-2 md:grid-cols-4'>
             {dataTopBook?.data?.slice(0, 4).map((productbyCategory) => (
               <div key={productbyCategory?.id} className='px-8'>

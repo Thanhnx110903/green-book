@@ -99,3 +99,22 @@
   background: #fff;
   z-index: 99;
 }
+
+.icon:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.header-category:hover .list-cate {
+  display: block;
+}
+
+.list-cate {
+  position: absolute;
+  display: none;
+  bottom: -50px;
+}
+
+.list-cate nav {
+  z-index: 99;
+}

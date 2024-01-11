@@ -37,7 +37,7 @@ const BillDetail = () => {
   const { data: dataWard, isLoading: loadingWard } = useGetWardQuery(districtId)
   const [form] = Form.useForm()
   const { data, refetch, isLoading } = useGetOrderQuery(id)
-  console.log(data);
+  console.log(data)
   const phonePattern = /^(?:\d{10}|\d{11})$/
   const onFinish = (values) => {
     if (values) {
@@ -181,7 +181,6 @@ const BillDetail = () => {
       form.setFieldValue('district', data?.order?.district_id)
       form.setFieldValue('ward', data?.order?.ward_id.toString())
       form.setFieldValue('shipping', data?.order?.service_id ? +data?.order?.service_id : 1)
-      
     }
   }, [data, isLoading, loadingShippingOrder])
   useEffect(() => {
@@ -202,15 +201,9 @@ const BillDetail = () => {
       ) : (
         <div className='pt-[30px] pb-[100px] bg-bgr  px-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4 max-w-[1600px] mx-auto bg-bgr border border-gray-200'>
-            <div className='bg-bgr border border-gray-200 rounded-lg shadow mx-auto '>
+            <div className='bg-bgr rounded-lg shadow mx-auto '>
               <Link to='#'>
-                <img
-                  className='rounded-t-lg  max-h-[400px] object-cover'
-                  src={
-                    data?.data[0]?.book_image 
-                  }
-                  alt=''
-                />
+                <img className='rounded-t-lg  max-h-[400px] object-cover' src={data?.data[0]?.book_image} alt='' />
               </Link>
               <div className='p-5'>
                 <Link to='#'>
