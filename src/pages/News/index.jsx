@@ -36,6 +36,7 @@ export default function News() {
                 {dataPosts?.data?.map((item) => {
                   return <BlogItem item={item} />
                 })}
+                {/* cm */}
               </div>
             )}
           </div>
