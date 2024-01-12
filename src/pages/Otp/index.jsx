@@ -18,6 +18,7 @@ export default function Otp() {
     if (values) {
       const email = JSON.parse(localStorage.getItem('emailverify'))
       console.log(email)
+      
       verifyAcc({
         otp: values?.otp,
         email
@@ -30,6 +31,7 @@ export default function Otp() {
         })
         .catch((err) => {
           console.log(err)
+          message.error(err?.data?.message)
         })
     }
   }

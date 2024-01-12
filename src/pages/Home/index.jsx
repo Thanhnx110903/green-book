@@ -55,7 +55,7 @@ export default function Home() {
           </div>
         </div>
         <div className={cx('container-wrap')}>
-          <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Tin Tức</h3>
+          <h3 className={cx(' mb-[30px] text-[3.1rem] font-medium hover:text-primary')}>Tin Tức</h3>
           {isLoading ? (
             <div className='mt-5 w-full'>
               {Array.from({ length: 5 }).map((_, index) => (
