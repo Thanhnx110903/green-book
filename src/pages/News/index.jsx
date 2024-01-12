@@ -1,8 +1,6 @@
 import classNames from 'classnames/bind'
 import styles from './News.module.css'
 import { Link } from 'react-router-dom'
-import BlogItem from '../../components/BlogItem/BlogItem'
-import PcLoading from '../../components/PcLoading'
 
 const cx = classNames.bind(styles)
 
@@ -26,11 +24,7 @@ export default function News() {
                 <PcLoading key={index} />
               ))}
             </div>
-            <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
-              {dataPosts?.data?.map((item) => {
-                return <BlogItem item={item} />
-              })}
-            </div>
+            <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}></div>
           </div>
           <div className={cx('ml-[15px] pl-[15px]', 'news-left')}>
             <h4 className={cx('font-medium mb-[15px]')}>TIN NỔI BẬT</h4>
