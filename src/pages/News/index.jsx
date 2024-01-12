@@ -31,7 +31,6 @@ export default function News() {
                 return <BlogItem item={item} />
               })}
             </div>
-            )}
           </div>
           <div className={cx('ml-[15px] pl-[15px]', 'news-left')}>
             <h4 className={cx('font-medium mb-[15px]')}>TIN NỔI BẬT</h4>
