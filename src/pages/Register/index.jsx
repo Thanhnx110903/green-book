@@ -27,7 +27,7 @@ export default function Register() {
         })
         .catch((error) => {
           console.log(error)
-          message.error(err?.data?.error)
+          message.error(error?.data?.message)
         })
     }
   }

@@ -1,15 +1,10 @@
 import classNames from 'classnames/bind'
 import styles from './News.module.css'
 import { Link } from 'react-router-dom'
-import { useGetPostsQuery, useGetTopPostQuery } from '../../redux/api/post'
-import BlogItem from '../../components/BlogItem/BlogItem'
-import PcLoading from '../../components/PcLoading'
 
 const cx = classNames.bind(styles)
 
 export default function News() {
-  const { data: dataPosts, isLoading } = useGetPostsQuery()
-  const { data: dataHotPost, isLoading: isLoadingHotPost } = useGetTopPostQuery()
   return (
     <div className={cx('mb-[70px]')}>
       <div className={cx('bg-[#f6f6f6] py-[6px]')}>
@@ -42,24 +37,6 @@ export default function News() {
           </div>
           <div className={cx('ml-[15px] pl-[15px]', 'news-left')}>
             <h4 className={cx('font-medium mb-[15px]')}>TIN NỔI BẬT</h4>
-            {isLoadingHotPost ? (
-              <div className='mt-5 w-full'>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <PcLoading key={index} />
-                ))}
-              </div>
-            ) : (
-              <div>
-                {dataHotPost?.data?.slice(0, 3).map((item) => {
-                  return (
-                    <div className={cx('d-flex items-center gap-[15px] py-[15px]', 'news-item')}>
-                      <img className={cx('w-[100px]')} src='/src/assets/imgs/news-01.webp' alt='' />
-                      <p>{item?.title}</p>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
           </div>
         </div>
       </div>

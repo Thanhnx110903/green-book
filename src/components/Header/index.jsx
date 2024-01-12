@@ -50,12 +50,19 @@ export default function Header() {
       <header className={cx('header-search-sticky', 'shadow-lg')}>
         <div className={cx('')}>
           <div className={cx('container-wrap')}>
+<<<<<<< HEAD
             <div className={cx('d-flex justify-between items-center pt-[14px] pb-[8px]')}>
               <Link to='/'>
                 <img src='/src/assets/imgs/logo.png' alt='' className='w-[200px]' />
+=======
+            <div className={cx('d-flex justify-between items-center pt-[10px] pb-[4px] lg:pt-[14px] lg:pb-[8px]')}>
+              <Link to='/' className=''>
+                <img src='/src/assets/imgs/logo3.png' alt='' className='lg:w-[170px]  md:w-[150px] w-[100px]' />
+>>>>>>> main
               </Link>
-              <div>
-                <div className='relative'>
+              <div className='mr-96 md:mr-30 lg:mr-1'>
+                <div className='w-[100%] lg:w-[180%] sm:w-[150%]'>
+                <div className='relative w-full'>
                   <input
                     type='text'
                     onChange={onchangeSearch}
@@ -88,9 +95,19 @@ export default function Header() {
                       : ''}
                   </div>
                 </div>
+                </div>
+               
               </div>
-              <div className='d-flex items-center gap-[16px]'>
-                <div className='d-flex items-center'>
+              <div class='block md:hidden'>
+                  <button class='flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white'>
+                    <svg class='h-3 w-3' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
+                      <title>Menu</title>
+                      <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+                    </svg>
+                  </button>
+                </div>
+              <div className='md:flex d-flex items-center gap-[16px]'>
+                <div className='d-flex md:flex items-center hidden'>
                   <img className='w-[32px] h-[32px] mr-[16px]' src='/src/assets/imgs/hotline.png' alt='' />
                   <div>
                     <p className='text-[14px] text-[#000000]'>Hỗ trợ khách hàng</p>
@@ -99,7 +116,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-                <div className='d-flex items-center'>
+                <div className='d-flex items-center md:flex hidden'>
                   <img className='w-[32px] h-[32px] mr-[16px]' src='/src/assets/imgs/user.png' alt='' />
                   {cookies && cookies?.userInfor?.access_token ? (
                     <div>
@@ -124,7 +141,7 @@ export default function Header() {
                     </div>
                   )}
                 </div>
-                <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
+                <Link to='/cart' className={cx('d-flex items-center md:flex hidden', 'header-cart')}>
                   <img src='/src/assets/imgs/cart.png' alt='' className='w-[24px] h-[24px]' />
                   <p className='text-[1.4rem] text-[#000000] mx-[8px]'>Giỏ hàng</p>
                   <span className={cx('count-item')}>

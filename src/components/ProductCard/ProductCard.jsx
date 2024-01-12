@@ -77,6 +77,7 @@ const ProductCard = ({ books }) => {
       setDataFavorites([])
     }
   }, [loadingFavorite, listFavorites])
+  console.log(books);
   return (
     <>
       <li className={cx('product-item', 'shadow-md')} key={books?.id}>
