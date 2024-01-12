@@ -123,10 +123,7 @@ export default function ProductDetail() {
   }, [])
   return (
     <>
-      {/* <Breadcrumb /> */}
-      <div className='h-[50px] bg-neutral-100'>
-
-      </div>
+      <Breadcrumb />
       {isLoading || isLoadingTopBook || isLoadingRelatedBook ? (
         <div className='mt-5 w-full'>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -134,9 +131,9 @@ export default function ProductDetail() {
           ))}
         </div>
       ) : (
-        <div className={cx('container mx-auto')}>
-          <div className='box-border'>
-            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 mt-9'>
+        <div className={cx('container-wrap')}>
+          <div className=''>
+            <div className='d-flex gap-[48px] mt-[35px]'>
               <div className='mx-auto'>
                 <img className='w-[494px] h-[494px]' src={data?.data?.image} alt='giang' />
               </div>
@@ -174,7 +171,7 @@ export default function ProductDetail() {
                         id=''
                         value={baseQty}
                         onChange={(e) => handleQuantity(e.target.value)}
-                        className=' p-2 text-center outline-none w-[28px] border-none focus:outline-none focus:shadow-none focus:border-none'
+                        className=' p-2 text-center outline-none w-[28px] text-[1.6rem] border-none focus:outline-none focus:shadow-none focus:border-none'
                       />
                       <button
                         onClick={() => setBaseQty(Number(baseQty) + 1)}
@@ -187,7 +184,7 @@ export default function ProductDetail() {
                   <div className='flex'>
                     <button
                       onClick={handleAddToCart}
-                      className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'
+                      className='d-flex items-center justify-center w-[196px] p-[10px] rounded-full font-normal text-3xl  text-[#ffffff]  bg-[#bb141a;] hover:opacity-[0.8]'
                     >
                       {!cartLoading ? <span>Thêm vào giỏ</span> : <LoadingOutlined />}
                     </button>
@@ -255,7 +252,7 @@ export default function ProductDetail() {
               <div className='p-3'>
                 <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 mt-9'>
                   <div className='lg:col-span-2 ml-6'>
-                    <h1 className='font-medium text-4xl py-5 border-b border-black'>Mô tả sản phẩm</h1>
+                    <h1 className='font-medium text-4xl py-5 border-b border-[#ccc]'>Mô tả sản phẩm</h1>
                     <div className='my-7 font-normal text-2xl'>{parse(data?.data?.description)}</div>
                   </div>
                 </div>
@@ -292,10 +289,10 @@ export default function ProductDetail() {
                           id=''
                           min={0}
                           value={baseQty || 1}
-                          className=' p-2 px-4 outline-none w-[28px] border-none focus:outline-none focus:border-none'
+                          className=' p-2 px-4 outline-none w-[28px] text-[1.6rem] border-none focus:outline-none focus:border-none'
                         />
                         <button
-                          className='border w-12 h-12 rounded-full font-medium text-3xl  text-[#ced4da] pb-1'
+                          className='border w-12 h-12 rounded-full text -[1.6rem] text-3xl  text-[#ced4da] pb-1'
                           onClick={() => setBaseQty(Number(baseQty) + 1)}
                         >
                           +
@@ -305,7 +302,7 @@ export default function ProductDetail() {
                     <div>
                       <button
                         onClick={handleAddToCart}
-                        className='border w-64 h-12 rounded-full font-normal text-3xl  text-[#ffffff] pb-1 mx-4 bg-[#bb141a;]'
+                        className='d-flex items-center  justify-center p-[6px] w-64 rounded-full font-normal text-[16px] text-[#ffffff]  mx-4 bg-[#bb141a;]'
                       >
                         {!cartLoading ? <span>Thêm vào giỏ</span> : <LoadingOutlined />}
                       </button>
@@ -430,7 +427,7 @@ export default function ProductDetail() {
               <div className='m-6'>
                 <div>
                   <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
-                  <Slider {...settings} className='grid lg:grid-cols-5  py-5 sm:grid-cols-2 md:grid-cols-4'>
+                  <Slider {...settings} className='grid lg:grid-cols-5 py-5 sm:grid-cols-2 md:grid-cols-4'>
                     {dataTopBook?.data?.slice(0, 5).map((productbyCategory) => (
                       <div key={productbyCategory?.id} className='px-8'>
                         <ProductCard key={productbyCategory?.id} books={productbyCategory} />

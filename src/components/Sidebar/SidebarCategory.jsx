@@ -32,6 +32,7 @@ const convertDataForAntDMenu = (data, slug) => {
     return antdItem
   })
 }
+
 const SidebarCategory = ({ categories, slug }) => {
   const [dataSideBar, setDataSideBar] = useState([])
   const onClick = (e) => {

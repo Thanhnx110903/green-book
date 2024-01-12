@@ -20,7 +20,7 @@ const Productslist = ({ id }) => {
         </div>
       ) : (
         <>
-          <ul className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[25px]')}>
+          <ul className={cx('grid grid-cols-5 gap-[25px]')}>
             {data?.data?.data?.slice(0, 8).map((books) => (
               <ProductCard key={books.id} books={books} />
             ))}
