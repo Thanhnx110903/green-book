@@ -52,12 +52,11 @@ export default function Header() {
           <div className={cx('container-wrap')}>
             <div className={cx('d-flex justify-between items-center pt-[10px] pb-[4px] lg:pt-[14px] lg:pb-[8px]')}>
               <div class='block lg:hidden'>
-                  <button class='flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white'>
-                    <svg class='h-6 w-6' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
-                      <title>Menu</title>
-                      <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
-                    </svg>
-                  </button>
+              <div className={cx('')}>
+                  <span className={cx('category__span')}></span>
+                  <span className={cx('category__span-short')}></span>
+                  <span className={cx('category__span')}></span>
+                </div>
                 </div>
               <Link to='/'>
                 <img src='/src/assets/imgs/logo.png' alt='' className='w-[200px]' />
@@ -139,7 +138,7 @@ export default function Header() {
                     </div>
                   )}
                 </div>
-                <Link to='/cart' className={cx('d-flex items-center ', 'header-cart')}>
+                <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
                   <img src='/src/assets/imgs/cart.png' alt='' className='max-w-[24px] max-h-[24px]' />
                   <p className='text-[1.4rem] text-[#000000] mx-[8px] hidden lg:block'>Giỏ hàng</p>
                   <span className={cx('count-item')}>
@@ -288,7 +287,9 @@ export default function Header() {
             </div> */}
           </div>
         </div>
+        
       </div>
+      {/* <div className='bg-black/80 fixed w-full h-screen z-50 top-0 left-0'></div> */}
     </>
   )
 }

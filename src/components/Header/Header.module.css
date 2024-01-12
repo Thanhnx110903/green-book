@@ -97,7 +97,7 @@
   position: sticky;
   top: 0px;
   background: #fff;
-  z-index: 99;
+  z-index: 50;
 }
 
 .icon:hover {
@@ -116,5 +116,5 @@
 }
 
 .list-cate nav {
-  z-index: 99;
+  z-index: 97;
 }
