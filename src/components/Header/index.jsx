@@ -50,62 +50,55 @@ export default function Header() {
       <header className={cx('header-search-sticky', 'shadow-lg')}>
         <div className={cx('')}>
           <div className={cx('container-wrap')}>
-<<<<<<< HEAD
             <div className={cx('d-flex justify-between items-center pt-[14px] pb-[8px]')}>
               <Link to='/'>
                 <img src='/src/assets/imgs/logo.png' alt='' className='w-[200px]' />
-=======
-            <div className={cx('d-flex justify-between items-center pt-[10px] pb-[4px] lg:pt-[14px] lg:pb-[8px]')}>
-              <Link to='/' className=''>
-                <img src='/src/assets/imgs/logo3.png' alt='' className='lg:w-[170px]  md:w-[150px] w-[100px]' />
->>>>>>> main
               </Link>
               <div className='mr-96 md:mr-30 lg:mr-1'>
                 <div className='w-[100%] lg:w-[180%] sm:w-[150%]'>
-                <div className='relative w-full'>
-                  <input
-                    type='text'
-                    onChange={onchangeSearch}
-                    placeholder='Tìm kiếm sản phẩm...'
-                    className={cx('header-input')}
-                  />
-                  <i className={cx('fa-solid fa-magnifying-glass w-[57px] rounded-r-[99px]', 'icon')}></i>
-                  <div className=' absolute w-full top-[120%] bg-white shadow-lg flex flex-col max-h-[500px] overflow-y-auto'>
-                    {dataSearch?.length
-                      ? dataSearch?.map((item) => {
-                          console.log(item)
-                          return (
-                            <div key={item?.id} className='flex gap-3 p-[7px] border-b-[1px]'>
-                              <Link to={`/product/${item?.id}`} onClick={() => setDataSearch([])}>
-                                <img src={item?.image} alt='' className='w-[70px] h-[70px] object-cover' />
-                              </Link>
-
-                              <div className='my-1 flex-1'>
+                  <div className='relative w-full'>
+                    <input
+                      type='text'
+                      onChange={onchangeSearch}
+                      placeholder='Tìm kiếm sản phẩm...'
+                      className={cx('header-input')}
+                    />
+                    <i className={cx('fa-solid fa-magnifying-glass w-[57px] rounded-r-[99px]', 'icon')}></i>
+                    <div className=' absolute w-full top-[120%] bg-white shadow-lg flex flex-col max-h-[500px] overflow-y-auto'>
+                      {dataSearch?.length
+                        ? dataSearch?.map((item) => {
+                            console.log(item)
+                            return (
+                              <div key={item?.id} className='flex gap-3 p-[7px] border-b-[1px]'>
                                 <Link to={`/product/${item?.id}`} onClick={() => setDataSearch([])}>
-                                  <p className='text-[14px] font-bold'>{item?.name}</p>
+                                  <img src={item?.image} alt='' className='w-[70px] h-[70px] object-cover' />
                                 </Link>
-                                <p className='text-[12px]'>
-                                  <FormatPrice price={item?.price} />
-                                </p>
-                                <p className='text-[10px] max-w-[300px] truncate'>{item?.short_description}</p>
+
+                                <div className='my-1 flex-1'>
+                                  <Link to={`/product/${item?.id}`} onClick={() => setDataSearch([])}>
+                                    <p className='text-[14px] font-bold'>{item?.name}</p>
+                                  </Link>
+                                  <p className='text-[12px]'>
+                                    <FormatPrice price={item?.price} />
+                                  </p>
+                                  <p className='text-[10px] max-w-[300px] truncate'>{item?.short_description}</p>
+                                </div>
                               </div>
-                            </div>
-                          )
-                        })
-                      : ''}
+                            )
+                          })
+                        : ''}
+                    </div>
                   </div>
                 </div>
-                </div>
-               
               </div>
               <div class='block md:hidden'>
-                  <button class='flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white'>
-                    <svg class='h-3 w-3' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
-                      <title>Menu</title>
-                      <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
-                    </svg>
-                  </button>
-                </div>
+                <button class='flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white'>
+                  <svg class='h-3 w-3' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
+                    <title>Menu</title>
+                    <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
+                  </svg>
+                </button>
+              </div>
               <div className='md:flex d-flex items-center gap-[16px]'>
                 <div className='d-flex md:flex items-center hidden'>
                   <img className='w-[32px] h-[32px] mr-[16px]' src='/src/assets/imgs/hotline.png' alt='' />
