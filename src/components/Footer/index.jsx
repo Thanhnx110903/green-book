@@ -8,7 +8,7 @@ const cx = classNames.bind(styles)
 export default function Footer() {
   return (
     <>
-      <footer>
+      <footer className='container-wrap'>
         <div className={cx('container-wrap')}>
           <div className={cx('w-full flex lg:flex-row flex-col justify-between px-10')}>
             <div className={cx('w-full lg:max-w-[30.5%]')}>
@@ -93,18 +93,18 @@ export default function Footer() {
                 </div>
                 {/* Pay */}
                 <div className='w-full'>
-                  <div className={cx('d-flex items-center justify-between mb-[16px]')}>
-                    <img src='/src/assets/imgs/footer-1.png' className='object-cover  w-[100px]' alt='' />
-                    <img src='/src/assets/imgs/footer-2.png' className='object-cover w-[100px]' alt='' />
-                    <img src='/src/assets/imgs/footer-3.png' className='object-cover ' alt='' />
-                    <img src='/src/assets/imgs/footer-4.png' className='object-cover ' alt='' />
+                  <div className={cx('w-full d-flex items-center justify-between mb-[16px]')}>
+                    <div><img src='/src/assets/imgs/footer-1.png' className='object-cover  ' alt='' /></div>
+                    <div><img src='/src/assets/imgs/footer-2.png' className='object-cover  ' alt='' /></div>
+                    <div><img src='/src/assets/imgs/footer-3.png' className='object-cover  ' alt='' /></div>
+                    <div><img src='/src/assets/imgs/footer-4.png' className='object-cover  ' alt='' /></div>
                   </div>
                   <div className={cx('d-flex items-center justify-between')}>
-                    <img src='/src/assets/imgs/footer-5.png' className=' w-[100px]' alt='' />
-                    <img src='/src/assets/imgs/footer-6.png' className=' w-[100px]' alt='' />
-                    <img className={cx('lg:w-[60px] h-[60px]  w-[60px]')} src='/src/assets/imgs/footer-7.png' alt='' />
-                    <img className={cx('lg:w-[130px] h-[60px]  w-[80px]')} src='/src/assets/imgs/footer-8.png' alt='' />
-                    <img className={cx('lg:w-[60px] h-[60px]  w-[60px]')} src='/src/assets/imgs/footer-9.png' alt='' />
+                  <div><img src='/src/assets/imgs/footer-5.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
+                  <div><img src='/src/assets/imgs/footer-6.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
+                  <div><img src='/src/assets/imgs/footer-7.png' className='object-cover w-[50px]   lg:w-[100px]' alt='' /></div>
+                  <div><img src='/src/assets/imgs/footer-8.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
+                  <div className=''><img src='/src/assets/imgs/footer-9.png' className='object-cover w-[50px]  lg:w-[100px]' alt='' /></div>
                   </div>
                 </div>
               </div>
