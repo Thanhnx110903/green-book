@@ -38,9 +38,9 @@ export default function Favorite() {
               <div className='flex-col md:flex-row  flex gap-[30px] pb-[30px] '>
                 <Link to={`/user/profile/roomBooked/${item?.id}`}>
                   <img
-                    className='w-full md:max-w-[200px] max-h-[200px] overflow-hidden object-cover rounded-[10px]'
+                    className='w-full md:max-w-[126px] overflow-hidden object-cover rounded-[10px]'
                     src={
-                      item?.booking?.image ||
+                      item?.book?.image ||
                       'https://cdn.hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/ve-bia-sach.jpg'
                     }
                     alt=''

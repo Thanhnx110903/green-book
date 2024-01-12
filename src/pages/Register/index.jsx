@@ -35,7 +35,7 @@ export default function Register() {
     console.log('Failed:', errorInfo)
   }
   const [form] = Form.useForm()
-  const phonePattern = /^(?:\d{10}|\d{11})$/
+  const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
   const validatePhoneNumber = (_, value) => {
     if (!phonePattern.test(value) && value) {
       return Promise.reject('Số điện thoại không hợp lệ!')

@@ -86,14 +86,16 @@ const ProductCard = ({ books }) => {
         </Link>
         <div className={cx('p-[10px]')}>
           <Link to={`/product/${books?.id}`}>
-            <p className={cx('text-[18px] font-bold line-clamp-2 leading-relaxed my-[10px]')}>{books?.name}</p>
+            <p className={cx('text-[18px] font-bold line-clamp-2 leading-relaxed my-[10px] hover:text-primary')}>
+              {books?.name}
+            </p>
           </Link>
           <div className={cx('d-flex items-center justify-between')}>
             <div className={cx('text-primary font-medium')}>
               <FormatPrice price={books.price} />
               {/* <p>Mã giảm giá</p> */}
             </div>
-            <div className='flex items-center'>
+            <div className='flex items-center mr-[8px] hover:text-primary'>
               {dataFavorites.length ? (
                 dataFavorites.find((item) => item?.id == books?.id) ? (
                   <div
@@ -120,14 +122,11 @@ const ProductCard = ({ books }) => {
               )}
 
               <div
-                className={cx(
-                  'w-[40px] h-[40px] bg-orange-500  d-flex items-center justify-center text-[#ffffff] cursor-pointer'
-                )}
+                className={cx('w-[30px] h-[30px] cursor-pointer', 'icon-cart')}
                 onClick={() => handleAddToCart(books?.id)}
               >
-                {/* <i className='fa-solid fa-plus'></i> */}
-                {/* <i class="fa-solid fa-cart-shopping"></i> */}
-                <i class="fa-solid fa-cart-arrow-down"></i>
+                {/* <i className='fa-solid fa-cart-shopping'></i> */}
+                <img src='../../../src/assets/imgs/cart.png' alt='' />
               </div>
             </div>
           </div>
