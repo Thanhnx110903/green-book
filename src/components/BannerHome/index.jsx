@@ -11,9 +11,9 @@ export default function BannerHome() {
   const { data, isLoading } = useGetCategoriesQuery()
   const [hoveredItem, setHoveredItem] = useState(null)
   return (
-    <div className={cx('container-wrap')}>
-      <div className={cx('d-flex justify-between h-[415px] border rounded-sm')}>
-        <div className={cx('w-[258px] h-full')}>
+    <div className='max-w-[1400px]  mx-auto'>
+      <div className='flex flex-col md:grid md:grid-cols-3 lg:grid-cols-5 lg:max-h-[400px] lg:grid-rows-2 w-full h-full border rounded-sm gap-4'>
+        <div className={cx('hidden lg:block h-full lg:col-span-1 lg:row-span-2')}>
           <nav className='relative h-full'>
             {isLoading ? (
               <div className='mt-5 w-full'>
@@ -27,13 +27,13 @@ export default function BannerHome() {
                   return (
                     <li
                       key={item?.id}
-                      className={cx('d-flex items-center justify-between ')}
+                      className={cx(' flex items-center justify-between ')}
                       onMouseEnter={() => setHoveredItem(item)}
                       onMouseLeave={() => setHoveredItem(null)}
                     >
                       <Link
                         className={cx(
-                          'w-[100%] py-[10px] px-[14px] d-flex items-center justify-between hover:text-primary'
+                          'w-[100%] py-[10px] px-[14px]  d-flex items-center justify-between hover:text-primary'
                         )}
                         to='#'
                       >
@@ -45,8 +45,8 @@ export default function BannerHome() {
                       </Link>
 
                       {hoveredItem && hoveredItem.id === item.id && (
-                        <div className='absolute w-[340%] left-[100%] h-full bg-white z-50 top-0 border rounded-sm p-5'>
-                          <ul className='grid grid-cols-4'>
+                        <div className='absolute w-[340%] lg:left-[100%] left-0 h-full bg-white z-50 top-0 border rounded-sm p-5'>
+                          <ul className='grid md:grid-cols-4 grid-cols-1'>
                             {item?.children !== null &&
                               Object.values(item?.children)?.map((child) => (
                                 <li key={child?.id}>
@@ -65,20 +65,22 @@ export default function BannerHome() {
             )}
           </nav>
         </div>
-
-        <div className={cx('flex-1 h-[100%] pt-[15px]', '')}>
+{/* <div className='flex justify-between'>
+  
+</div> */}
+        <div className={cx('w-full md:col-span-2 lg:col-span-3 row-span-2 h-[100%]', '')}>
           <Carousel>
-            <img className={cx('w-[100%] h-[100%]')} alt='...' src='/src/assets/imgs/slider-01.webp' />
-            <img className={cx('w-[100%] h-[100%]')} alt='...' src='/src/assets/imgs/slider-02.webp' />
+            <img className={cx('w-[100%] h-[100%] object-cover')} alt='...' src='/src/assets/imgs/slider-01.webp' />
+            <img className={cx('w-[100%] h-[100%] object-cover')} alt='...' src='/src/assets/imgs/slider-02.webp' />
           </Carousel>
         </div>
-
-        <div className={cx('w-[258px] pt-[15px]')}>
+        <img className={cx('w-[100%] h-[370px] md:h-full object-cover col-span-1 row-span-1')} src='/src/assets/imgs/banner-01.webp' alt='' />
+            <img className={cx('w-[100%] h-[370px] md:h-full  object-cover col-span-1 row-span-1')} src='/src/assets/imgs/banner-02.webp' alt='' />
+        {/* <div className={cx('w-[258px] pt-[15px] hidden lg:block')}>
           <div className={cx('d-flex flex-col gap-[15px]')}>
-            <img className={cx('w-[100%] ')} src='/src/assets/imgs/banner-01.webp' alt='' />
-            <img className={cx('w-[100%]')} src='/src/assets/imgs/banner-02.webp' alt='' />
+            
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
