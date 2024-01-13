@@ -11,7 +11,7 @@ export default function Polyci() {
     <>
       <Header></Header>
       <div className={cx('mb-[100px]')}>
-        <div className={cx('bg-[#f6f6f6] py-[4px]')}>
+        <div className={cx('bg-[#f6f6f6]  py-[4px]')}>
           <div className={cx('container-wrap text-[1.4rem]')}>
             <Link className={cx('text-[#999]')} to='/'>
               Trang chủ /
@@ -19,7 +19,7 @@ export default function Polyci() {
             <span> Chính sách</span>
           </div>
         </div>
-        <div className={cx('container-wrap')}>
+        <div className={cx('container-wrap  px-8')}>
           <div>
             <h2 className={cx('text-[3.2rem] my-[40px]')}>Chính sách</h2>
             <p className={cx('mb-[15px]')}>
