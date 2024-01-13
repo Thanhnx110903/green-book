@@ -27,9 +27,9 @@ export default function Home() {
   return (
     <>
       <BannerHome />
-      <div>
-        <div className={cx('container-wrap')}>
-          <div className={cx('d-flex justify-between mt-[60px]')}>
+      <div  className={cx('max-w-[1400px] mx-auto')}>
+        <div>
+          <div className={cx('d-flex justify-between ')}>
             <div>
               <h1 className='text-[31px] font-normal mb-[10px]'>{dataCate?.name}</h1>
               <div className={cx('flex items-center gap-[20px] mb-[30px]')}>

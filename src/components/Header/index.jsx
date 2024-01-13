@@ -272,7 +272,7 @@ export default function Header() {
                       </div>
                     </div>
                   ) : (
-                    <div>
+                    <div className=''>
                       <Link to='/Login' className='text-[14px] text-[#000000] hover:text-primary block'>
                         Tài khoản
                       </Link>
@@ -411,7 +411,10 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <img src='/src/assets/imgs/insure.png' className={cx('w-[32px] h-[32px] mr-[10px]')} alt='' />
+              
+            </div>
+            <div className={cx('d-flex items-center')}>
+            <img src='/src/assets/imgs/insure.png' className={cx('w-[32px] h-[32px] mr-[10px]')} alt='' />
               <Link to='/polyci' className={cx('text-[1.6rem] text-[#ffffff] mr-[28px] hover:text-[#fbd947]')}>
                 Chính sách đổi trả
               </Link>
