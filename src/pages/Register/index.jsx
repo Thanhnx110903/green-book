@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Button from '../../components/Button/Button'
-import InputField from '../../components/InputField/InputField'
+
 import styles from './Register.module.css'
 import { useRegisterMutation } from '../../redux/api/auth'
 import { useCookies } from 'react-cookie'

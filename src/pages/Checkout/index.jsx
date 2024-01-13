@@ -198,7 +198,7 @@ export default function Checkout() {
       <ProtectRouter>
         <div className='container-wrap mb-[40px]'>
           <div className='flex lg:flex-row flex-col-reverse gap-5 min-h-screen'>
-            <div className='mt-[30px] lg:!w-[60%] px-[160px] lg:pl-[130px]'>
+            <div className='mt-[30px] lg:!w-[60%] px-[10%] lg:px-[160px] lg:pl-[130px]'>
               <Link to='/'>
                 <img src='/src/assets/imgs/logo3.png' alt='' className='w-[170px]' />
               </Link>

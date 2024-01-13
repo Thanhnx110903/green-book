@@ -49,7 +49,7 @@ export default function Voucher() {
           <div className='container mx-auto py-5 '>
             <h1 className='mb-6 font-bold text-[30px]'>Tất cả mã giảm giá</h1>
           </div>
-          <div className='grid-cols-4 gap-[20px] grid'>
+          <div className='grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] grid'>
             {/* coupon */}
             {data?.data?.data?.length ? (
               data?.data?.data?.map((item) => {
@@ -57,9 +57,9 @@ export default function Voucher() {
                 return (
                   <div
                     key={item?.code}
-                    className='container bg-gradient-to-r bg-[#bc141b] text-white p-8 rounded-lg shadow-lg mx-auto'
+                    className='max-h-[300px] container bg-gradient-to-r bg-[#bc141b] text-white p-3 lg:p-8 rounded-lg shadow-lg mx-auto'
                   >
-                    <div className='text-3xl font-bold mb-4'>{item?.name}</div>
+                    <div className='text-2xl  lg:text-3xl font-bold mb-4'>{item?.name}</div>
                     <div className='text-lg mb-4'>
                       Đơn tối đa:{' '}
                       <span className='text-[#fbd947] font-bold'>
@@ -67,8 +67,8 @@ export default function Voucher() {
                       </span>
                     </div>
                     <div className='text-base mb-4'>Số lượng: {item?.quantity}</div>
-                    <div className='bg-white text-gray-800 rounded-lg px-4 py-2 flex items-center justify-between'>
-                      <span className='text-[1.5rem] font-semibold'>
+                    <div className='min-h-[60px] md:min-h-[60px] lg:min-h-0 bg-white text-gray-800 rounded-lg px-4 py-2 flex items-center justify-between'>
+                      <span className='text-[1rem] lg:text-[1.5rem] mr-1 font-semibold'>
                         Ưu đãi:{' '}
                         {item?.type == 'percent' ? (
                           'giảm ' + item?.value + '%'
@@ -80,7 +80,7 @@ export default function Voucher() {
                       </span>
                       <span
                         onClick={() => handleGetVoucher(item?.id)}
-                        className='text-[13px] border px-3 py-2 cursor-pointer'
+                        className='text-[8px] md:text-[13px] font-semibold border px-3 py-1 md:px-3 md:py-2 cursor-pointer'
                       >
                         Lấy ngay
                       </span>
