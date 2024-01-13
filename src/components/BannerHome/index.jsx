@@ -13,8 +13,8 @@ export default function BannerHome() {
   console.log(dataCate)
   return (
     <div className={cx('container-wrap pt-[15px]')}>
-      <div className={cx('grid  lg:grid-cols-4 grid-cols-2 grid-rows-2 lg:grid-rows-2 gap-4')}>
-        <div className={cx('w-[100%] h-[100%]  col-span-3 row-span-1  lg:row-span-2', '')}>
+      <div className={cx('grid  md:grid-cols-4 grid-cols-2 grid-rows-2 md:grid-rows-2 gap-4')}>
+        <div className={cx('w-[100%] h-[100%]  col-span-3 row-span-1  md:row-span-2', '')}>
           <Carousel>
             <img className={cx('w-[100%] h-[100%]  object-cover')} alt='...' src='/src/assets/imgs/slider_1.png' />
             <img className={cx('w-[100%] h-[100%]  object-cover')} alt='...' src='/src/assets/imgs/slider_2.png' />

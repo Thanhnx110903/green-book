@@ -97,7 +97,7 @@
   position: sticky;
   top: 0px;
   background: #fff;
-  z-index: 50;
+  z-index: 30;
 }
 
 .icon:hover {
