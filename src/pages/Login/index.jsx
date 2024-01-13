@@ -8,7 +8,7 @@ import { cookies as cookies2 } from '../../config/cookies'
 import { useCookies } from 'react-cookie'
 import { useEffect } from 'react'
 const cx = classNames.bind(styles)
-
+// cmd
 export default function Login() {
   const navigate = useNavigate()
   const [signIn, { isLoading }] = useSignInMutation()
