@@ -39,11 +39,11 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className={cx('w-full lg:max-w-[68%]')}>
-              <div className='d-flex lg:flex-row flex-col justify-between'>
-                <div className='lg:block flex items-center justify-between'>
+            <div className={cx('w-full lg:max-w-[68%] mt-8')}>
+              <div className='d-flex lg:flex-row flex-col gap-5 md:gap-8 justify-between'>
+                <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>DỊCH VỤ</h3>
-                  <RiArrowDownSFill className='text-4xl lg:hidden'/>
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
                   <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block hidden')}>
                     <li>Điều khoản sử dụng</li>
                     <li>Chính sách bảo mật</li>
@@ -51,9 +51,28 @@ export default function Footer() {
                     <li>Hệ thống trung tâm - nhà sách</li>
                   </ul>
                 </div>
-                <div className='lg:block flex items-center justify-between'>
+
+                <div className='lg:hidden'>
+                  <div id='bouton' className='relative group/bouton w-full'>
+                    <button className=' relative flex justify-between  w-full'>
+                      <h3 className={cx('footer-title', 'mt-4')}>DỊCH VỤ</h3>
+                      <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
+                      </span>
+                    </button>
+                    <div className='z-50 absolute w-full top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
+                        <li>Điều khoản sử dụng</li>
+                        <li>Chính sách bảo mật</li>
+                        <li>Giới thiệu</li>
+                        <li>Hệ thống trung tâm - nhà sách</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>HỖ TRỢ</h3>
-                  <RiArrowDownSFill className='text-4xl lg:hidden'/>
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
                   <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block hidden')}>
                     <li>Chính sách đổi - trả - hoàn tiền</li>
                     <li>Chính sách khách sỉ</li>
@@ -61,9 +80,28 @@ export default function Footer() {
                     <li>Phương thức thanh toán và xuất HĐ</li>
                   </ul>
                 </div>
-                <div className='lg:block flex items-center justify-between'>
+
+                <div className='lg:hidden'>
+                  <div id='bouton' className='relative group/bouton w-full'>
+                    <button className=' relative flex justify-between  w-full'>
+                      <h3 className={cx('footer-title', 'mt-4')}>HỖ TRỢ</h3>
+                      <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
+                      </span>
+                    </button>
+                    <div className='z-50 absolute w-full bg-white top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
+                        <li>Chính sách đổi - trả - hoàn tiền</li>
+                        <li>Chính sách khách sỉ</li>
+                        <li>Phương thức vận chuyển</li>
+                        <li>Phương thức thanh toán và xuất HĐ</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>TÀI KHOẢN CỦA TÔI</h3>
-                  <RiArrowDownSFill className='text-4xl lg:hidden'/>
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
                   <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block hidden')}>
                     <li>Đăng nhập/Tạo mới tài khoản</li>
                     <li>Thay đổi địa chỉ khách hàng</li>
@@ -71,8 +109,27 @@ export default function Footer() {
                     <li>Lịch sử mua hàng</li>
                   </ul>
                 </div>
+
+                <div className='lg:hidden'>
+                  <div id='bouton' className='relative group/bouton w-full'>
+                    <button className=' relative flex justify-between  w-full'>
+                      <h3 className={cx('footer-title', 'mt-4')}>TÀI KHOẢN CỦA TÔI</h3>
+                      <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
+                      </span>
+                    </button>
+                    <div className='absolute w-full  top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
+                        <li>Đăng nhập/Tạo mới tài khoản</li>
+                        <li>Thay đổi địa chỉ khách hàng</li>
+                        <li>Chi tiết tài khoản</li>
+                        <li>Lịch sử mua hàng</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-              {/* footer-bot */}
+
               <div className='w-full'>
                 <div className={cx('mb-[16px]')}>
                   <h3 className={cx('footer-title', 'mt-[17px]')}>Liên hệ</h3>
@@ -94,17 +151,39 @@ export default function Footer() {
                 {/* Pay */}
                 <div className='w-full'>
                   <div className={cx('w-full d-flex items-center justify-between mb-[16px]')}>
-                    <div><img src='/src/assets/imgs/footer-1.png' className='object-cover  ' alt='' /></div>
-                    <div><img src='/src/assets/imgs/footer-2.png' className='object-cover  ' alt='' /></div>
-                    <div><img src='/src/assets/imgs/footer-3.png' className='object-cover  ' alt='' /></div>
-                    <div><img src='/src/assets/imgs/footer-4.png' className='object-cover  ' alt='' /></div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-1.png' className='object-cover  ' alt='' />
+                    </div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-2.png' className='object-cover  ' alt='' />
+                    </div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-3.png' className='object-cover  ' alt='' />
+                    </div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-4.png' className='object-cover  ' alt='' />
+                    </div>
                   </div>
                   <div className={cx('d-flex items-center justify-between')}>
-                  <div><img src='/src/assets/imgs/footer-5.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
-                  <div><img src='/src/assets/imgs/footer-6.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
-                  <div><img src='/src/assets/imgs/footer-7.png' className='object-cover w-[50px]   lg:w-[100px]' alt='' /></div>
-                  <div><img src='/src/assets/imgs/footer-8.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' /></div>
-                  <div className=''><img src='/src/assets/imgs/footer-9.png' className='object-cover w-[50px]  lg:w-[100px]' alt='' /></div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-5.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' />
+                    </div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-6.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' />
+                    </div>
+                    <div>
+                      <img
+                        src='/src/assets/imgs/footer-7.png'
+                        className='object-cover w-[50px]   lg:w-[100px]'
+                        alt=''
+                      />
+                    </div>
+                    <div>
+                      <img src='/src/assets/imgs/footer-8.png' className='object-cover  w-[50px] lg:w-[100px]' alt='' />
+                    </div>
+                    <div className=''>
+                      <img src='/src/assets/imgs/footer-9.png' className='object-cover w-[50px]  lg:w-[100px]' alt='' />
+                    </div>
                   </div>
                 </div>
               </div>
