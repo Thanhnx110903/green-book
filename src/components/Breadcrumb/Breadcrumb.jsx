@@ -1,27 +1,23 @@
 import React, { memo } from 'react'
+import { Link } from 'react-router-dom'
 import useBreadcrumbs from 'use-react-router-breadcrumbs'
-const Breadcrumb = () => {
+const Breadcrumb = ({ params = [], className, currenParam }) => {
   // const breadcrumbs = useBreadcrumbs()
   return (
     <div className='w-full p-4 bg-[#f6f6f6]'>
-      <div className='container-wrap'>
-        <ul className='flex m-0'>
-          <li className='m-0'>
-            <a href='!#' className='text-[#999]'>
-              <span className=''>Trang chủ</span>
-              <span className='px-2'>/</span>
-            </a>
-          </li>
-          <li className='m-0'>
-            <a href='!#' className='text-[#999]'>
-              <span>Truyện tranh </span> <span className='px-2'>/</span>
-            </a>
-          </li>
-          <li className='m-0'>
-            <span>Dr.STONE - Tập 3: Nơi Nào Đó Sau 2 Triệu Năm</span>
-          </li>
-        </ul>
-      </div>
+      <ul className='flex m-0'>
+        {params?.length &&
+          params?.map((item, index) => {
+            return (
+              <li className='m-0'>
+                <Link to={item?.href} className={`${currenParam != item?.label ? 'text-[#999] ' : 'uppercase'}`}>
+                  <span className=''>{item?.label}</span>
+                  {index != params.length - 1 && <span className='px-2'>/</span>}
+                </Link>
+              </li>
+            )
+          })}
+      </ul>
     </div>
   )
 }

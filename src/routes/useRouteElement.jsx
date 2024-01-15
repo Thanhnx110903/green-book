@@ -17,6 +17,7 @@ import Voucher from '../pages/Voucher'
 import Otp from '../pages/Otp'
 import ForgotPassword from '../pages/ForgotPassword'
 import ChangePassword from '../pages/ChangePassword'
+import NewDetail from '../pages/NewDetail'
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
@@ -41,6 +42,14 @@ export default function useRoutElement() {
       element: (
         <LayoutDefault>
           <News />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: 'new/:id',
+      element: (
+        <LayoutDefault>
+          <NewDetail />
         </LayoutDefault>
       )
     },

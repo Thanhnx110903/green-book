@@ -16,13 +16,13 @@ export default function Footer() {
                 <img src='/src/assets/imgs/logo.png' alt='' className='w-[170px]' />
               </Link>
               <p className={cx('my-[16px] text-[1.5rem] leading-normal')}>
-                Nhà Sách Tiền Phong nhận đặt hàng trực tuyến và giao hàng tận nơi hoặc nhận hàng tại tất cả Hệ Thống Nhà
-                Sách Tiền Phong trên toàn quốc.
+                Nhà Sách GreenBook nhận đặt hàng trực tuyến và giao hàng tận nơi hoặc nhận hàng tại tất cả Hệ Thống Nhà
+                Sách GreenBook trên toàn quốc.
               </p>
               <div>
                 <div className={cx('d-flex items-center mb-[10px]')}>
                   <i className={cx('fa-solid fa-location-dot', 'mr-[14px]')}></i>
-                  <p className={cx('text-[1.5rem]')}>Địa chỉ: Tầng 5, Tòa nhà Tiền phong, 15 Hồ Xuân Hương, Hà Nội</p>
+                  <p className={cx('text-[1.5rem]')}>Địa chỉ: Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</p>
                 </div>
                 <div className={cx('d-flex items-center mb-[10px]')}>
                   <i className={cx('fa-solid fa-mobile-screen-button', 'mr-[14px]')}></i>
@@ -30,7 +30,7 @@ export default function Footer() {
                 </div>
                 <div className={cx('d-flex items-center mb-[10px]')}>
                   <i className={cx('fa-solid fa-envelope', 'mr-[14px]')}></i>
-                  <p className={cx('text-[1.5rem]')}>Email: info@grennbookjsc.com</p>
+                  <p className={cx('text-[1.5rem]')}>Email: greenbook@gmail.com</p>
                 </div>
                 <div className={cx('d-flex items-center gap-[16px] mt-[22px]')}>
                   <img src='/src/assets/icons/facebook.svg' alt='' />

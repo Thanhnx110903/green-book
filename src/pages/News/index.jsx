@@ -55,9 +55,10 @@ export default function News() {
                 {dataHotPost?.data?.slice(0, 3).map((item) => {
                   return (
                     <div className={cx('d-flex items-center gap-[15px] py-[15px]', 'news-item')}>
-                      <img className={cx('w-[100px]')} src='/src/assets/imgs/news-01.webp' alt='' />
-                      <p>{item?.title}</p>
-                    </div>
+                    <img className={cx('w-[100px]')} src={item?.image || '/src/assets/imgs/news-01.webp'} alt='' />
+             
+                    <p>{item?.title}</p>
+                  </div>
                   )
                 })}
               </div>

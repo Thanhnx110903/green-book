@@ -135,7 +135,7 @@ export default function ProductDetail() {
           <div className=''>
             <div className='d-flex gap-[48px] mt-[35px]'>
               <div className='mx-auto'>
-                <img className='w-[494px] h-[494px]' src={data?.data?.image} alt='giang' />
+                <img className='w-[494px] h-[494px]' src={data?.data?.image } alt='giang' />
               </div>
               <div className='lg:col-span-2 ml-6 w-2/3'>
                 <div>

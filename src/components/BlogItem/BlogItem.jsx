@@ -4,10 +4,11 @@ import classNames from 'classnames/bind'
 import styles from './BlogItem.module.css'
 const cx = classNames.bind(styles)
 const BlogItem = (item) => {
+  // console.log(item);
   return (
     <div className={cx('news-item')}>
-      <Link to='/news'>
-        <img src='/src/assets/imgs/news-01.webp' alt='' />
+      <Link to={`/new/${item?.item?.id}`}>
+      <img src={item?.item?.image || '/src/assets/imgs/news-01.webp'} alt='' />
       </Link>
       <div>
         <Link to='!#'>
