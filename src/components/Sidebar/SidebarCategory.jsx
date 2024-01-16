@@ -38,7 +38,7 @@ const convertDataForAntDMenu = (data, slug) => {
 
 const SidebarCategory = ({ categories, slug }) => {
   const [dataSideBar, setDataSideBar] = useState([])
-  const onClick = (e) => {kiêm
+  const onClick = (e) => {
     if (e?.key) {
       navigate(`/${e?.key}`)
     }
@@ -48,8 +48,10 @@ const SidebarCategory = ({ categories, slug }) => {
     if (categories) {
       const convertedData = convertDataForAntDMenu(categories, slug)
       setDataSideBar(convertedData)
+      
     }
   }, [categories])
+  console.log(dataSideBar);
   return (
     <div className=''>
       <Menu
