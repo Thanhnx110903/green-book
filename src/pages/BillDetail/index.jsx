@@ -8,6 +8,7 @@ const MySwal = withReactContent(Swal)
 import axios from 'axios'
 import { useCancelOrderMutation, useGetOrderQuery, useUpdateOrderMutation } from '../../redux/api/order'
 import FormatPrice from '../../untils/formatPrice'
+import { useCookies } from 'react-cookie'
 import {
   useGetCityQuery,
   useGetDistrictQuery,
@@ -18,6 +19,7 @@ import {
 import PcLoading from '../../components/PcLoading'
 const BillDetail = () => {
   const { id } = useParams()
+  const [cookies] = useCookies(['userInfor'])
   const [provinceId, setProvinceId] = useState(null)
   const [districtId, setDistrictId] = useState(null)
   const [totalAmount, setTotalAmount] = useState(0)
@@ -38,7 +40,7 @@ const BillDetail = () => {
   const [form] = Form.useForm()
   const { data, refetch, isLoading } = useGetOrderQuery(id)
   console.log(data)
-  const phonePattern = /^(?:\d{10}|\d{11})$/
+  const phonePattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
   const onFinish = (values) => {
     if (values) {
       const city = dataCity?.data.find((item) => item?.ProvinceID == values.city)?.ProvinceName
@@ -201,7 +203,7 @@ const BillDetail = () => {
       ) : (
         <div className='pt-[30px] pb-[100px] bg-bgr  px-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4 max-w-[1600px] mx-auto bg-bgr border border-gray-200'>
-            <div className='bg-bgr rounded-lg shadow mx-auto '>
+            <div className='bg-bgr border border-gray-200 rounded-lg shadow mx-auto '>
               <Link to='#'>
                 <img className='rounded-t-lg  max-h-[400px] object-cover' src={data?.data[0]?.book_image} alt='' />
               </Link>
@@ -252,17 +254,23 @@ const BillDetail = () => {
                   </div>
                   <div className='mt-1 mb-3'></div>
                   <div className='font-normal text-gray-700 flex gap-2 flex-wrap'>
-                    <button
-                      className={` hover:bg-red-500
-                   hover:text-white  bg-transparent text-red-500 border border-red-500  text-[15px] py-1 px-4 rounded ${
-                     data?.order?.status == 'Chờ xử lý'
-                       ? ''
-                       : 'cursor-not-allowed !bg-gray-200 !border-gray-200 !text-gray-500'
+                    {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.user?.access_token ? (
+                      <button
+                        className={` hover:bg-red-500
+                   hover:text-white  bg-transparent text-red-500 border border-red-500  text-[15px] py-1 px-4 rounded`}
+                        onClick={cancelBooking}
+                      >
+                        Hủy đơn hàng
+                      </button>
+                    ) : (
+                      <button
+                        className={`
+                   hover:text-white  bg-transparent  text-[15px] py-1 px-4 rounded cursor-not-allowed !bg-gray-200 !border-gray-200 !text-gray-500 
                    }`}
-                      onClick={cancelBooking}
-                    >
-                      Hủy đơn hàng
-                    </button>
+                      >
+                        Hủy đơn hàng
+                      </button>
+                    )}
                     {data?.order?.status == 'Hoàn thành' && (
                       <Link
                         to={`/product/${data?.data?.[0]?.book_id}`}
@@ -272,7 +280,7 @@ const BillDetail = () => {
                         <button>Đánh giá ngay</button>
                       </Link>
                     )}
-                    {data?.order?.status == 'Chờ xử lý' && (
+                    {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.access_token && (
                       <Link
                         to={``}
                         onClick={() => setIsUpdate((prev) => !prev)}

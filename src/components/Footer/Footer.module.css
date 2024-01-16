@@ -1,16 +1,24 @@
 footer {
-  background: linear-gradient(to right, #f6f6f6 0 33%, #efefef 33% 100%);
+  background-color: #efefef;
 }
 
+@media (min-width: 1024px) {
+  footer {
+    background: linear-gradient(to right, #f6f6f6 0 32%, #efefef 32% 100%);
+  }
+}
 .wrapper {
   display: flex;
   justify-content: space-between;
   padding: 40px 0;
 }
 
+.footer-right {
+  width: 29.5%;
+}
 
 .footer-left {
-  max-width: calc(100% - 33.33%);
+  width: calc(100% - 33.33%);
 }
 
 .footer-title {

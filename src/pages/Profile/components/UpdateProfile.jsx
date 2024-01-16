@@ -21,7 +21,7 @@ export default function UpdateProfile({ data }) {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
-  const phonePattern = /^(?:\d{10}|\d{11})$/
+  const phonePattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
   const validatePhoneNumber = (_, value) => {
     if (value) {
       if (!phonePattern.test(value)) {
@@ -82,7 +82,7 @@ export default function UpdateProfile({ data }) {
       </Form.Item>
 
       <Form.Item>
-        <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'>
+        <button type='submit' className='bg-[#357ebd] hover:opacity-[0.8] text-white py-3 px-8 rounded'>
           Cập nhật
         </button>
       </Form.Item>

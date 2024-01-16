@@ -38,7 +38,7 @@ export default function Favorite() {
               <div className='flex-col md:flex-row  flex gap-[30px] pb-[30px] '>
                 <Link to={`/user/profile/roomBooked/${item?.id}`}>
                   <img
-                    className='w-full md:max-w-[126px] overflow-hidden object-cover rounded-[10px]'
+                    className='md:max-w-[200px] w-[180px] max-h-[200px] overflow-hidden object-contain rounded-[10px]'
                     src={
                       item?.book?.image ||
                       'https://cdn.hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/ve-bia-sach.jpg'
@@ -59,10 +59,6 @@ export default function Favorite() {
                         <HeartFilled className='text-red-500' />
                       </div>
                     </div>
-                    <span className='block font-bold'>
-                      {' '}
-                      <FormatPrice price={item?.book?.price} />
-                    </span>
                     <p className='text-[#6B7280] w-full tracking-[1px] text-[13px]'>{item?.book?.short_description}</p>
                   </div>
                   <div className='flex gap-3 flex-wrap'>
