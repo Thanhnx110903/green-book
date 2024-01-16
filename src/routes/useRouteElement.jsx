@@ -18,6 +18,7 @@ import Otp from '../pages/Otp'
 import ForgotPassword from '../pages/ForgotPassword'
 import ChangePassword from '../pages/ChangePassword'
 import SeachOrder from '../pages/SearchOrder'
+import NewDetail from '../pages/  '
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
@@ -42,6 +43,14 @@ export default function useRoutElement() {
       element: (
         <LayoutDefault>
           <News />
+        </LayoutDefault>
+      )
+    },
+    {
+      path: 'new/:id',
+      element: (
+        <LayoutDefault>
+          <NewDetail />
         </LayoutDefault>
       )
     },
