@@ -74,6 +74,7 @@ export default function Home() {
             <>
               <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.slice(0, 4).map((item) => {
+                  console.log(item)
                   return <BlogItem item={item} key={item?.id} />
                 })}
               </div>
