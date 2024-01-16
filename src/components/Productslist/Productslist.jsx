@@ -6,7 +6,7 @@ import PcLoading from '../PcLoading'
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProducstList.module.css'
 const cx = classNames.bind(styles)
-const Productslist = ({ id = null, sort_date = null, min = 0, max = 8, linkTo = '/', isButton = true }) => {
+const Productslist = ({ id = null, sort_date = null, min = 0, max = 10, linkTo = '/', isButton = true }) => {
   const { data, isLoading } = useGetBookByQueryQuery({
     category_id: id,
     sort_date: sort_date

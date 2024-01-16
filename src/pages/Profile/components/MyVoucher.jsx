@@ -92,7 +92,7 @@ export default function MyVoucher() {
                     )}
                   </div>
                   <div className='text-lg mb-2'>
-                    Áp dụng đơn hàng dưới:{' '}
+                    Áp dụng đơn hàng trên:{' '}
                     <span className='text-[#fbd947] font-bold'>
                       <FormatPrice price={item?.coupon?.price_required} />
                     </span>

@@ -38,7 +38,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className={cx('w-full lg:max-w-[68%]')}>
+            <div className={cx('w-full pl-[5px] lg:max-w-[66%]')}>
               <div className='d-flex lg:flex-row flex-col gap-5 md:gap-8 justify-between'>
                 <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>DỊCH VỤ</h3>

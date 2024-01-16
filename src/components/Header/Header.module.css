@@ -81,7 +81,7 @@
 
 .header-category {
   width: 258px;
-  padding: 16px 0 14px;
+  padding: 16px 0 9px;
   border-radius: 5px 5px 0px 0px;
   border: 1px;
   color: var(--primary-color);
@@ -91,6 +91,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  border-bottom: 1px solid #ccc;
 }
 
 .header-search-sticky {

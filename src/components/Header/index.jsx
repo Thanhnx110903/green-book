@@ -38,6 +38,8 @@ export default function Header() {
       setDataSearch([])
     }
   }
+
+  console.log(dataSearch)
   useEffect(() => {
     refetch()
   }, [cookies?.userInfor])
@@ -47,9 +49,11 @@ export default function Header() {
       setData(dataBook?.data?.data)
     }
   }, [isLoadingData, dataBook])
+
+  console.log(dataBook)
   return (
     <>
-      <header className={cx('header-search-sticky', 'shadow-lg')}>
+      <header className={cx('header-search-sticky', 'shadow-lg')} id='headerid'>
         <div>
           <div className={cx('container-wrap')}>
             <div className={cx('d-flex justify-between items-center pt-[14px] pb-[8px]')}>

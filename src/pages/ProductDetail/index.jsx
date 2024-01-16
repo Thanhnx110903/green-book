@@ -447,7 +447,7 @@ export default function ProductDetail() {
                 </Slider>
               </div>
             </div>
-            <div className='m-6'>
+            <div className='mt-[40px] mb-[60px]'>
               <div>
                 <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
                 <Slider {...settings} className='grid lg:grid-cols-5  py-5 sm:grid-cols-2 md:grid-cols-4'>

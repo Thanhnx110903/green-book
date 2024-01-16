@@ -4,9 +4,10 @@ footer {
 
 @media (min-width: 1024px) {
   footer {
-    background: linear-gradient(to right, #f6f6f6 0 32%, #efefef 32% 100%);
+    background: linear-gradient(to right, #f6f6f6 0 34%, #efefef 34% 100%);
   }
 }
+
 .wrapper {
   display: flex;
   justify-content: space-between;
@@ -14,7 +15,7 @@ footer {
 }
 
 .footer-right {
-  width: 29.5%;
+  width: 31.5%;
 }
 
 .footer-left {

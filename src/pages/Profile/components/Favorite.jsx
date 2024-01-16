@@ -59,7 +59,16 @@ export default function Favorite() {
                         <HeartFilled className='text-red-500' />
                       </div>
                     </div>
-                    <p className='text-[#6B7280] w-full tracking-[1px] text-[13px]'>{item?.book?.short_description}</p>
+                    <p className='text-[#6B7280] w-[200px] tracking-[1px] text-[13px] line-clamp-1'>
+                      {item?.book?.short_description}
+                    </p>
+                  </div>
+                  <div className='flex gap-3 flex-wrap'>
+                    <div className='flex flex-col'>
+                      <p>
+                        Giá sản phẩm: <span className='text-primary'>{item?.warehouse?.retail_price} VNĐ</span>
+                      </p>
+                    </div>
                   </div>
                   <div className='flex gap-3 flex-wrap'>
                     <div className='flex flex-col'>

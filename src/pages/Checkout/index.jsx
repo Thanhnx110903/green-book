@@ -347,7 +347,7 @@ export default function Checkout() {
                           className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
                           value={1}
                         >
-                          Giao hàng tận nơi
+                          Giao hàng tiết kiệm
                         </Radio>
                         {shippingOrder?.data?.map((item) => {
                           return (

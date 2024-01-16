@@ -110,6 +110,8 @@ const ListProducts = () => {
       setData(dataQuery?.data?.data)
     }
   }, [isLoading, dataQuery, error])
+
+  console.log(data)
   return (
     <div className=''>
       {/* <Breadcrumb /> */}
@@ -129,7 +131,7 @@ const ListProducts = () => {
               </div>
             </div>
             <div className={cx('mt-[40px]')}>
-              <h4 className={cx('font-bold text-[1.6rem] mb-[24px]')}>MỨC GIÁ</h4>
+              <h4 className={cx('font-bold text-[1.6rem] mb-[24px]')}>MỨC GIÁ DƯỚI</h4>
 
               <Form
                 name='basic'
@@ -329,7 +331,7 @@ const ListProducts = () => {
         </div>
       </div>
       {/* News */}
-      <div className={cx('container-wrap')}>
+      <div className={cx('container-wrap mb-[40px]')}>
         <div>
           <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
           <div className='grid lg:grid-cols-5 gap-5 py-5 sm:grid-cols-2 md:grid-cols-4'>
