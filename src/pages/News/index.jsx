@@ -22,8 +22,8 @@ export default function News() {
         </div>
       </div>
       <div className={cx('container-wrap')}>
-        <div className={cx('d-flex justify-between mt-[40px]')}>
-          <div className={cx('w-[1050px]')}>
+        <div className={cx('flex flex-col md:flex-row justify-between mt-[70px]')}>
+          <div className={cx('w-full md:max-w-[70%] lg:max-w-[75%]')}>
             <h3 className={cx(' mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Tin Tức</h3>
             {/* News List */}
             {isLoading ? (
@@ -33,14 +33,17 @@ export default function News() {
                 ))}
               </div>
             ) : (
-              <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
+              <div className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.map((item) => {
                   return <BlogItem item={item} />
                 })}
               </div>
             )}
           </div>
-          <div className={cx('ml-[15px] pl-[15px]', 'news-left')}>
+          <div className='bg-[#f6f6f6] py-2 my-2'></div>
+          <div
+            className={cx('w-full md:ml-[15px] md:pl-[15px] md:max-w-[30%] lg:max-w-[25%] mt-10 md:mt-0', 'news-left')}
+          >
             <h4 className={cx('font-medium mb-[15px]')}>TIN NỔI BẬT</h4>
             {isLoadingHotPost ? (
               <div className='mt-5 w-full'>

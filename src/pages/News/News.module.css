@@ -1,7 +1,9 @@
-.news-left {
+
+@media (min-width: 768px) {
+   .news-left {
   border-left: 1px solid #f0f0f0;
 }
-
+ }
 .news-item {
   border-bottom: 1px solid #f0f0f0;
 }
