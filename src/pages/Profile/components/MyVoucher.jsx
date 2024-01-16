@@ -71,39 +71,40 @@ export default function MyVoucher() {
           </div>
         </Form>
       </div>
-      <div className='flex gap-8 flex-wrap px-5 border-t pt-[10px]'>
+      <div className='grid grid-cols-3 gap-5 px-5 border-t pt-[10px]'>
         {data?.data?.data?.length
           ? data?.data?.data?.map((item) => {
+              console.log(item)
               return (
-                <div className='w-[450px] flex gap-3 shadow-lg' key={item?.id}>
-                  <img src={`data:image/svg+xml;utf8,${encodeURIComponent(item?.coupon?.image)}`} alt='' />
-                  <div className='py-2 w-full pr-4 pb-3'>
-                    <div className='flex justify-between flex-wrap'>
-                      <h1 className='font-bold'>{item?.coupon?.name}</h1>
-                    </div>
-                    <div className='flex flex-wrap gap-4 mb-3'>
-                      <div>
-                        <p className='text-[13px]'>
-                          Đơn tối đa: <FormatPrice price={item?.coupon?.price_required} />
-                        </p>
-                        <p className='text-[13px]'>Số điểm: {item?.coupon?.point_required}</p>
-                      </div>
-                      <div>
-                        <p className='text-[13px]'>
-                          Ưu đãi:{' '}
-                          {item?.coupon?.type == 'percent' ? (
-                            'giảm ' + item?.coupon?.value + '%'
-                          ) : item?.coupon?.type == 'number' ? (
-                            <FormatPrice price={item?.coupon?.value} />
-                          ) : (
-                            'Miễn phí giao hàng'
-                          )}
-                        </p>
-                        <p className='text-[13px]'>
-                          Ngày hết hạn: {dayjs(item?.coupon?.end_date).format('DD-MM-YYYY')}
-                        </p>
-                      </div>
-                    </div>
+                <div
+                  key={item?.code}
+                  className='container bg-gradient-to-r bg-[#bc141b] text-white p-8 rounded-lg shadow-lg mx-auto'
+                >
+                  <div className='text-3xl font-bold mb-2'>
+                    {' '}
+                    Ưu đãi:{' '}
+                    {item?.type == 'percent' ? (
+                      'giảm ' + item?.value + '%'
+                    ) : item?.type == 'number' ? (
+                      <FormatPrice price={item?.value} />
+                    ) : (
+                      'Miễn phí giao hàng'
+                    )}
+                  </div>
+                  <div className='text-lg mb-2'>
+                    Áp dụng đơn hàng dưới:{' '}
+                    <span className='text-[#fbd947] font-bold'>
+                      <FormatPrice price={item?.coupon?.price_required} />
+                    </span>
+                  </div>
+                  <div className='bg-white text-gray-800 rounded-lg px-4 py-2 flex items-center justify-between'>
+                    <span className='text-[1.5rem] font-semibold'>{item?.coupon?.code}</span>
+                  </div>
+                  <div className='text-[11px] mt-4 mb-2'>
+                    <p>
+                      Ngày hết hạn:
+                      <span className='font-semibold '> {dayjs(item?.end_date).format('DD-MM-YYYY')}</span>
+                    </p>
                   </div>
                 </div>
               )

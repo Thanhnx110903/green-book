@@ -8,7 +8,10 @@ const userApi = createApi({
     baseUrl: import.meta.env.VITE_URL_API,
     prepareHeaders: (headers) => {
       const cookies = parseCookies()
-      headers.set('Authorization', `Bearer ${JSON.parse(cookies['userInfor'])?.access_token}`)
+      headers.set(
+        'Authorization',
+        `Bearer ${cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''}`
+      )
       return headers
     }
   }),
@@ -97,9 +100,8 @@ const userApi = createApi({
         }
         return {
           method: 'GET',
-          url: `${import.meta.env.VITE_URL_API}/review/show/${data.id}${
-            queryParams.length > 0 ? '?' + queryParams.join('&') : ''
-          }`
+          url: `${import.meta.env.VITE_URL_API}/review/show/${data.id}${queryParams.length > 0 ? '?' + queryParams.join('&') : ''
+            }`
         }
       },
       providesTags: ['Books']

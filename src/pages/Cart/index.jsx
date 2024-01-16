@@ -10,15 +10,13 @@ import {
   useUpdateCartMutation
 } from '../../redux/api/cart'
 import FormatPrice from '../../untils/formatPrice'
-import { useCookies } from 'react-cookie'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 import styles from './Cart.module.css'
-import ProtectRouter from '../../components/ProtectRouter'
 const cx = classNames.bind(styles)
 
 export default function Cart() {
   const { data: dataCart, refetch, isLoading } = useGetCartQuery()
+  console.log(dataCart)
   const [total, setTotal] = useState(0)
   const [data, setData] = useState([])
   const [updatedQuantities, setUpdatedQuantities] = useState({})
@@ -39,10 +37,6 @@ export default function Cart() {
       .catch((error) => {
         console.log(error)
       })
-    // setUpdatedQuantities((prevQuantities) => ({
-    //   ...prevQuantities,
-    //   [id]: (prevQuantities[id] || +defaultValue) + 1
-    // }))
   }
   const handleDecreaseQuantity = (id, defaultValue) => {
     if (defaultValue > 1) {
@@ -83,24 +77,19 @@ export default function Cart() {
         console.log(err)
       })
   }
-  // useEffect(() => {
-  //   if (dataCart?.data?.length) {
-  //     setData(dataCart?.data)
-  //     const total = data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
-  //     setTotal(total)
-  //     console.log(total)
-  //   }
-  // }, [isLoading, dataCart?.data, refetch])
   useEffect(() => {
     if (dataCart?.data?.length && dataCart.data !== data) {
       setData(dataCart.data)
-      const total = dataCart.data.reduce((acc, item) => acc + item.quantity * item.book.price, 0)
-      setTotal(total)
+      const total = dataCart.data.reduce((acc, item) => {
+        const price = item?.quantity > 20 ? item.warehouse.wholesale_price : item.warehouse.retail_price
+        return acc + item?.quantity * price
+      }, 0)
       console.log(total)
+      setTotal(total)
     }
   }, [isLoading, dataCart?.data, refetch, data])
   return (
-    <ProtectRouter>
+    <>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
         <div className={cx('container-wrap text-[1.4rem] ')}>
           <Link className={cx('text-[#999]')} to='/'>
@@ -122,9 +111,11 @@ export default function Cart() {
                         <i className={cx('fa-solid fa-xmark p-[8px]', 'times')}></i>
                       </div>
                       <img className={cx('w-[100px] h-[100px]', 'object-cover')} src={item?.book.image} alt='' />
-                      <div className={cx('text-[1.4rem] ml-[20px]')}>{item?.book?.name}</div>
+                      <div className={cx('text-[1.4rem]')}>{item?.book?.name}</div>
                       <div className={cx('text-[#bb141a] ml-auto font-bold')}>
-                        <FormatPrice price={item?.book?.price} />
+                        <FormatPrice
+                          price={item?.quantity < 20 ? item?.warehouse?.retail_price : item?.warehouse?.wholesale_price}
+                        />
                       </div>
                       <div className={cx('px-[27px]')}>
                         <button
@@ -195,6 +186,6 @@ export default function Cart() {
           </div>
         )}
       </div>
-    </ProtectRouter>
+    </>
   )
 }

@@ -13,9 +13,12 @@ footer {
   padding: 40px 0;
 }
 
+.footer-right {
+  width: 29.5%;
+}
 
 .footer-left {
-  max-width: calc(100% - 33.33%);
+  width: calc(100% - 33.33%);
 }
 
 .footer-title {

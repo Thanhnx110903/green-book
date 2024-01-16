@@ -10,8 +10,9 @@ const cx = classNames.bind(styles)
 export default function News() {
   const { data: dataPosts, isLoading } = useGetPostsQuery()
   const { data: dataHotPost, isLoading: isLoadingHotPost } = useGetTopPostQuery()
+  console.log(dataPosts)
   return (
-    <div className={cx('mb-[70px]')}>
+    <div className={cx('mb-[20px]')}>
       <div className={cx('bg-[#f6f6f6] py-[6px]')}>
         <div className={cx('container-wrap text-[1.4rem]')}>
           <Link className={cx('text-[#999]')} to='/'>
@@ -39,10 +40,10 @@ export default function News() {
               </div>
             )}
           </div>
-        <div className='bg-[#f6f6f6] py-2 my-2'>
-
-        </div>
-          <div className={cx('w-full md:ml-[15px] md:pl-[15px] md:max-w-[30%] lg:max-w-[25%] mt-10 md:mt-0', 'news-left')}>
+          <div className='bg-[#f6f6f6] py-2 my-2'></div>
+          <div
+            className={cx('w-full md:ml-[15px] md:pl-[15px] md:max-w-[30%] lg:max-w-[25%] mt-10 md:mt-0', 'news-left')}
+          >
             <h4 className={cx('font-medium mb-[15px]')}>TIN NỔI BẬT</h4>
             {isLoadingHotPost ? (
               <div className='mt-5 w-full'>
