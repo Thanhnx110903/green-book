@@ -48,8 +48,10 @@ const SidebarCategory = ({ categories, slug }) => {
     if (categories) {
       const convertedData = convertDataForAntDMenu(categories, slug)
       setDataSideBar(convertedData)
+      
     }
   }, [categories])
+  console.log(dataSideBar);
   return (
     <div className=''>
       <Menu

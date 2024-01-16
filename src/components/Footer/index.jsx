@@ -1,16 +1,16 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
-
+import { RiArrowDownSFill } from 'react-icons/ri'
 const cx = classNames.bind(styles)
 
 export default function Footer() {
   return (
     <>
-      <footer>
+      <footer className='container-wrap'>
         <div className={cx('container-wrap')}>
-          <div className={cx('wrapper')}>
-            <div className={cx('footer-right')}>
+          <div className={cx('w-full flex lg:flex-row flex-col justify-between px-10')}>
+            <div className={cx('w-full lg:max-w-[30.5%]')}>
               <Link to='/'>
                 <img src='/src/assets/imgs/logo.png' alt='' className='w-[170px]' />
               </Link>
@@ -38,12 +38,12 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className={cx('w-full pl-[5px] lg:max-w-[66%]')}>
+            <div className={cx('w-full lg:max-w-[68%] mt-8')}>
               <div className='d-flex lg:flex-row flex-col gap-5 md:gap-8 justify-between'>
                 <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>DỊCH VỤ</h3>
-                  {/* <RiArrowDownSFill className='text-4xl lg:hidden' /> */}
-                  <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block hidden')}>
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
+                  <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block hidden')}>
                     <li className='mb-[10px]'>Điều khoản sử dụng</li>
                     <li className='mb-[10px]'>Chính sách bảo mật</li>
                     <li className='mb-[10px]'>Giới thiệu</li>
@@ -56,14 +56,14 @@ export default function Footer() {
                     <button className=' relative flex justify-between  w-full'>
                       <h3 className={cx('footer-title', 'mt-4')}>DỊCH VỤ</h3>
                       <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
-                        {/* <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' /> */}
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
                       </span>
                     </button>
                     <div className='z-50 absolute w-full top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
-                      <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block')}>
-                        <li className='mb-[10px]'>Điều khoản sử dụng</li>
-                        <li className='mb-[10px]'>Chính sách bảo mật</li>
-                        <li className='mb-[10px]'>Giới thiệu</li>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
+                        <li>Điều khoản sử dụng</li>
+                        <li>Chính sách bảo mật</li>
+                        <li>Giới thiệu</li>
                         <li>Hệ thống trung tâm - nhà sách</li>
                       </ul>
                     </div>
@@ -71,7 +71,7 @@ export default function Footer() {
                 </div>
                 <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>HỖ TRỢ</h3>
-                  {/* <RiArrowDownSFill className='text-4xl lg:hidden' /> */}
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
                   <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block hidden')}>
                     <li className='mb-[10px]'>Chính sách đổi - trả - hoàn tiền</li>
                     <li className='mb-[10px]'>Chính sách khách sỉ</li>
@@ -85,14 +85,14 @@ export default function Footer() {
                     <button className=' relative flex justify-between  w-full'>
                       <h3 className={cx('footer-title', 'mt-4')}>HỖ TRỢ</h3>
                       <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
-                        {/* <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' /> */}
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
                       </span>
                     </button>
-                    <div className='z-50 absolute w-full bg-white top-full  origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
-                      <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block')}>
-                        <li className='mb-[10px]'>Chính sách đổi - trả - hoàn tiền</li>
-                        <li className='mb-[10px]'>Chính sách khách sỉ</li>
-                        <li className='mb-[10px]'>Phương thức vận chuyển</li>
+                    <div className='z-50 absolute w-full  top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
+                        <li>Chính sách đổi - trả - hoàn tiền</li>
+                        <li>Chính sách khách sỉ</li>
+                        <li>Phương thức vận chuyển</li>
                         <li>Phương thức thanh toán và xuất HĐ</li>
                       </ul>
                     </div>
@@ -100,7 +100,7 @@ export default function Footer() {
                 </div>
                 <div className='lg:block  items-center justify-between hidden'>
                   <h3 className={cx('footer-title', 'mt-4')}>TÀI KHOẢN CỦA TÔI</h3>
-                  {/* <RiArrowDownSFill className='text-4xl lg:hidden' /> */}
+                  <RiArrowDownSFill className='text-4xl lg:hidden' />
                   <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block hidden')}>
                     <li className='mb-[10px]'>Đăng nhập/Tạo mới tài khoản</li>
                     <li className='mb-[10px]'>Thay đổi địa chỉ khách hàng</li>
@@ -114,11 +114,11 @@ export default function Footer() {
                     <button className=' relative flex justify-between  w-full'>
                       <h3 className={cx('footer-title', 'mt-4')}>TÀI KHOẢN CỦA TÔI</h3>
                       <span className='absolute flex items-center justify-center  w-12 top-0 h-full right-0'>
-                        {/* <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' /> */}
+                        <RiArrowDownSFill className='text-4xl lg:hidden group-hover/bouton:rotate-180' />
                       </span>
                     </button>
                     <div className='absolute w-full  top-full bg-stone-50 origine-top opacity-0 hidden flex-col group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all'>
-                      <ul className={cx(' lg:mt-[17px] lg:text-[1.5rem] lg:block')}>
+                      <ul className={cx(' lg:mt-[17px] lg:text-[1.8rem] lg:block')}>
                         <li>Đăng nhập/Tạo mới tài khoản</li>
                         <li>Thay đổi địa chỉ khách hàng</li>
                         <li>Chi tiết tài khoản</li>
@@ -191,7 +191,7 @@ export default function Footer() {
         </div>
         <div className={cx('bg-[#efefef] py-[10px]')}>
           <div className={cx('container-wrap', 'text-[14px]')}>
-            © Bản quyền thuộc về Nhà sách Tiền Phong | Cung cấp bởi Sapo
+            © Bản quyền thuộc về Nhà sách GreenBook | Cung cấp bởi Sapo
           </div>
         </div>
       </footer>

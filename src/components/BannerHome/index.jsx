@@ -1,17 +1,14 @@
 // eslint-disable-next-line import/named
 import { Carousel } from 'flowbite-react'
 import classNames from 'classnames/bind'
-import { Link } from 'react-router-dom'
+
 import styles from './BannerHome.module.css'
-import { useGetCategoriesQuery } from '../../redux/api/category'
-import { useState } from 'react'
-import PcLoading from '../PcLoading'
+
 const cx = classNames.bind(styles)
 export default function BannerHome() {
-  const [hoveredItem, setHoveredItem] = useState(null)
   return (
     <div className={cx('container-wrap pt-[15px]')}>
-      <div className={cx('grid  md:grid-cols-4 grid-cols-2 grid-rows-2 md:grid-rows-2 gap-[15px]')}>
+      <div className={cx('grid  md:grid-cols-4 grid-cols-2 grid-rows-2 md:grid-rows-2 gap-4')}>
         <div className={cx('w-[100%] h-[100%]  col-span-3 row-span-1  md:row-span-2', '')}>
           <Carousel>
             <img className={cx('w-[100%] h-[100%]  object-cover')} alt='...' src='/src/assets/imgs/slider_1.png' />
