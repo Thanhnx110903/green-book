@@ -18,7 +18,7 @@ import Otp from '../pages/Otp'
 import ForgotPassword from '../pages/ForgotPassword'
 import ChangePassword from '../pages/ChangePassword'
 import SeachOrder from '../pages/SearchOrder'
-import NewDetail from '../pages/  '
+import NewDetail from '../pages/NewDetail'
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
