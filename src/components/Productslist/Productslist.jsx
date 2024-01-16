@@ -6,9 +6,10 @@ import PcLoading from '../PcLoading'
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProducstList.module.css'
 const cx = classNames.bind(styles)
-const Productslist = ({ id }) => {
+const Productslist = ({ id = null, sort_date = null, min = 0, max = 8, linkTo = '/', isButton = true }) => {
   const { data, isLoading } = useGetBookByQueryQuery({
-    category_id: id
+    category_id: id,
+    sort_date: sort_date
   })
   return (
     <>
@@ -20,15 +21,19 @@ const Productslist = ({ id }) => {
         </div>
       ) : (
         <>
-          <ul className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[25px]')}>
-            {data?.data?.data?.slice(0, 8).map((books) => (
+          <ul className={cx('grid grid-cols-5 gap-[25px]')}>
+            {data?.data?.data?.slice(min, max).map((books) => (
               <ProductCard key={books.id} books={books} />
             ))}
           </ul>
-          <Link to={`/${id}`} className={cx('action-news', 'd-flex items-center justify-center')}>
-            <p>Xem tất cả</p>
-            <i className={cx('fa-solid fa-chevron-right', 'text-[1.1rem] mt-[3px] ml-[6px]')}></i>
-          </Link>
+          {isButton ? (
+            <Link to={linkTo} className={cx('action-news', 'd-flex items-center justify-center')}>
+              <p>Xem tất cả</p>
+              <i className={cx('fa-solid fa-chevron-right', 'text-[1.1rem] mt-[3px] ml-[6px]')}></i>
+            </Link>
+          ) : (
+            ''
+          )}
         </>
       )}
     </>

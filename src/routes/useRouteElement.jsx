@@ -17,6 +17,7 @@ import Voucher from '../pages/Voucher'
 import Otp from '../pages/Otp'
 import ForgotPassword from '../pages/ForgotPassword'
 import ChangePassword from '../pages/ChangePassword'
+import SeachOrder from '../pages/SearchOrder'
 
 export default function useRoutElement() {
   const routeElement = useRoutes([
@@ -74,6 +75,14 @@ export default function useRoutElement() {
         <Polyci>
           <Cart />
         </Polyci>
+      )
+    },
+    {
+      path: '/search-order',
+      element: (
+        <LayoutDefault>
+          <SeachOrder />
+        </LayoutDefault>
       )
     },
     {

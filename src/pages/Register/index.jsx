@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Button from '../../components/Button/Button'
-
+import InputField from '../../components/InputField/InputField'
 import styles from './Register.module.css'
 import { useRegisterMutation } from '../../redux/api/auth'
 import { useCookies } from 'react-cookie'
@@ -26,7 +26,6 @@ export default function Register() {
           navigate('/otp')
         })
         .catch((error) => {
-          console.log(error)
           message.error(error?.data?.message)
         })
     }
@@ -35,7 +34,7 @@ export default function Register() {
     console.log('Failed:', errorInfo)
   }
   const [form] = Form.useForm()
-  const phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
+  const phonePattern = /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/
   const validatePhoneNumber = (_, value) => {
     if (!phonePattern.test(value) && value) {
       return Promise.reject('Số điện thoại không hợp lệ!')

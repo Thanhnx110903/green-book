@@ -10,8 +10,9 @@ const cx = classNames.bind(styles)
 export default function News() {
   const { data: dataPosts, isLoading } = useGetPostsQuery()
   const { data: dataHotPost, isLoading: isLoadingHotPost } = useGetTopPostQuery()
+  console.log(dataPosts)
   return (
-    <div className={cx('mb-[70px]')}>
+    <div className={cx('mb-[20px]')}>
       <div className={cx('bg-[#f6f6f6] py-[6px]')}>
         <div className={cx('container-wrap text-[1.4rem]')}>
           <Link className={cx('text-[#999]')} to='/'>
@@ -21,7 +22,7 @@ export default function News() {
         </div>
       </div>
       <div className={cx('container-wrap')}>
-        <div className={cx('d-flex justify-between mt-[70px]')}>
+        <div className={cx('d-flex justify-between mt-[40px]')}>
           <div className={cx('w-[1050px]')}>
             <h3 className={cx(' mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Tin Tức</h3>
             {/* News List */}

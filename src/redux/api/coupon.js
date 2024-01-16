@@ -8,7 +8,10 @@ const couponApi = createApi({
     baseUrl: import.meta.env.VITE_URL_API + '/coupon',
     prepareHeaders: (headers) => {
       const cookies = parseCookies()
-      headers.set('Authorization', `Bearer ${JSON.parse(cookies['userInfor'])?.access_token}`)
+      headers.set(
+        'Authorization',
+        `Bearer ${cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''}`
+      )
       return headers
     }
   }),

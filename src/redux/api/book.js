@@ -10,9 +10,7 @@ const bookApi = createApi({
   }),
   prepareHeaders: (headers) => {
     const cookies = parseCookies()
-    console.log(JSON.parse(cookies['userInfor'])?.access_token)
-
-    headers.set('Authorization', `Bearer ${JSON.parse(cookies['userInfor'])?.access_token}`)
+    headers.set('Authorization', `Bearer ${cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''}`)
     return headers
   },
   endpoints: (builder) => ({
@@ -69,7 +67,7 @@ const bookApi = createApi({
           queryParams.push(`max_price=${+data.max * 1000}`)
         }
         if (data?.sort_date) {
-          queryParams.push(`min_price=${data.max_price}`)
+          queryParams.push(`sort_date=${data.sort_date}`)
         }
         if (data?.page) {
           queryParams.push(`page=${data.page}`)

@@ -8,7 +8,10 @@ const favoriteApi = createApi({
     baseUrl: import.meta.env.VITE_URL_API + '/favorite-book',
     prepareHeaders: (headers) => {
       const cookies = parseCookies()
-      headers.set('Authorization', `Bearer ${JSON.parse(cookies['userInfor'])?.access_token}`)
+      headers.set(
+        'Authorization',
+        `Bearer ${cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''}`
+      )
       return headers
     }
   }),

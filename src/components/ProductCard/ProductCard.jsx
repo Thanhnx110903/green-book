@@ -8,7 +8,9 @@ import FormatPrice from '../../untils/formatPrice'
 import { useAddCartMutation } from '../../redux/api/cart'
 import { HeartOutlined, HeartFilled } from '@ant-design/icons'
 import { useCookies } from 'react-cookie'
+import { FaPlus } from 'react-icons/fa'
 import { useAddFavoriteMutation, useGetFavoriteQuery, useRemoveFavoriteMutation } from '../../redux/api/favorite'
+
 const ProductCard = ({ books }) => {
   const [dataFavorites, setDataFavorites] = useState([])
   const [cookies] = useCookies(['userInfor'])
@@ -24,8 +26,8 @@ const ProductCard = ({ books }) => {
     }
     addToFavorite(id)
       .unwrap()
-      .then((item) => {
-        message.success(item?.message)
+      .then(() => {
+        message.success('Đã thêm vào yêu thích')
       })
       .catch((err) => {
         console.log(err)
@@ -77,25 +79,24 @@ const ProductCard = ({ books }) => {
       setDataFavorites([])
     }
   }, [loadingFavorite, listFavorites])
-  console.log(books);
   return (
     <>
       <li className={cx('product-item', 'shadow-md')} key={books?.id}>
         <Link to={`/product/${books?.id}`}>
-          <img src={books?.image} alt='' />
+          <img className='h-[280px] m-auto' src={books?.image} alt='' />
         </Link>
         <div className={cx('p-[10px]')}>
           <Link to={`/product/${books?.id}`}>
-            <p className={cx('text-[18px] font-bold line-clamp-2 leading-relaxed my-[10px] hover:text-primary')}>
+            <p className={cx('text-[18px] font-bold line-clamp-2 leading-relaxed my-[10px] max-w-[200px] truncate')}>
               {books?.name}
             </p>
           </Link>
           <div className={cx('d-flex items-center justify-between')}>
             <div className={cx('text-primary font-medium')}>
-              <FormatPrice price={books.price} />
+              <FormatPrice price={books.warehouse?.retail_price} />
               {/* <p>Mã giảm giá</p> */}
             </div>
-            <div className='flex items-center mr-[8px] hover:text-primary'>
+            <div className='flex items-center gap-2'>
               {dataFavorites.length ? (
                 dataFavorites.find((item) => item?.id == books?.id) ? (
                   <div
@@ -122,11 +123,12 @@ const ProductCard = ({ books }) => {
               )}
 
               <div
-                className={cx('w-[30px] h-[30px] cursor-pointer', 'icon-cart')}
+                className={cx(
+                  'shadow-xl w-[35px] h-[35px] bg-primary d-flex items-center justify-center text-[#ffffff] cursor-pointer rounded-full'
+                )}
                 onClick={() => handleAddToCart(books?.id)}
               >
-                {/* <i className='fa-solid fa-cart-shopping'></i> */}
-                <img src='../../../src/assets/imgs/cart.png' alt='' />
+                <FaPlus />
               </div>
             </div>
           </div>

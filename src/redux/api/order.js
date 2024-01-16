@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { cookies } from '../../config/cookies'
 import { parseCookies } from 'nookies'
 
 const orderApi = createApi({
@@ -9,7 +8,10 @@ const orderApi = createApi({
     baseUrl: import.meta.env.VITE_URL_API + '/order',
     prepareHeaders: (headers) => {
       const cookies = parseCookies()
-      headers.set('Authorization', `Bearer ${JSON.parse(cookies['userInfor'])?.access_token}`)
+      headers.set(
+        'Authorization',
+        `Bearer ${cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''}`
+      )
       return headers
     }
   }),
@@ -37,7 +39,19 @@ const orderApi = createApi({
       query: (id) => {
         return {
           method: 'GET',
-          url: `/order-detail/${id}`
+          url: `${import.meta.env.VITE_URL_API}/order-detail/${id}`
+        }
+      },
+      providesTags: ['Order']
+    }),
+    searchOrder: builder.query({
+      query: (id) => {
+        return {
+          method: 'GET',
+          url: `${import.meta.env.VITE_URL_API}/check-order`,
+          body: {
+            id: id
+          }
         }
       },
       providesTags: ['Order']
@@ -78,6 +92,7 @@ export const {
   useGetOrderQuery,
   useUpdateOrderMutation,
   useGetOrdersQuery,
-  usePaymentMomoMutation
+  usePaymentMomoMutation,
+  useSearchOrderQuery
 } = orderApi
 export default orderApi

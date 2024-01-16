@@ -8,10 +8,12 @@ import { useGetPostsQuery } from '../../redux/api/post'
 import styles from './Home.module.css'
 import { useEffect, useState } from 'react'
 import PcLoading from '../../components/PcLoading'
+import { BackTop, FloatButton } from 'antd'
 const cx = classNames.bind(styles)
 
 export default function Home() {
   const { data: dataPosts, isLoading } = useGetPostsQuery()
+
   const [dataCate, setDataCate] = useState({})
   const { data: categoriesData, isLoading: cateLoading } = useGetCategoriesQuery()
   const [selectDefault, setSelectDefault] = useState(null)
@@ -27,9 +29,9 @@ export default function Home() {
   return (
     <>
       <BannerHome />
-      <div  className={cx('max-w-[1400px] mx-auto')}>
-        <div>
-          <div className={cx('d-flex justify-between ')}>
+      <div>
+        <div className={cx('container-wrap')}>
+          <div className={cx('d-flex justify-between mt-[60px]')}>
             <div>
               <h1 className='text-[31px] font-normal mb-[10px]'>{dataCate?.name}</h1>
               <div className={cx('flex items-center gap-[20px] mb-[30px]')}>
@@ -49,13 +51,19 @@ export default function Home() {
                   })}
               </div>
               <div>
-                <Productslist id={selectDefault} />
+                <Productslist id={selectDefault} linkTo={`/${selectDefault}`} />
               </div>
             </div>
           </div>
         </div>
         <div className={cx('container-wrap')}>
-          <h3 className={cx(' mb-[30px] text-[3.1rem] font-medium hover:text-primary')}>Tin Tức</h3>
+          <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Sản phẩm mới</h3>
+          <div>
+            <Productslist sort_date='desc' isButton={false} max='8' linkTo={`/${selectDefault}?sort_date=desc`} />
+          </div>
+        </div>
+        <div className={cx('container-wrap')}>
+          <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Tin Tức</h3>
           {isLoading ? (
             <div className='mt-5 w-full'>
               {Array.from({ length: 5 }).map((_, index) => (
@@ -64,7 +72,7 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]', 'news-list')}>
+              <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.slice(0, 4).map((item) => {
                   return <BlogItem item={item} key={item?.id} />
                 })}
