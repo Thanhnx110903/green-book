@@ -291,7 +291,6 @@ export default function ProductDetail() {
                   <div className=''>
                     <h1 className='font-medium text-2xl p-2'>{data?.data?.name}</h1>
                     <p className=' text-[#ba141a] font-medium text-2xl p-2'>
-                      {' '}
                       <FormatPrice price={data?.data?.warehouse?.wholesale_price} />
                     </p>
                   </div>
@@ -336,7 +335,7 @@ export default function ProductDetail() {
             <div className='m-6'>
               {cookies?.userInfor?.access_token ? (
                 <Form
-                  name='basic'
+                  name='product-detail'
                   onFinish={onFinishComment}
                   onFinishFailed={onFinishFailedComment}
                   autoComplete='off'

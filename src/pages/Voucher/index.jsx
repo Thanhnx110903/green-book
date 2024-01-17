@@ -29,7 +29,7 @@ export default function Voucher() {
   }
   return (
     <ProtectRouter>
-      <div className={cx('mb-[20px]')}>
+      <div className={cx('')}>
         <div className={cx('bg-[#f6f6f6] py-[6px]')}>
           <div className={cx('container-wrap text-[1.4rem]')}>
             <Link className={cx('text-[#999]')} to='/'>
@@ -40,16 +40,15 @@ export default function Voucher() {
         </div>
       </div>
 
-      <div className='container-wrap mb-10 '>
-        <div className='bg-bg px-2'>
-          <div className='container mx-auto py-5 mb-6 '>
+      <div className='container-wrap mb-10 mt-[40px]'>
+        <div className='bg-bg '>
+          <div className='container mx-auto pb-5 mb-6 '>
             <h1 className='font-bold text-[30px]'>Tất cả mã giảm giá</h1>
             <p>Điểm hiện tại: {dataProfile?.user?.point || 0}</p>
           </div>
           <div className='grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 grid'>
             {data?.data?.data?.length ? (
               data?.data?.data?.map((item) => {
-                console.log(item)
                 return (
                   <div
                     key={item?.code}

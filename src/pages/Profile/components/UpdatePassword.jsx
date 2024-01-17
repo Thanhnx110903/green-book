@@ -37,7 +37,7 @@ export default function UpdatePassword({}) {
   }
   return (
     <Form
-      name='basic'
+      name='updatePass'
       className='w-full'
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

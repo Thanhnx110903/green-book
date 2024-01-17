@@ -67,7 +67,7 @@ export default function Login() {
             </div>
           </div>
           <Form
-            name='basic'
+            name='login'
             className='max-w-[500px] mx-auto w-full text-[20px]'
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}

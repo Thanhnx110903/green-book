@@ -85,7 +85,7 @@ export default function Register() {
         </div>
 
         <Form
-          name='basic'
+          name='register'
           className='max-w-[500px] mx-auto w-full text-[20px]'
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}

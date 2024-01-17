@@ -200,10 +200,10 @@ export default function Checkout() {
     <>
       <Header />
       <div className='flex lg:flex-row flex-col-reverse gap-5 min-h-screen'>
-      <div className='mt-[30px] lg:!w-[60%] px-[10%] lg:px-[160px] lg:pl-[130px]'>
+        <div className='mt-[30px] lg:!w-[60%] px-[10%] lg:px-[160px] lg:pl-[130px]'>
           <div>
             <Form
-              name='basic'
+              name='checkout'
               className='w-full text-[20px]'
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}

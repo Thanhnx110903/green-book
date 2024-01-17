@@ -193,321 +193,331 @@ const BillDetail = () => {
   }, [])
 
   return (
-    <div>
-      {isLoading ? (
-        <div>
-          {Array.from({ length: 8 }).map((_, index) => (
-            <PcLoading key={index} />
-          ))}
+    <>
+      <div className='bg-[#f6f6f6]  py-[4px]'>
+        <div className='container-wrap text-[1.4rem]'>
+          <Link className='text-[#999]' to='/'>
+            Trang chủ /
+          </Link>
+          <span>Chi tiết đơn hàng</span>
         </div>
-      ) : (
-        <div className='pt-[30px] pb-[100px] bg-bgr  px-6'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4 max-w-[1600px] mx-auto bg-bgr border border-gray-200'>
-            <div className='bg-bgr border border-gray-200 rounded-lg shadow mx-auto '>
-              <Link to='#'>
-                <img className='rounded-t-lg  max-h-[400px] object-cover' src={data?.data[0]?.book_image} alt='' />
-              </Link>
-              <div className='p-5'>
+      </div>
+      <div>
+        {isLoading ? (
+          <div>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <PcLoading key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className='mt-[40px] pb-[100px] bg-bgr container-wrap'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-4 max-w-[1600px] mx-auto bg-bgr border border-gray-200'>
+              <div className='mx-auto d-flex '>
                 <Link to='#'>
-                  <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 flex gap-3'>
-                    <p className='mb-3 text-[18px] font-bold text-gray-700 '>{data?.data?.[0].book_name}</p>
-                    <span>(x{data?.data?.[0]?.quantity})</span>
-                  </h5>
+                  <img className='rounded-t-lg  max-h-[400px] object-cover' src={data?.data[0]?.book_image} alt='' />
                 </Link>
+                <div className='p-5'>
+                  <Link to='#' className='text-[20px] '>
+                    <h5 className='mb-2 tracking-tight flex gap-3'>
+                      <p className='mb-3 text-gray-700'>{data?.data?.[0].book_name}</p>
+                      <span>(x{data?.data?.[0]?.quantity})</span>
+                    </h5>
+                  </Link>
+                  <div>
+                    <span className='text-primary'>
+                      <FormatPrice price={+data?.order?.total} />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className='grid md:grid-rows-1 grid-rows-1 gap-4'>
+                <div className='grid md:grid-cols-1 gap-4'>
+                  <div className='block h-full p-6 bg-bgr border border-gray-200 rounded-lg shadow'>
+                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>Thông tin đặt hàng</h5>
+                    <div className='font-normal text-gray-700'>
+                      <ul className='space-y-3 text-gray-500 list-disc list-inside '>
+                        <li>Mã đơn hàng: {data?.order?.order_code}</li>
+                        <li>Địa chỉ nhận hàng: {data?.order?.address}</li>
+                        <li>Ngày đặt: {dayjs(data?.order?.create_at).format('HH:mm DD/MM/YYYY')}</li>
+                        <li>Trạng thái thanh toán: {data?.order?.payment} </li>
+                        <li>Trạng thái đơn hàng: {data?.order?.status}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
                 <div>
-                  <span className='font-bold'>
-                    <FormatPrice price={data?.data?.[0]?.book_price} />
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className='grid md:grid-rows-1 grid-rows-1 gap-4'>
-              <div className='grid md:grid-cols-1 gap-4'>
-                <div className='block h-full p-6 bg-bgr border border-gray-200 rounded-lg shadow'>
-                  <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>Thông tin đặt hàng</h5>
-                  <div className='font-normal text-gray-700'>
-                    <ul className='space-y-3 text-gray-500 list-disc list-inside '>
-                      <li>Mã đơn hàng: {data?.order?.order_code}</li>
-                      <li>Địa chỉ nhận hàng: {data?.order?.address}</li>
-                      <li>Ngày đặt: {dayjs(data?.order?.create_at).format('HH:mm DD/MM/YYYY')}</li>
-                      <li>Trạng thái thanh toán: {data?.order?.payment} </li>
-                      <li>Trạng thái đơn hàng: {data?.order?.status}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className='block h-full p-6 bg-bgr border border-gray-200 rounded-lg shadow'>
-                  <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>Thông tin khách hàng</h5>
-                  <div className='font-normal text-gray-700'>
-                    <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside'>
-                      <li>Tên người đặt: {data?.order?.name}</li>
-                      <li>Số điện thoại: {data?.order?.phone_number}</li>
-                    </ul>
-                  </div>
-                  <div className='mt-1 mb-3'></div>
-                  <h5 className='mb-2 text-md font-bold tracking-tight text-gray-900'>Trạng thái đơn hàng</h5>
-                  <div className='font-normal text-gray-700'>
-                    <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside'>
-                      <li>Trạng thái: {data?.order?.status}</li>
-                    </ul>
-                  </div>
-                  <div className='mt-1 mb-3'></div>
-                  <div className='font-normal text-gray-700 flex gap-2 flex-wrap'>
-                    {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.user?.access_token ? (
-                      <button
-                        className={` hover:bg-red-500
-                   hover:text-white  bg-transparent text-red-500 border border-red-500  text-[15px] py-1 px-4 rounded`}
-                        onClick={cancelBooking}
+                  <div className='block h-full p-6 bg-bgr border border-gray-200 rounded-lg shadow'>
+                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>Thông tin khách hàng</h5>
+                    <div className='font-normal text-gray-700'>
+                      <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside'>
+                        <li>Tên người đặt: {data?.order?.name}</li>
+                        <li>Số điện thoại: {data?.order?.phone_number}</li>
+                      </ul>
+                    </div>
+                    <div className='mt-1 mb-3'></div>
+                    <h5 className='mb-2 text-md font-bold tracking-tight text-gray-900'>Trạng thái đơn hàng</h5>
+                    <div className='font-normal text-gray-700'>
+                      <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside'>
+                        <li>Trạng thái: {data?.order?.status}</li>
+                      </ul>
+                    </div>
+                    <div className='mt-1 mb-3'></div>
+                    <div className='font-normal text-gray-700 flex gap-2 flex-wrap'>
+                      {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.user?.access_token ? (
+                        <button
+                          className={` hover:bg-red-500
+                     hover:text-white  bg-transparent text-red-500 border border-red-500  text-[15px] py-1 px-4 rounded`}
+                          onClick={cancelBooking}
+                        >
+                          Hủy đơn hàng
+                        </button>
+                      ) : (
+                        <button
+                          className={`
+                     hover:text-white  bg-transparent  text-[15px] py-1 px-4 rounded cursor-not-allowed !bg-gray-200 !border-gray-200 !text-gray-500 
+                     }`}
+                        >
+                          Hủy đơn hàng
+                        </button>
+                      )}
+                      {data?.order?.status == 'Hoàn thành' && (
+                        <Link
+                          to={`/product/${data?.data?.[0]?.book_id}`}
+                          className='hover:bg-blue-500
+                     hover:text-white  bg-transparent text-blue-500 border border-blue-500  text-[15px] py-1 px-4 rounded'
+                        >
+                          <button>Đánh giá ngay</button>
+                        </Link>
+                      )}
+                      {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.access_token && (
+                        <Link
+                          to={``}
+                          onClick={() => setIsUpdate((prev) => !prev)}
+                          className='hover:bg-blue-500
+                     hover:text-white  bg-transparent text-blue-500 border border-blue-500  text-[15px] py-1 px-4 rounded'
+                        >
+                          <button>Sửa thông tin</button>
+                        </Link>
+                      )}
+                    </div>
+                    {update ? (
+                      <Form
+                        name='basic'
+                        className='w-full text-[20px]'
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete='off'
+                        layout='vertical'
+                        form={form}
                       >
-                        Hủy đơn hàng
-                      </button>
-                    ) : (
-                      <button
-                        className={`
-                   hover:text-white  bg-transparent  text-[15px] py-1 px-4 rounded cursor-not-allowed !bg-gray-200 !border-gray-200 !text-gray-500 
-                   }`}
-                      >
-                        Hủy đơn hàng
-                      </button>
-                    )}
-                    {data?.order?.status == 'Hoàn thành' && (
-                      <Link
-                        to={`/product/${data?.data?.[0]?.book_id}`}
-                        className='hover:bg-blue-500
-                   hover:text-white  bg-transparent text-blue-500 border border-blue-500  text-[15px] py-1 px-4 rounded'
-                      >
-                        <button>Đánh giá ngay</button>
-                      </Link>
-                    )}
-                    {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.access_token && (
-                      <Link
-                        to={``}
-                        onClick={() => setIsUpdate((prev) => !prev)}
-                        className='hover:bg-blue-500
-                   hover:text-white  bg-transparent text-blue-500 border border-blue-500  text-[15px] py-1 px-4 rounded'
-                      >
-                        <button>Sửa thông tin</button>
-                      </Link>
-                    )}
-                  </div>
-                  {update ? (
-                    <Form
-                      name='basic'
-                      className='w-full text-[20px]'
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                      autoComplete='off'
-                      layout='vertical'
-                      form={form}
-                    >
-                      <div className='flex gap-10 lg:flex-row flex-col w-full'>
-                        <div className='mt-8 w-full'>
-                          <h1 className='text-[18px] font-bold  mb-3'>Thông tin mua hàng</h1>
-                          <Form.Item
-                            name='name'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng nhập tên'
-                              },
-                              {
-                                min: 5,
-                                message: 'Tên cần tối thiểu 5 kí tự'
-                              }
-                            ]}
-                          >
-                            <Input placeholder='Họ tên' className='min-h-[40px] rounded-lg text-[16px]' />
-                          </Form.Item>
-                          <Form.Item
-                            name='phone_number'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng nhập số điện thoại!'
-                              },
-                              {
-                                validator: validatePhoneNumber
-                              }
-                            ]}
-                          >
-                            <Input placeholder='Số điện thoại' className='min-h-[40px] rounded-lg text-[16px]' />
-                          </Form.Item>
-                          <Form.Item
-                            name='address'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng nhập địa chỉ'
-                              }
-                            ]}
-                          >
-                            <Input placeholder='Địa chỉ' className='min-h-[40px] rounded-lg text-[16px]' />
-                          </Form.Item>
-                          <Form.Item
-                            name='city'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng chọn thông tin'
-                              }
-                            ]}
-                          >
-                            <Select
-                              // showSearch
-                              // filterOption={filterOption}
-                              onChange={onChangeCity}
-                              placeholder='Tỉnh thành'
-                              className='min-h-[40px] rounded-lg text-[26px] '
-                              options={dataCity?.data?.map((item) => {
-                                return {
-                                  value: item?.ProvinceID,
-                                  label: item?.ProvinceName
+                        <div className='flex gap-10 lg:flex-row flex-col w-full'>
+                          <div className='mt-8 w-full'>
+                            <h1 className='text-[18px] font-bold  mb-3'>Thông tin mua hàng</h1>
+                            <Form.Item
+                              name='name'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng nhập tên'
+                                },
+                                {
+                                  min: 5,
+                                  message: 'Tên cần tối thiểu 5 kí tự'
                                 }
-                              })}
-                            />
-                          </Form.Item>
-                          <Form.Item
-                            name='district'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng chọn thông tin'
-                              }
-                            ]}
-                          >
-                            <Select
-                              placeholder='Quận huyện'
-                              disabled={provinceId && !loadingDistrict ? false : true}
-                              className='min-h-[40px] rounded-lg text-[16px]'
-                              onChange={changeDistrict}
-                              options={dataDistrict?.data?.map((item) => {
-                                return {
-                                  value: item?.DistrictID,
-                                  label: item?.DistrictName
+                              ]}
+                            >
+                              <Input placeholder='Họ tên' className='min-h-[40px] rounded-lg text-[16px]' />
+                            </Form.Item>
+                            <Form.Item
+                              name='phone_number'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng nhập số điện thoại!'
+                                },
+                                {
+                                  validator: validatePhoneNumber
                                 }
-                              })}
-                            />
-                          </Form.Item>
-                          <Form.Item
-                            name='ward'
-                            rules={[
-                              {
-                                required: true,
-                                message: 'Vui lòng chọn thông tin'
-                              }
-                            ]}
-                          >
-                            <Select
-                              placeholder='Phường xã'
-                              className='min-h-[40px] rounded-lg text-[16px]'
-                              onChange={changeWard}
-                              disabled={districtId && provinceId && !loadingWard ? false : true}
-                              options={dataWard?.data?.map((item) => {
-                                return {
-                                  value: item?.WardCode,
-                                  label: item?.WardName
+                              ]}
+                            >
+                              <Input placeholder='Số điện thoại' className='min-h-[40px] rounded-lg text-[16px]' />
+                            </Form.Item>
+                            <Form.Item
+                              name='address'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng nhập địa chỉ'
                                 }
-                              })}
-                            />
-                          </Form.Item>
-                        </div>
-                        <div className='flex flex-col w-full gap-3 mt-8'>
-                          <div>
-                            <h1 className='text-[18px] font-bold  mb-3 '>Vận chuyển</h1>
-                            <Form.Item name='shipping'>
-                              <Radio.Group
-                                onChange={onChangeChooseShipping}
-                                className='flex flex-col gap-3'
-                                defaultValue={1}
-                              >
-                                <Radio
-                                  className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                                  value={1}
-                                >
-                                  Giao hàng tiết kiệm
-                                </Radio>
-                                {shippingOrder?.data?.map((item) => {
-                                  return (
-                                    <Radio
-                                      className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
-                                      value={item?.service_id}
-                                    >
-                                      {item?.short_name}
-                                    </Radio>
-                                  )
+                              ]}
+                            >
+                              <Input placeholder='Địa chỉ' className='min-h-[40px] rounded-lg text-[16px]' />
+                            </Form.Item>
+                            <Form.Item
+                              name='city'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng chọn thông tin'
+                                }
+                              ]}
+                            >
+                              <Select
+                                // showSearch
+                                // filterOption={filterOption}
+                                onChange={onChangeCity}
+                                placeholder='Tỉnh thành'
+                                className='min-h-[40px] rounded-lg text-[26px] '
+                                options={dataCity?.data?.map((item) => {
+                                  return {
+                                    value: item?.ProvinceID,
+                                    label: item?.ProvinceName
+                                  }
                                 })}
-                              </Radio.Group>
+                              />
+                            </Form.Item>
+                            <Form.Item
+                              name='district'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng chọn thông tin'
+                                }
+                              ]}
+                            >
+                              <Select
+                                placeholder='Quận huyện'
+                                disabled={provinceId && !loadingDistrict ? false : true}
+                                className='min-h-[40px] rounded-lg text-[16px]'
+                                onChange={changeDistrict}
+                                options={dataDistrict?.data?.map((item) => {
+                                  return {
+                                    value: item?.DistrictID,
+                                    label: item?.DistrictName
+                                  }
+                                })}
+                              />
+                            </Form.Item>
+                            <Form.Item
+                              name='ward'
+                              rules={[
+                                {
+                                  required: true,
+                                  message: 'Vui lòng chọn thông tin'
+                                }
+                              ]}
+                            >
+                              <Select
+                                placeholder='Phường xã'
+                                className='min-h-[40px] rounded-lg text-[16px]'
+                                onChange={changeWard}
+                                disabled={districtId && provinceId && !loadingWard ? false : true}
+                                options={dataWard?.data?.map((item) => {
+                                  return {
+                                    value: item?.WardCode,
+                                    label: item?.WardName
+                                  }
+                                })}
+                              />
                             </Form.Item>
                           </div>
+                          <div className='flex flex-col w-full gap-3 mt-8'>
+                            <div>
+                              <h1 className='text-[18px] font-bold  mb-3 '>Vận chuyển</h1>
+                              <Form.Item name='shipping'>
+                                <Radio.Group
+                                  onChange={onChangeChooseShipping}
+                                  className='flex flex-col gap-3'
+                                  defaultValue={1}
+                                >
+                                  <Radio
+                                    className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                                    value={1}
+                                  >
+                                    Giao hàng tiết kiệm
+                                  </Radio>
+                                  {shippingOrder?.data?.map((item) => {
+                                    return (
+                                      <Radio
+                                        className='border-[1px] rounded-lg border-[rgba(0,0,0,0.5)] flex items-center p-5'
+                                        value={item?.service_id}
+                                      >
+                                        {item?.short_name}
+                                      </Radio>
+                                    )
+                                  })}
+                                </Radio.Group>
+                              </Form.Item>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className='flex justify-end items-center gap-5'>
-                        <Button htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
-                          Lưu
-                        </Button>
-                      </div>
-                    </Form>
-                  ) : (
-                    ''
-                  )}
+                        <div className='flex justify-end items-center gap-5'>
+                          <Button htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
+                            Lưu
+                          </Button>
+                        </div>
+                      </Form>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='block h-full bg-bgr border border-gray-200 rounded-lg shadow max-w-[1600px] mx-auto'>
-            <h5 className='mb-2 p-6 text-2xl font-bold tracking-tight text-gray-900'>Thông tin hoá đơn</h5>
-            <div className='relative overflow-x-auto rounded-xl '>
-              <table className='w-full text-sm text-left text-gray-500'>
-                <thead className='text-xs text-gray-700 uppercase '>
-                  <tr className='text-[14px]'>
-                    <th scope='col' className='px-6 py-3'></th>
-                    <th scope='col' className='px-6 py-3 '>
-                      Số lượng
-                    </th>
-                    <th scope='col' className='px-6 py-3'>
-                      Giá
-                    </th>
-                    <th scope='col' className='px-6 py-3'>
-                      Phí ship
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className='bg-bgr border-b text-[14px]'>
-                    <th scope='col' className='px-6 py-3'></th>
-                    <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>
-                      {data?.data?.[0]?.quantity}
-                    </th>
-                    <td className='px-6 py-4'>
-                      <FormatPrice price={data?.data?.[0]?.book_price} />
-                    </td>
-                    <td className='px-6 py-4'>
-                      <FormatPrice price={data?.order?.ship_fee} />
-                    </td>
-                    {/* <td className='px-6 py-4'>
-                      <FormatPrice
-                        price={+data?.data?.booking?.detail?.[0].price * +data?.data?.booking?.amount_room}
-                      />
-                    </td> */}
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr className='bg-bgr border-b text-[14px] '>
-                    <th></th>
-                    <td className='px-6 py-4'></td>
-                    <td className='px-6 py-4 font-bold'>Tổng thanh toán</td>
-                    <td className='px-6 py-4'>
-                      <FormatPrice price={+data?.order?.total} />
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+            <div className='block h-full bg-bgr border border-gray-200 rounded-lg shadow max-w-[1600px] mx-auto'>
+              <h5 className='mb-2 p-6 text-2xl font-bold tracking-tight text-gray-900'>Thông tin hoá đơn</h5>
+              <div className='relative overflow-x-auto rounded-xl '>
+                <table className='w-full text-sm text-left text-gray-500'>
+                  <thead className='text-xs text-gray-700 uppercase '>
+                    <tr className='text-[14px]'>
+                      <th scope='col' className='px-6 py-3'></th>
+                      <th scope='col' className='px-6 py-3 '>
+                        Số lượng
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        Giá
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        Phí ship
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='bg-bgr border-b text-[14px]'>
+                      <th scope='col' className='px-6 py-3'></th>
+                      <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>
+                        {data?.data?.[0]?.quantity}
+                      </th>
+                      <td className='px-6 py-4'>
+                        <FormatPrice price={+data?.order?.total} />
+                      </td>
+                      <td className='px-6 py-4'>
+                        <FormatPrice price={data?.order?.ship_fee} />
+                      </td>
+                      {/* <td className='px-6 py-4'>
+                        <FormatPrice
+                          price={+data?.data?.booking?.detail?.[0].price * +data?.data?.booking?.amount_room}
+                        />
+                      </td> */}
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr className='bg-bgr border-b text-[14px] '>
+                      <th></th>
+                      <td className='px-6 py-4'></td>
+                      <td className='px-6 py-4 font-bold'>Tổng thanh toán</td>
+                      <td className='px-6 py-4'>
+                        <FormatPrice price={+data?.order?.total} />
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   )
 }
 

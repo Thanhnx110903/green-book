@@ -21,7 +21,7 @@ export default function MyVoucher() {
       <div>
         <Form
           form={form}
-          name='basic'
+          name='myvourcher'
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete='off'

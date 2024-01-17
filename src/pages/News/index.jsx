@@ -35,7 +35,7 @@ export default function News() {
             ) : (
               <div className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.map((item) => {
-                  return <BlogItem item={item} />
+                  return <BlogItem item={item} key={item.id} />
                 })}
               </div>
             )}
@@ -57,7 +57,7 @@ export default function News() {
                   return (
                     <div key={index} className={cx('d-flex items-center gap-[15px] py-[15px]', 'news-item')}>
                       <img className={cx('w-[100px]')} src={item?.image || '/src/assets/imgs/news-01.webp'} alt='' />
-                      <p>{item?.title}</p>
+                      <div>{item?.title}</div>
                     </div>
                   )
                 })}

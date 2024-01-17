@@ -8,6 +8,7 @@ import { useGetPostsQuery } from '../../redux/api/post'
 import styles from './Home.module.css'
 import { useEffect, useState } from 'react'
 import PcLoading from '../../components/PcLoading'
+import parse from 'html-react-parser'
 import { BackTop, FloatButton } from 'antd'
 const cx = classNames.bind(styles)
 
@@ -25,10 +26,9 @@ export default function Home() {
   useEffect(() => {
     if (categoriesData?.data) {
       setDataCate(categoriesData?.data?.[0])
-      setSelectDefault(categoriesData?.data?.[0]?.children?.[1])
+      setSelectDefault(categoriesData?.data?.[0]?.slug)
     }
   }, [categoriesData, cateLoading])
-
   return (
     <>
       <BannerHome />
@@ -100,9 +100,10 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4grid gap-[30px]', 'news-list')}>
+              <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.slice(0, 4).map((item) => {
-                  return <BlogItem item={item} key={item?.id} />
+                  console.log(item)
+                  return <BlogItem item={item} key={item.id} />
                 })}
               </div>
               <Link to='/news' className={cx('action-news', 'd-flex items-center justify-center')}>

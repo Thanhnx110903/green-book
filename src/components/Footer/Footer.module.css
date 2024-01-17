@@ -10,7 +10,7 @@ footer {
 
 .wrapper {
   display: flex;
-  justify-content: space-between;
+  gap: 55px;
   padding: 40px 0;
 }
 
@@ -19,7 +19,7 @@ footer {
 }
 
 .footer-left {
-  width: calc(100% - 33.33%);
+  width: calc(100% - 35.33%);
 }
 
 .footer-title {

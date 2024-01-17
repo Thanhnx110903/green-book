@@ -76,7 +76,7 @@ export default function ChangePassword() {
             </div>
           </div>
           <Form
-            name='basic'
+            name='basic-changpass'
             className='max-w-[500px] mx-auto w-full text-[20px]'
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
