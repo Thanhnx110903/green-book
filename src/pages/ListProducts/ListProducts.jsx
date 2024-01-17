@@ -35,7 +35,6 @@ const ListProducts = () => {
     refetch,
     error
   } = useGetBookByQueryQuery({ ...queryParams, category_id: category } || {})
-  console.log(dataTopBook)
   const [data, setData] = useState([])
   const [filterPrice, setFilterPrice] = useState(queryParams?.max_price || 0)
   const { data: categoriesData, isLoading: cateLoading } = useGetCategoriesQuery()
@@ -110,6 +109,8 @@ const ListProducts = () => {
       setData(dataQuery?.data?.data)
     }
   }, [isLoading, dataQuery, error])
+
+  console.log(data)
   return (
     <div className=''>
       {/* <Breadcrumb /> */}
@@ -120,19 +121,15 @@ const ListProducts = () => {
         </div> */}
         <div className={cx('d-flex justify-between mt-[60px]')}>
           <div className={cx('w-[258px]  p-[15px] mb-[30px]')}>
-            <div className='bg-[#f5f5f5] p-8'>
-              <h3 className={cx('font-bold  text-[1.6rem] mb-[24px]')}>DANH MỤC SẢN PHẨM</h3>
-              <div className={cx('')}>
-                <ul>
-                  <SidebarCategory categories={categoriesData?.data} />
-                </ul>
-              </div>
+            <div className='ml-[-28px]'>
+              <h3 className={cx('font-bold text-[1.6rem] pl-[28px] mb-[24px]')}>DANH MỤC SẢN PHẨM</h3>
+              <SidebarCategory className='test' categories={categoriesData?.data} />
             </div>
             <div className={cx('mt-[40px]')}>
-              <h4 className={cx('font-bold text-[1.6rem] mb-[24px]')}>MỨC GIÁ</h4>
+              <h4 className={cx('font-bold text-[1.6rem] mb-[24px]')}>MỨC GIÁ DƯỚI</h4>
 
               <Form
-                name='basic'
+                name='listproduct'
                 className='flex flex-col'
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -145,7 +142,7 @@ const ListProducts = () => {
                     <FormatPrice price={filterPrice * 1000 || 0} />
                   </span>
                   <Form.Item name='max'>
-                    <Slider defaultValue={filterPrice} onChange={onChange} max={1000} />
+                    <Slider initialValues={filterPrice} onChange={onChange} max={1000} />
                   </Form.Item>
                   <div className=''>
                     <Form.Item name='name'>
@@ -329,7 +326,7 @@ const ListProducts = () => {
         </div>
       </div>
       {/* News */}
-      <div className={cx('container-wrap')}>
+      <div className={cx('container-wrap mb-[40px]')}>
         <div>
           <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
           <div className='grid lg:grid-cols-5 gap-5 py-5 sm:grid-cols-2 md:grid-cols-4'>

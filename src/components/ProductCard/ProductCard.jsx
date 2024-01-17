@@ -19,6 +19,7 @@ const ProductCard = ({ books }) => {
   const { data: listFavorites, isLoading: loadingFavorite } = useGetFavoriteQuery()
   const [addToFavorite, { isLoading: addFavoriteLoading }] = useAddFavoriteMutation()
   const [removeFavorite, { isLoading: removeFavoriteLoading }] = useRemoveFavoriteMutation()
+
   const handleAddFavorite = (id) => {
     if (!cookies?.userInfor?.access_token) {
       message.error('Bạn cần đăng nhập để thực hiện tính năng này')
@@ -82,14 +83,12 @@ const ProductCard = ({ books }) => {
   return (
     <>
       <li className={cx('product-item', 'shadow-md')} key={books?.id}>
-        <Link to={`/product/${books?.id}`}>
-          <img className='h-[280px] m-auto' src={books?.image} alt='' />
+        <Link to={`/book/${books?.id}`}>
+          <img className='h-[240px] m-auto' src={books?.image} alt='' />
         </Link>
         <div className={cx('p-[10px]')}>
-          <Link to={`/product/${books?.id}`}>
-            <p className={cx('text-[18px] font-bold line-clamp-2 leading-relaxed my-[10px] max-w-[200px] truncate')}>
-              {books?.name}
-            </p>
+          <Link to={`/book/${books?.id}`}>
+            <p className={cx('text-[14px] line-clamp-1 leading-relaxed my-[10px] ')}>{books?.name}</p>
           </Link>
           <div className={cx('d-flex items-center justify-between')}>
             <div className={cx('text-primary font-medium')}>

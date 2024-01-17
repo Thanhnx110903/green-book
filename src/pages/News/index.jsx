@@ -22,9 +22,9 @@ export default function News() {
         </div>
       </div>
       <div className={cx('container-wrap')}>
-        <div className={cx('flex flex-col md:flex-row justify-between mt-[70px]')}>
+        <div className={cx('flex flex-col md:flex-row justify-between mt-[40px]')}>
           <div className={cx('w-full md:max-w-[70%] lg:max-w-[75%]')}>
-            <h3 className={cx(' mb-[30px] text-[2.2rem] font-medium hover:text-primary')}>Tin Tức</h3>
+            <h3 className={cx(' mb-[30px] text-[2.2rem] font-medium ')}>Tin Tức</h3>
             {/* News List */}
             {isLoading ? (
               <div className='mt-5 w-full'>
@@ -35,7 +35,7 @@ export default function News() {
             ) : (
               <div className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.map((item) => {
-                  return <BlogItem item={item} />
+                  return <BlogItem item={item} key={item.id} />
                 })}
               </div>
             )}
@@ -53,13 +53,12 @@ export default function News() {
               </div>
             ) : (
               <div>
-                {dataHotPost?.data?.slice(0, 3).map((item) => {
+                {dataHotPost?.data?.slice(0, 3).map((item, index) => {
                   return (
-                    <div className={cx('d-flex items-center gap-[15px] py-[15px]', 'news-item')}>
-                    <img className={cx('w-[100px]')} src={item?.image || '/src/assets/imgs/news-01.webp'} alt='' />
-             
-                    <p>{item?.title}</p>
-                  </div>
+                    <div key={index} className={cx('d-flex items-center gap-[15px] py-[15px]', 'news-item')}>
+                      <img className={cx('w-[100px]')} src={item?.image || '/src/assets/imgs/news-01.webp'} alt='' />
+                      <div>{item?.title}</div>
+                    </div>
                   )
                 })}
               </div>

@@ -63,7 +63,7 @@ export default function useRoutElement() {
       )
     },
     {
-      path: 'product/:id',
+      path: 'book/:id',
       element: (
         <LayoutDefault>
           <ProductDetail />

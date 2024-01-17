@@ -42,7 +42,7 @@ export default function UpdateProfile({ data }) {
   }, [data])
   return (
     <Form
-      name='basic'
+      name='updateProfile'
       layout='vertical'
       initialValues={{ remember: true }}
       onFinish={onFinish}

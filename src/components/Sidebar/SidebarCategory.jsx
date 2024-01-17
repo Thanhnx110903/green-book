@@ -7,7 +7,7 @@ import { Menu } from 'antd'
 const convertDataForAntDMenu = (data, slug) => {
   console.log(data)
   return Object.values(data).map((item) => {
-    console.log(item.slug)
+    console.log(item)
 
     const antdItem = {
       key: item.slug.toString() + 'all',
@@ -38,7 +38,7 @@ const convertDataForAntDMenu = (data, slug) => {
 
 const SidebarCategory = ({ categories, slug }) => {
   const [dataSideBar, setDataSideBar] = useState([])
-  const onClick = (e) => {kiêm
+  const onClick = (e) => {
     if (e?.key) {
       navigate(`/${e?.key}`)
     }
@@ -48,8 +48,10 @@ const SidebarCategory = ({ categories, slug }) => {
     if (categories) {
       const convertedData = convertDataForAntDMenu(categories, slug)
       setDataSideBar(convertedData)
+      
     }
   }, [categories])
+  console.log(dataSideBar);
   return (
     <div className=''>
       <Menu

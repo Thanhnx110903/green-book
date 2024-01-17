@@ -88,6 +88,9 @@ export default function Cart() {
       setTotal(total)
     }
   }, [isLoading, dataCart?.data, refetch, data])
+
+  const hanldeUpdateQuantities = (e) => {}
+
   return (
     <>
       <div className={cx('bg-[#f6f6f6] py-[6px] mb-[36px]')}>
@@ -110,7 +113,7 @@ export default function Cart() {
                       <div className={cx('mr-[8px] cursor-pointer')} onClick={() => handleRemoveItem(item?.id)}>
                         <i className={cx('fa-solid fa-xmark p-[8px]', 'times')}></i>
                       </div>
-                      <img className={cx('w-[100px] h-[100px]', 'object-cover')} src={item?.book.image} alt='' />
+                      <img className={cx('w-[100px] h-[100px]', 'object-contain')} src={item?.book.image} alt='' />
                       <div className={cx('text-[1.4rem]')}>{item?.book?.name}</div>
                       <div className={cx('text-[#bb141a] ml-auto font-bold')}>
                         <FormatPrice
@@ -129,6 +132,7 @@ export default function Cart() {
                           value={
                             updatedQuantities[item?.id] !== undefined ? updatedQuantities[item?.id] : item?.quantity
                           }
+                          onChange={hanldeUpdateQuantities}
                           className={cx('w-[48px] text-[13px]', 'quantity')}
                         />
                         <button

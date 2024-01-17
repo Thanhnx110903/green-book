@@ -65,7 +65,7 @@ export default function ForgotPassword() {
             </div>
           </div>
           <Form
-            name='basic'
+            name='forgotpassword'
             className='max-w-[500px] mx-auto w-full text-[20px]'
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
