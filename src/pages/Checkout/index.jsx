@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Input, message, Button, Select, Radio, Divider } from 'antd'
+import { Form, Input, message, Button, Select, Radio, Divider, Spin } from 'antd'
 import FormatPrice from '../../untils/formatPrice'
 import { useCreateOrderMutation, useGetCartQuery } from '../../redux/api/cart'
 import {
@@ -18,6 +18,8 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 export default function Checkout() {
+  const [loading, setLoading] = useState(false)
+
   const [cookies] = useCookies(['userInfor'])
   const [form] = Form.useForm()
   const navigate = useNavigate()
@@ -42,8 +44,19 @@ export default function Checkout() {
   const { data: dataWard, isLoading: loadingWard } = useGetWardQuery(districtId)
   const { data: dataCart, refetch, isLoading } = useGetCartQuery()
   const [data, setData] = useState([])
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log(values)
+
+    setLoading(true)
+
+    // Thực hiện các xử lý cần thiết, có thể là một API call hoặc công việc bất đồng bộ
+    // Ở đây là một setTimeout giả định để làm cho spin xuất hiện trong một khoảng thời gian ngắn
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    // Kết thúc xử lý, ẩn spin
+
+    console.log('Received values:', values)
+
     if (values) {
       const city = dataCity?.data.find((item) => item?.ProvinceID == values.city)?.ProvinceName
       const district = dataDistrict?.data.find((item) => item?.DistrictID == values.district)?.DistrictName
@@ -85,6 +98,7 @@ export default function Checkout() {
             window.open(item?.url?.original?.url)
           }
           navigate('/')
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error)
@@ -383,11 +397,12 @@ export default function Checkout() {
                   </div>
                 </div>
               </div>
+              <Spin spinning={loading} tip='Submitting...'></Spin>
               <div className='flex justify-end items-center gap-5'>
                 <Link to='/cart' className='text-blue-600 text-[18px]'>
                   Quay về giỏ hàng
                 </Link>
-                <Button htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
+                <Button disabled={loading} htmlType='submit' className='h-[50px] text-[18px] w-[200px]'>
                   Đặt hàng
                 </Button>
               </div>
