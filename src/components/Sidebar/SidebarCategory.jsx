@@ -5,10 +5,7 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/ico
 import { Menu } from 'antd'
 
 const convertDataForAntDMenu = (data, slug) => {
-  console.log(data)
   return Object.values(data).map((item) => {
-    console.log(item)
-
     const antdItem = {
       key: item.slug.toString() + 'all',
       label: item.name,
@@ -48,10 +45,8 @@ const SidebarCategory = ({ categories, slug }) => {
     if (categories) {
       const convertedData = convertDataForAntDMenu(categories, slug)
       setDataSideBar(convertedData)
-      
     }
   }, [categories])
-  console.log(dataSideBar);
   return (
     <div className=''>
       <Menu

@@ -32,11 +32,10 @@ export default function Favorite() {
     <div>
       {dataFavorites?.length ? (
         dataFavorites?.map((item) => {
-          console.log(item)
           return (
             <div className='px-5 border-t pt-[10px] ' key={item?.id}>
               <div className='flex-col md:flex-row  flex gap-[30px] pb-[30px] '>
-                <Link to={`/user/profile/roomBooked/${item?.id}`}>
+                <Link to={`/book/${item?.book?.id}`}>
                   <img
                     className='md:max-w-[200px] w-[180px] max-h-[200px] overflow-hidden object-contain rounded-[10px]'
                     src={
@@ -49,7 +48,7 @@ export default function Favorite() {
                 <div className='mb-2  w-full'>
                   <div className='mb-2  w-full'>
                     <div className='text-[18px] font-bold flex justify-between items-center'>
-                      <Link to=''>
+                      <Link to={`/book/${item?.book?.id}`}>
                         <h1 className='text-[18px] font-bold'>{item?.book?.name}</h1>
                       </Link>
                       <div

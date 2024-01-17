@@ -1,18 +1,19 @@
 'use client'
 
 import classNames from 'classnames/bind'
-import styles from './Header.module.css'
-import { LuTicket } from 'react-icons/lu'
-import { cookies as cookies2 } from '../../config/cookies'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
-import { destroyCookie, parseCookies } from 'nookies'
-import { useGetCartQuery } from '../../redux/api/cart'
+import { IoCloseSharp } from 'react-icons/io5'
+import { destroyCookie } from 'nookies'
 import { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { LuTicket } from 'react-icons/lu'
+import { Link } from 'react-router-dom'
 import { useGetBooksQuery } from '../../redux/api/book'
-import FormatPrice from '../../untils/formatPrice'
+import { useGetCartQuery, useRemoveCartMutation } from '../../redux/api/cart'
 import { useGetCategoriesQuery } from '../../redux/api/category'
+import FormatPrice from '../../untils/formatPrice'
 import PcLoading from '../PcLoading'
+import { message } from 'antd'
+import styles from './Header.module.css'
 const cx = classNames.bind(styles)
 
 export default function Header() {
@@ -21,12 +22,27 @@ export default function Header() {
   const [dataSearch, setDataSearch] = useState(null)
   const [cookies, setCookie] = useCookies(['userInfor'])
   const { data: dataCart, isLoading, refetch } = useGetCartQuery()
+  const [removeItem, { isLoading: loadingRemoveAItem }] = useRemoveCartMutation()
   const { data: dataBook, isLoading: isLoadingData } = useGetBooksQuery()
   const [hoveredItem, setHoveredItem] = useState(null)
+  const [total, setTotal] = useState(0)
   const handleLogout = async () => {
     destroyCookie(null, 'userInfor')
     setCookie('userInfor', {})
-    window.location.href = '/login'
+    message.success('Đăng xuất thành công')
+    setTimeout(() => {
+      window.location.href = '/login'
+    }, 500)
+  }
+  const handleRemoveItem = (id) => {
+    removeItem(id)
+      .unwrap()
+      .then((item) => {
+        message.success(item?.message)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
   const onchangeSearch = (e) => {
     if (e.target.value) {
@@ -47,7 +63,15 @@ export default function Header() {
       setData(dataBook?.data?.data)
     }
   }, [isLoadingData, dataBook])
-  console.log(dataSearch)
+  useEffect(() => {
+    if (dataCart?.data && dataCart.data !== data) {
+      const total = dataCart.data.reduce((acc, item) => {
+        const price = item?.quantity > 20 ? item.warehouse.wholesale_price : item.warehouse.retail_price
+        return acc + item?.quantity * price
+      }, 0)
+      setTotal(total)
+    }
+  }, [isLoading, dataCart?.data, refetch, data])
   return (
     <>
       <header className={cx('header-search-sticky', 'shadow-lg')}>
@@ -128,13 +152,79 @@ export default function Header() {
                     </div>
                   )}
                 </div>
-                <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
-                  <img src='/src/assets/imgs/cart.png' alt='' className='w-[24px] h-[24px]' />
-                  <p className='text-[1.4rem] text-[#000000] mx-[8px]'>Giỏ hàng</p>
-                  <span className={cx('count-item')}>
-                    {isLoading ? <span className='text-[9px]'>loading...</span> : dataCart?.data?.length || 0}
-                  </span>
-                </Link>
+                <div className='relative group'>
+                  <Link to='/cart' className={cx('d-flex items-center', 'header-cart')}>
+                    <img src='/src/assets/imgs/cart.png' alt='' className='w-[24px] h-[24px]' />
+                    <p className='text-[1.4rem] text-[#000000] mx-[8px]'>Giỏ hàng</p>
+                    <span className={cx('count-item')}>
+                      {isLoading ? <span className='text-[9px]'>loading...</span> : dataCart?.data?.length || 0}
+                    </span>
+                  </Link>
+
+                  <div
+                    className={cx(
+                      'absolute hidden group-hover:block w-[400px] py-[18px] px-[10px] border-solid border-[1px] border-[#ccc] bg-[#ffffff] rounded-[4px] right-[0px] top-[50px] shadow-lg'
+                    )}
+                  >
+                    {dataCart?.data?.length ? (
+                      <>
+                        <div>
+                          <div className='flex flex-col gap-3 max-h-[300px] overflow-y-auto'>
+                            {dataCart?.data?.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className='d-flex items-start justify-between border-solid border-b-[1px] border-[#ccc] pb-[10px]'
+                                >
+                                  <div className='flex'>
+                                    <Link to={`/book/${item?.book?.id}`} className='flex-shrink-0'>
+                                      <img
+                                        className=' w-[70px] h-[70px] object-contain'
+                                        src={item?.book?.image}
+                                        alt=''
+                                      />
+                                    </Link>
+                                    <div>
+                                      <Link to={`/book/${item?.book?.id}`}>
+                                        <p className='text-[1.4] w-[260px] line-clamp-2'>{item?.book?.name}</p>
+                                      </Link>
+                                      <span className='text-primary text-[1.3rem] font-bold'>
+                                        <FormatPrice
+                                          price={
+                                            item?.quantity > 20
+                                              ? item?.warehouse?.wholesale_price
+                                              : item?.warehouse?.retail_price
+                                          }
+                                        />
+                                      </span>
+                                      <span className='text-[1.3rem]'> x{item?.quantity}</span>
+                                    </div>
+                                  </div>
+                                  <div className='cursor-pointer' onClick={() => handleRemoveItem(item?.id)}>
+                                    <IoCloseSharp className='text-[20px]' />
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                          <div className='d-flex items-center mb-4 mt-6'>
+                            <span className='text-[14px] text-[#000000] mr-[2px]'>Tổng tiền tạm tính:</span>
+                            <p className='text-primary font-bold d-flex items-center'>
+                              <FormatPrice price={total} />
+                            </p>
+                          </div>
+                        </div>
+                        <Link to='/cart'>
+                          <button className='bg-primary text-[#fff] w-[100%] py-[8px] text-[1.6rem] rounded-[4px]'>
+                            Tiến hành thanh toán
+                          </button>
+                        </Link>
+                      </>
+                    ) : (
+                      <span className='flex justify-center text-[14px]'>Không có sản phẩm nào.</span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

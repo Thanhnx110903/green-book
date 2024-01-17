@@ -73,11 +73,11 @@ export default function MyVoucher() {
       </div>
       <div className='grid grid-cols-3 gap-5 px-5 border-t pt-[10px]'>
         {data?.data?.data?.length
-          ? data?.data?.data?.map((item) => {
+          ? data?.data?.data?.map((item, index) => {
               console.log(item)
               return (
                 <div
-                  key={item?.code}
+                  key={index}
                   className='container bg-gradient-to-r bg-[#bc141b] text-white p-8 rounded-lg shadow-lg mx-auto'
                 >
                   <div className='text-3xl font-bold mb-2'>
