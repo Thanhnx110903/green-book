@@ -51,10 +51,10 @@ export default function SearchDetailOrder({}) {
   }
   return (
     <div className=''>
-      <div className='flex items-center flex-col justify-center mx-auto w-[525px] bg-[#e4e4e4] min-h-[250px] shadow-xl rounded-[5px] px-[40px]'>
+      <div className='flex items-center flex-col justify-center mx-auto w-full md:w-[525px] bg-[#e4e4e4] min-h-[220px] md:min-h-[250px] shadow-xl rounded-[5px] px-[40px]'>
         <h1 className='text-2xl font-bold text-center text-[20px] mb-[10px]'>Kiểm tra đơn hàng</h1>
         <Form
-          name='basic'
+          name='searchDetail'
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete='off'

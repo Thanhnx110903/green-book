@@ -4,21 +4,22 @@ footer {
 
 @media (min-width: 1024px) {
   footer {
-    background: linear-gradient(to right, #f6f6f6 0 32%, #efefef 32% 100%);
+    background: linear-gradient(to right, #f6f6f6 0 34%, #efefef 34% 100%);
   }
 }
+
 .wrapper {
   display: flex;
-  justify-content: space-between;
+  gap: 55px;
   padding: 40px 0;
 }
 
 .footer-right {
-  width: 29.5%;
+  width: 31.5%;
 }
 
 .footer-left {
-  width: calc(100% - 33.33%);
+  width: calc(100% - 35.33%);
 }
 
 .footer-title {

@@ -29,7 +29,7 @@ export default function Voucher() {
   }
   return (
     <ProtectRouter>
-      <div className={cx('mb-[20px]')}>
+      <div className={cx('')}>
         <div className={cx('bg-[#f6f6f6] py-[6px]')}>
           <div className={cx('container-wrap text-[1.4rem]')}>
             <Link className={cx('text-[#999]')} to='/'>
@@ -40,22 +40,21 @@ export default function Voucher() {
         </div>
       </div>
 
-      <div className='container-wrap mb-10 '>
-        <div className='bg-bg'>
-          <div className='container mx-auto py-5 mb-6 '>
+      <div className='container-wrap mb-10 mt-[40px]'>
+        <div className='bg-bg '>
+          <div className='container mx-auto pb-5 mb-6 '>
             <h1 className='font-bold text-[30px]'>Tất cả mã giảm giá</h1>
             <p>Điểm hiện tại: {dataProfile?.user?.point || 0}</p>
           </div>
-          <div className='grid grid-cols-4 gap-8 '>
+          <div className='grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 grid'>
             {data?.data?.data?.length ? (
               data?.data?.data?.map((item) => {
-                console.log(item)
                 return (
                   <div
                     key={item?.code}
-                    className='container bg-gradient-to-r bg-[#bc141b] text-white p-8 rounded-lg shadow-lg mx-auto'
+                    className='max-h-[300px] container bg-gradient-to-r bg-[#bc141b] text-white p-3 lg:p-8 rounded-lg shadow-lg mx-auto'
                   >
-                    <div className='text-3xl font-bold mb-2'>
+                    <div className='text-2xl  lg:text-3xl font-bold mb-2'>
                       {' '}
                       Ưu đãi:{' '}
                       {item?.type == 'percent' ? (
@@ -67,7 +66,7 @@ export default function Voucher() {
                       )}
                     </div>
                     <div className='text-lg mb-2'>
-                      Áp dụng đơn hàng dưới:{' '}
+                      Áp dụng đơn hàng trên:{' '}
                       <span className='text-[#fbd947] font-bold'>
                         <FormatPrice price={item?.price_required} />
                       </span>
@@ -77,7 +76,7 @@ export default function Voucher() {
                       <span className='text-[1.5rem] font-semibold'>{item?.code}</span>
                       <span
                         onClick={() => handleGetVoucher(item?.id)}
-                        className='text-[13px] border px-3 py-2 cursor-pointerv bg-[#fbd947] text-[#bc141b] cursor-pointer hover:opacity-[0.8]'
+                        className='text-[8px] md:text-[13px] font-semibold  border px-3 py-1 md:px-3 md:py-2  cursor-pointerv bg-[#fbd947] text-[#bc141b] cursor-pointer hover:opacity-[0.8]'
                       >
                         Lấy ngay
                       </span>
@@ -87,7 +86,7 @@ export default function Voucher() {
                         Ngày hết hạn:
                         <span className='font-semibold '> {dayjs(item?.end_date).format('DD-MM-YYYY')}</span>
                       </p>
-                      <p>Số điểm: {item?.point_required}đ</p>
+                      <p>Số điểm: {item?.point_required}</p>
                     </div>
                   </div>
                 )

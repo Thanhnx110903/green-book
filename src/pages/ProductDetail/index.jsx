@@ -291,7 +291,6 @@ export default function ProductDetail() {
                   <div className=''>
                     <h1 className='font-medium text-2xl p-2'>{data?.data?.name}</h1>
                     <p className=' text-[#ba141a] font-medium text-2xl p-2'>
-                      {' '}
                       <FormatPrice price={data?.data?.warehouse?.wholesale_price} />
                     </p>
                   </div>
@@ -336,7 +335,7 @@ export default function ProductDetail() {
             <div className='m-6'>
               {cookies?.userInfor?.access_token ? (
                 <Form
-                  name='basic'
+                  name='product-detail'
                   onFinish={onFinishComment}
                   onFinishFailed={onFinishFailedComment}
                   autoComplete='off'
@@ -447,7 +446,7 @@ export default function ProductDetail() {
                 </Slider>
               </div>
             </div>
-            <div className='m-6'>
+            <div className='mt-[40px] mb-[60px]'>
               <div>
                 <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
                 <Slider {...settings} className='grid lg:grid-cols-5  py-5 sm:grid-cols-2 md:grid-cols-4'>

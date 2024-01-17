@@ -47,6 +47,7 @@ export default function Header() {
       setData(dataBook?.data?.data)
     }
   }, [isLoadingData, dataBook])
+  console.log(dataSearch)
   return (
     <>
       <header className={cx('header-search-sticky', 'shadow-lg')}>
@@ -80,7 +81,7 @@ export default function Header() {
                                     <p className='text-[14px] font-bold'>{item?.name}</p>
                                   </Link>
                                   <p className='text-[12px]'>
-                                    <FormatPrice price={item?.price} />
+                                    <FormatPrice price={item?.warehouse?.retail_price} />
                                   </p>
                                   <p className='text-[10px] max-w-[300px] truncate'>{item?.short_description}</p>
                                 </div>

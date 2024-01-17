@@ -42,7 +42,7 @@ export default function MyOrder() {
       <div>
         <Form
           form={form}
-          name='basic'
+          name='myorder'
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete='off'
