@@ -5,7 +5,7 @@ import Footer from '../../components/Footer'
 // eslint-disable-next-line react/prop-types
 export default function LayoutDefault({ children }) {
   return (
-    <div className='mx-1'>
+    <div>
       <Header />
       {children}
       <Footer />

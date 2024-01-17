@@ -5,11 +5,10 @@ const Breadcrumb = ({ params = [], className, currenParam }) => {
   // const breadcrumbs = useBreadcrumbs()
   return (
     <div className=' p-4 bg-[#f6f6f6]'>
-      <div className='container-wrap'>
+      <div className='container-wrap text-[1.4rem]'>
         <ul className='flex m-0'>
           {params?.length &&
             params?.map((item, index) => {
-              console.log(index)
               return (
                 <li key={index} className='m-0'>
                   <Link to={item?.href} className={`${currenParam != item?.label ? 'text-[#999] ' : 'uppercase'}`}>

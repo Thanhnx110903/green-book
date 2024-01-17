@@ -10,7 +10,6 @@ export default function MyOrder() {
   const [handlePaymentMomo] = usePaymentMomoMutation()
   const [dataQuery, setDataQuery] = useState(null)
   const { data, isLoading, error } = useGetOrdersQuery(dataQuery)
-  console.log(data)
   const onFinish = (values) => {
     let date = undefined
     if (values?.date) {

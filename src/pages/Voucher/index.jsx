@@ -52,8 +52,13 @@ export default function Voucher() {
                 return (
                   <div
                     key={item?.code}
-                    className='max-h-[300px] container bg-gradient-to-r bg-[#bc141b] text-white p-3 lg:p-8 rounded-lg shadow-lg mx-auto'
+                    className='relative max-h-[300px] container bg-gradient-to-r bg-[#bc141b] text-white p-[14px] rounded-lg shadow-lg mx-auto'
                   >
+                    <img
+                      className='absolute top-[10px] right-[10px] w-[56px]'
+                      src={`data:image/svg+xml;utf8,${encodeURIComponent(item?.image)}`}
+                      alt=''
+                    />
                     <div className='text-2xl  lg:text-3xl font-bold mb-2'>
                       {' '}
                       Ưu đãi:{' '}

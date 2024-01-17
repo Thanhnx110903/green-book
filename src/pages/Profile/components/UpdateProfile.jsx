@@ -82,7 +82,7 @@ export default function UpdateProfile({ data }) {
       </Form.Item>
 
       <Form.Item>
-        <button type='submit' className='bg-[#357ebd] hover:opacity-[0.8] text-white py-3 px-8 rounded'>
+        <button type='submit' className='bg-[#357ebd] hover:opacity-[0.8] text-white py-3 px-8 rounded-[6px]'>
           Cập nhật
         </button>
       </Form.Item>

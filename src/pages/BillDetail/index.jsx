@@ -17,6 +17,7 @@ import {
   useGetWardQuery
 } from '../../redux/api/address'
 import PcLoading from '../../components/PcLoading'
+import { parseCookies } from 'nookies'
 const BillDetail = () => {
   const { id } = useParams()
   const [cookies] = useCookies(['userInfor'])
@@ -57,17 +58,18 @@ const BillDetail = () => {
         district_id: districtId,
         ward_id: wardCode
       }
+      const cookies = parseCookies()
+      const token = cookies?.userInfor ? JSON?.parse(cookies['userInfor'])?.access_token : ''
       axios({
         method: 'PUT',
         url: import.meta.env.VITE_URL_API + '/order' + `/update-order/${dataCreate?.id}`,
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGNkZTBlMzBhZjFlYjI0MWY1NTFmZjdhZjkxNDJjODkwNWFhZDFhZGExYzZjZDEzYWExZWNlN2RjYzM0YjdkOTU4NTllM2Y3MmJlYTU5MTUiLCJpYXQiOjE3MDQ3MDQzMTMuMjc2NzQ0LCJuYmYiOjE3MDQ3MDQzMTMuMjc2NzQ2LCJleHAiOjE3MzYzMjY3MTMuMjcxNDY0LCJzdWIiOiIzMiIsInNjb3BlcyI6W119.AHE9vsHRuzt1c7jgDNviNRS5UvNsVUxKYUrs-1HpMUYyP4luR6ZeyE7ujVyWbCFNrqa470AlcKt7_2QFhcuOfwc0_au4Isv6GvBnvHHC1st7YQSl12VSWRa9Gj18mUZb-e8aMoqyfpL_IwOyUzfrWBiHmXexWJ4PoEkatDKE3bAbDG-E3Oh5hQJ03-VwOkRFL1KuOkjJnCdbGM2DIWeD2TN6cUTPKUWs2r5gcDc2-5nsUHhemw6cjYOe4Cg_8UXZW6KkVtlU04rBWIPeBXk3Waw5AwT2ax8iV6vu9gALgSR2O7m3-CFYAWps3JHhfLuJLRVSdD9F2jiIb_xOQRPaG8nmTNyo7TFNCsdPOIdZ12FFPuL02nKVsZfJy8dTYex-8RFqzV3fEMHTvjKhoAuGk5CwlUKriIbaT0vodrxEaRWJNTz33OxKL15WVZwGARHski5z1LSFDBCVbV39rFI1aL057mIDy54mpKVMUSAe_E_gRMmcJKD6lPz0kxe7oJoBnT1BV_JRmw25hX6vW93QOG6zHtbSzUvL5KWFQ9qOCvP3YHffRGOYrZPK_kJOwxX-1JXgNbtz1LABrRbPeU6wsDaOSjJupW8t4NSNhHX3DCcpgab6RoMNjyeRTjreXjd7n3kKbSiWA3VJvwPS7CNkWyNXJsxov97u2wwXxe6S-Fg`,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         data: dataCreate
       })
         .then((item) => {
-          console.log(item)
           message.success(item?.data?.message)
           setIsUpdate(false)
           refetch()
@@ -263,7 +265,7 @@ const BillDetail = () => {
                     </div>
                     <div className='mt-1 mb-3'></div>
                     <div className='font-normal text-gray-700 flex gap-2 flex-wrap'>
-                      {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.user?.access_token ? (
+                      {data?.order?.status == 'Chờ xử lý' && cookies?.userInfor?.access_token ? (
                         <button
                           className={` hover:bg-red-500
                      hover:text-white  bg-transparent text-red-500 border border-red-500  text-[15px] py-1 px-4 rounded`}
@@ -282,7 +284,7 @@ const BillDetail = () => {
                       )}
                       {data?.order?.status == 'Hoàn thành' && (
                         <Link
-                          to={`/product/${data?.data?.[0]?.book_id}`}
+                          to={`/book/${data?.data?.[0]?.book_id}`}
                           className='hover:bg-blue-500
                      hover:text-white  bg-transparent text-blue-500 border border-blue-500  text-[15px] py-1 px-4 rounded'
                         >

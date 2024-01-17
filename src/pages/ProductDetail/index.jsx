@@ -370,7 +370,7 @@ export default function ProductDetail() {
               ) : (
                 <span>
                   Bàn cần đăng nhập để có thể đánh giá.{' '}
-                  <Link className='text-blue-500' to='/auth/login'>
+                  <Link className='text-blue-500' to='/login'>
                     Đăng nhập ngay
                   </Link>
                 </span>

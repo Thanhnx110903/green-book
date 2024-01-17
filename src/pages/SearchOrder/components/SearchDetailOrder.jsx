@@ -9,7 +9,6 @@ import { message } from 'antd'
 export default function SearchDetailOrder({}) {
   const [dataSearch, setDataSearch] = useState({})
   const onFinish = (values) => {
-    console.log(values)
     if (values) {
       axios({
         method: 'POST',

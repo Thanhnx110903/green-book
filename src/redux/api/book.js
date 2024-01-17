@@ -23,6 +23,15 @@ const bookApi = createApi({
       },
       providesTags: ['Books']
     }),
+    getBooksAll: builder.query({
+      query: () => {
+        return {
+          method: 'GET',
+          url: '/name-search'
+        }
+      },
+      providesTags: ['Books']
+    }),
     getTopBooks: builder.query({
       query: () => {
         return {
@@ -96,6 +105,7 @@ export const {
   useGetDetailBookQuery,
   useGetRelatedBookQuery,
   useGetTopBooksQuery,
-  useGetBookByQueryQuery
+  useGetBookByQueryQuery,
+  useGetBooksAllQuery
 } = bookApi
 export default bookApi

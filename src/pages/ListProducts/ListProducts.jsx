@@ -110,7 +110,6 @@ const ListProducts = () => {
     }
   }, [isLoading, dataQuery, error])
 
-  console.log(data)
   return (
     <div className=''>
       {/* <Breadcrumb /> */}
@@ -328,7 +327,7 @@ const ListProducts = () => {
       {/* News */}
       <div className={cx('container-wrap mb-[40px]')}>
         <div>
-          <h1 className='font-medium text-4xl py-5 '>Sản phẩm mua nhiều</h1>
+          <h1 className='font-medium text-4xl py-5 '>Sản phẩm xem nhiều</h1>
           <div className='grid lg:grid-cols-5 gap-5 py-5 sm:grid-cols-2 md:grid-cols-4'>
             {dataTopBook &&
               dataTopBook?.data?.data.slice(0, 4)?.map((productbyCategory) => (

@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     if (categoriesData?.data) {
       setDataCate(categoriesData?.data?.[0])
-      setSelectDefault(categoriesData?.data?.[0]?.slug)
+      setSelectDefault(categoriesData?.data[0]?.slug)
     }
   }, [categoriesData, cateLoading])
   return (
@@ -36,8 +36,8 @@ export default function Home() {
         <div className={cx('container-wrap')}>
           <div className={cx(' justify-between mt-[60px]')}>
             <div>
-              <h1 className='text-[31px] font-normal mb-[10px]'>{dataCate?.name}</h1>
-              <div className={cx('flex items-center gap-[20px] mb-[30px]')}>
+              <h1 className='text-[31px] font-normal mb-[30px]'>{dataCate?.name}</h1>
+              {/* <div className={cx('flex items-center gap-[20px] mb-[30px]')}>
                 {!!Object.keys(dataCate).length &&
                   Object.values(dataCate.children)?.map((item, index) => {
                     return (
@@ -52,7 +52,7 @@ export default function Home() {
                       </button>
                     )
                   })}
-              </div>
+              </div> */}
               <div>
                 <Productslist id={selectDefault} linkTo={`/${selectDefault}`} />
               </div>
@@ -62,9 +62,28 @@ export default function Home() {
         <div className={cx('container-wrap')}>
           <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium ')}>Sản phẩm mới</h3>
           <div>
-            <Productslist sort_date='desc' isButton={false} max='8' linkTo={`/${selectDefault}?sort_date=desc`} />
+            <Productslist sort_date='desc' isButton={false} max='5' linkTo={`/${selectDefault}?sort_date=desc`} />
           </div>
         </div>
+
+        {/* <div className={cx('container-wrap')}>
+          <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium ')}>Sản phẩm bán chạy</h3>
+          <div>
+            {isLoading ? (
+              <div className='mt-5 w-full'>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <PcLoading key={index} />
+                ))}
+              </div>
+            ) : (
+              <ul className={cx('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[25px]')}>
+                {Object.values(dataTopByBook)?.map((books) => {
+                  books.title
+                })}
+              </ul>
+            )}
+          </div>
+        </div> */}
 
         {/* <div className='container-wrap'>
           <h3 className={cx('mt-[70px] mb-[30px] text-[2.2rem] font-medium ')}>Thương hiệu nổi bật</h3>
@@ -102,7 +121,6 @@ export default function Home() {
             <>
               <div className={cx('grid grid-cols-4 gap-[30px]', 'news-list')}>
                 {dataPosts?.data?.slice(0, 4).map((item) => {
-                  console.log(item)
                   return <BlogItem item={item} key={item.id} />
                 })}
               </div>
